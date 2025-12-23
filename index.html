@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praise Sanctuary Assemblies of God - A Community of Praise and Hope</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9), rgba(240, 147, 251, 0.8)), url('hero-image.jpg') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3), transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #5a2e8f;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.7);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #ffd700, #f093fb);
+            margin: 1rem auto;
+            border-radius: 10px;
+        }
+        
+        /* Welcome Section */
+        #welcome {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #welcome::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            border-radius: 50%;
+        }
+        
+        .welcome-content {
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #5a2e8f;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Service Times */
+        #services {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
+        }
+        
+        .service-card h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card p {
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
+        }
+        
+        /* Core Values */
+        #values {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+            border-color: #ffd700;
+        }
+        
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        
+        .value-card h3 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+        
+        /* Pastor Section */
+        #pastor {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        }
+        
+        .pastor-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .pastor-image-container {
+            position: relative;
+        }
+        
+        .pastor-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 5px solid #ffd700;
+        }
+        
+        .pastor-image-container::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        
+        .pastor-bio h3 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pastor-bio p {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Ministries */
+        #ministries {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+        }
+        
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .ministry-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s;
+        }
+        
+        .ministry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+        
+        .ministry-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 4px solid #ffd700;
+        }
+        
+        .ministry-content {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .ministry-content h3 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .ministry-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Events Section */
+        #events {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #events::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        #events .section-title {
+            color: #ffd700;
+            background: none;
+            -webkit-text-fill-color: #ffd700;
+        }
+        
+        .event-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 20px;
+            border-left: 6px solid #ffd700;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .event-card:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .event-card h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .event-date {
+            font-size: 1.3rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 35px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.6);
+        }
+        
+        .contact-card h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .contact-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .contact-card a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .contact-card a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #ffd700;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            color: #ffd700;
+            transform: scale(1.2) rotate(10deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .pastor-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .pastor-image {
+                margin: 0 auto;
+            }
+            
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">✨ Praise Sanctuary AG</div>
+            <ul class="nav-links">
+                <li><a href="#welcome">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#values">Values</a></li>
+                <li><a href="#pastor">Pastor</a></li>
+                <li><a href="#ministries">Ministries</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Praise Sanctuary Assemblies of God</h1>
+            <p>A Community of Praise to God and Hope for the World</p>
+            <a href="#contact" class="cta-button">Visit Us This Sunday</a>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section id="welcome">
+        <h2 class="section-title">Welcome Home</h2>
+        <div class="welcome-content">
+            <p>You are warmly welcome to Praise Sanctuary Assemblies of God, where God is truly worthy of all praise! Here, we lift His name in worship and declare His goodness, while also equipping you with practical solutions for everyday life. Whether you're seeking spiritual renewal, biblical truth, or a loving community to call home, you've found your place. Come as you are and get ready for a life-changing encounter with God!</p>
+        </div>
+    </section>
+
+    <!-- Service Times -->
+    <section id="services">
+        <h2 class="section-title">Join Us for Worship</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>☀️ Sunday Service</h3>
+                <p><strong>Main Worship Service</strong></p>
+                <p>7:30 AM - 11:00 AM</p>
+                <p>Experience powerful worship, inspiring messages, and genuine fellowship</p>
+            </div>
+            <div class="service-card">
+                <h3>📖 Wednesday Service</h3>
+                <p><strong>Bible Study & Prayer</strong></p>
+                <p>5:30 PM - 7:30 PM</p>
+                <p>Dive deeper into God's Word and grow in your faith journey</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section id="values">
+        <h2 class="section-title">What We Stand For</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🙌</div>
+                <h3>Wholehearted Worship</h3>
+                <p>We give God the praise He deserves through authentic, spirit-filled worship that touches heaven and transforms hearts</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📖</div>
+                <h3>Biblical Truth</h3>
+                <p>We teach the sound, unadulterated Kingdom message that transforms lives and brings clarity to God's purpose for you</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <h3>Compassionate Service</h3>
+                <p>We bring hope to the hopeless and practical help to those in need, showing God's love through action</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pastor Section -->
+    <section id="pastor">
+        <h2 class="section-title">Meet Our Pastor</h2>
+        <div class="pastor-content">
+            <div class="pastor-image-container">
+                <img src="eric.jpg" alt="Rev. Eric Owusu Ansah" class="pastor-image">
+            </div>
+            <div class="pastor-bio">
+                <h3>Rev. Eric Owusu Ansah</h3>
+                <p>Rev. Eric Owusu Ansah is a devoted servant of God with over 20 years of pastoral ministry and church planting experience. Eight years ago, God led him to establish Praise Sanctuary Assemblies of God, where he continues to shepherd God's people with passion and wisdom.</p>
+                <p>Throughout his ministry journey, Rev. Ansah has served alongside spiritual giants including Rev. Dr. Kwadwo Bempah (his father in the Lord), Pastor Mensah Otabil, Bishop Charles Agyin Asare, and Bishop Dag Heward Mills. His heart burns with one mission: to see people encounter God's power and live transformed lives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries -->
+    <section id="ministries">
+        <h2 class="section-title">Our Ministries</h2>
+        <div class="ministries-grid">
+            <div class="ministry-card">
+                <img src="youth-ministry.jpg" alt="Youth Ministry" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Youth Ministry</h3>
+                    <p>Empowering the next generation with biblical truth, leadership development, and vibrant fellowship. Our youth discover their purpose and passion for God in a dynamic, engaging environment.</p>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img src="mens-fellowship.jpg" alt="Men's Fellowship" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Men's Fellowship</h3>
+                    <p>Building strong men of God who lead their families with integrity, support each other through life's challenges, and stand firm in their faith as warriors for the Kingdom.</p>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img src="womens-fellowship.jpg" alt="Women's Fellowship" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Women's Fellowship</h3>
+                    <p>Creating a safe space where women can grow spiritually, support one another, discover their God-given gifts, and make a powerful impact in their families and communities.</p>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img src="young-singles.jpg" alt="Young Singles" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Young Singles (YS)</h3>
+                    <p>A vibrant community for young single adults to build meaningful relationships, navigate life's transitions with godly wisdom, and prepare for their future with purpose and faith.</p>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img src="children-ministry.jpg" alt="Children's Ministry" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Children's Ministry</h3>
+                    <p>Nurturing young hearts with Bible stories, creative worship, and age-appropriate teaching that lays a strong foundation of faith and helps children fall in love with Jesus.</p>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img src="administration.jpg" alt="Administration" class="ministry-image">
+                <div class="ministry-content">
+                    <h3>Administration</h3>
+                    <p>The backbone of our church operations, ensuring smooth coordination of events, financial stewardship, facility management, and supporting all ministries to function effectively in God's kingdom work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section id="events">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="event-card">
+            <div class="event-date">📅 January 19, 2026</div>
+            <h3>January Fasting & Prayers</h3>
+            <p>Join us for a powerful season of seeking God's face! We'll meet every evening from 5:30 PM to 7:30 PM for dedicated prayer and fasting. Start the new year with spiritual breakthrough and divine direction for your life.</p>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; font-style: italic; font-size: 1.2rem;">Check back regularly for more exciting events and programs!</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>📍 Location</h3>
+                <p>Ejisu-Kwamo, Israel<br>Praise Sanctuary Road<br>Kumasi, Ashanti Region</p>
+            </div>
+            <div class="contact-card">
+                <h3>📞 Phone</h3>
+                <p><a href="tel:+233543650056">+233 54 365 0056</a></p>
+                <p><a href="tel:+233547731077">+233 54 773 1077</a></p>
+            </div>
+            <div class="contact-card">
+                <h3>✉️ Email</h3>
+                <p><a href="mailto:praisesanctuary@gmail.com">praisesanctuary@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://facebook.com/praisesanctuaryag" target="_blank" title="Facebook">📘</a>
+            <a href="https://tiktok.com/@praisesanctuaryag" target="_blank" title="TikTok">🎵</a>
+        </div>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">&copy; 2025 Praise Sanctuary Assemblies of God</p>
+        <p style="font-size: 1.1rem; color: #ffd700;">Where God is truly worthy of all praise! ✨</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                navLinks.style.padding = '1rem';
+            }
+        });
+                
