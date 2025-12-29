@@ -39,6 +39,18 @@
             padding: 0 2rem;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
         .logo {
             font-size: 1.6rem;
             font-weight: bold;
@@ -64,6 +76,194 @@
         .nav-links a:hover {
             color: #ffd700;
             transform: translateY(-2px);
+        }
+        
+        /* Giving Section */
+        #giving {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #giving::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent);
+            animation: rotate 15s linear infinite;
+        }
+        
+        #giving .section-title {
+            color: #ffd700;
+            background: none;
+            -webkit-text-fill-color: #ffd700;
+        }
+        
+        .giving-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .giving-intro {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .giving-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .giving-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .giving-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffd700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .giving-card h3 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .giving-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0.5rem 0;
+        }
+        
+        .giving-card strong {
+            color: #ffd700;
+        }
+        
+        /* Calendar Section */
+        #calendar {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .calendar-month {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-top: 5px solid #667eea;
+        }
+        
+        .calendar-month h3 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .calendar-event {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            transition: all 0.3s;
+        }
+        
+        .calendar-event:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-event-date {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .calendar-event-title {
+            color: #333;
+            font-weight: bold;
+            margin: 0.3rem 0;
+        }
+        
+        /* Gallery Section */
+        #gallery {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(102, 126, 234, 0.9), transparent);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         /* Hero Section */
@@ -618,13 +818,19 @@
     <!-- Header & Navigation -->
     <header>
         <nav>
-            <div class="logo">✨ Praise Sanctuary AG</div>
+            <div class="logo-container">
+                <img src="logo.png" alt="Praise Sanctuary Logo" class="logo-image">
+                <div class="logo">Praise Sanctuary AG</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="#welcome">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#values">Values</a></li>
                 <li><a href="#pastor">Pastor</a></li>
                 <li><a href="#ministries">Ministries</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#giving">Giving</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -766,17 +972,10 @@
                 </div>
             </div>
             <div class="ministry-card">
-                <img src="sunday-school.jpg" alt="Sunday School" class="ministry-image">
+                <img src="sunday-school-discipleship.jpg" alt="Sunday School & Discipleship" class="ministry-image">
                 <div class="ministry-content">
-                    <h3>Sunday School</h3>
-                    <p>Providing systematic Bible teaching for all ages, helping members grow in biblical knowledge and understanding. Our classes create an interactive learning environment where God's Word comes alive.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="discipleship.jpg" alt="Discipleship" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Discipleship</h3>
-                    <p>Nurturing mature believers through mentorship, spiritual formation, and practical Christian living. We equip saints for ministry and help every member discover and fulfill their divine purpose and calling.</p>
+                    <h3>Sunday School & Discipleship</h3>
+                    <p>Combining systematic Bible teaching with intentional spiritual formation. We provide interactive learning for all ages while nurturing mature believers through mentorship, equipping saints for ministry and helping every member fulfill their divine calling.</p>
                 </div>
             </div>
             <div class="ministry-card">
@@ -805,6 +1004,168 @@
             <p>Join us for a powerful season of seeking God's face! We'll meet every evening from 5:30 PM to 7:30 PM for dedicated prayer and fasting. Start the new year with spiritual breakthrough and divine direction for your life.</p>
         </div>
         <p style="text-align: center; margin-top: 2rem; font-style: italic; font-size: 1.2rem;">Check back regularly for more exciting events and programs!</p>
+    </section>
+
+    <!-- Church Calendar -->
+    <section id="calendar">
+        <h2 class="section-title">Church Calendar 2026</h2>
+        <div class="calendar-grid">
+            <div class="calendar-month">
+                <h3>📅 January - March</h3>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Jan 19 - 31</div>
+                    <div class="calendar-event-title">Fasting & Prayer (5:30 PM - 7:30 PM Daily)</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Feb 14</div>
+                    <div class="calendar-event-title">Valentine's Fellowship</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Mar 7</div>
+                    <div class="calendar-event-title">Women's Day Celebration</div>
+                </div>
+            </div>
+            
+            <div class="calendar-month">
+                <h3>📅 April - June</h3>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Apr 18 - 20</div>
+                    <div class="calendar-event-title">Easter Convention</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">May 25</div>
+                    <div class="calendar-event-title">Youth Explosion</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Jun 21</div>
+                    <div class="calendar-event-title">Father's Day Service</div>
+                </div>
+            </div>
+            
+            <div class="calendar-month">
+                <h3>📅 July - September</h3>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Jul 5 - 12</div>
+                    <div class="calendar-event-title">Mid-Year Revival</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Aug 15</div>
+                    <div class="calendar-event-title">Church Anniversary</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Sep 20</div>
+                    <div class="calendar-event-title">Harvest Thanksgiving</div>
+                </div>
+            </div>
+            
+            <div class="calendar-month">
+                <h3>📅 October - December</h3>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Oct 31</div>
+                    <div class="calendar-event-title">Reformation Day Service</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Nov 15</div>
+                    <div class="calendar-event-title">Children's Day</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Dec 25</div>
+                    <div class="calendar-event-title">Christmas Celebration</div>
+                </div>
+                <div class="calendar-event">
+                    <div class="calendar-event-date">Dec 31</div>
+                    <div class="calendar-event-title">Watch Night Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #555; margin-bottom: 3rem;">Moments of worship, fellowship, and ministry in action</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="gallery-worship.jpg" alt="Worship Service" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Sunday Worship</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-baptism.jpg" alt="Baptism Service" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Water Baptism</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-outreach.jpg" alt="Community Outreach" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Community Outreach</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-youth.jpg" alt="Youth Fellowship" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Youth Fellowship</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-choir.jpg" alt="Choir Ministry" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Choir in Action</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-missions.jpg" alt="Mission Trip" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Mission Outreach</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-children.jpg" alt="Children's Ministry" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Children's Ministry</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="gallery-projects.jpg" alt="Ongoing Projects" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-title">Building Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giving Section -->
+    <section id="giving">
+        <h2 class="section-title">Partner With Us</h2>
+        <div class="giving-content">
+            <div class="giving-intro">
+                <p>"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap." - Luke 6:38</p>
+                <p>Your generous giving enables us to spread the Gospel, support missions, care for the needy, and build God's kingdom. Every seed you sow is an investment in eternity!</p>
+            </div>
+            
+            <div class="giving-options">
+                <div class="giving-card">
+                    <h3>🏦 Bank Transfer</h3>
+                    <p><strong>Account Name:</strong></p>
+                    <p>Assemblies of God Praise Sanctuary</p>
+                    <p><strong>Bank:</strong> GCB Bank</p>
+                    <p><strong>Account Number:</strong></p>
+                    <p>6121010034221</p>
+                    <p><strong>Branch:</strong> Ejisu</p>
+                </div>
+                
+                <div class="giving-card">
+                    <h3>📱 Mobile Money</h3>
+                    <p><strong>MTN MoMo</strong></p>
+                    <p style="font-size: 1.5rem; color: #ffd700; font-weight: bold; margin: 1rem 0;">0546452288</p>
+                    <p>Send your offering, tithes, and donations directly via mobile money</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 3rem; font-size: 1.2rem; font-style: italic;">Thank you for your faithful giving and support of God's work at Praise Sanctuary! May the Lord bless you abundantly! 🙏</p>
+        </div>
     </section>
 
     <!-- Contact Section -->
