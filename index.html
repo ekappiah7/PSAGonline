@@ -3,1231 +3,1529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praise Sanctuary Assemblies of God - A Community of Praise and Hope</title>
+    <title>Praise Sanctuary Assemblies of God - Where Hope Meets Praise</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --dark-blue: #0A1F44;
+            --white: #FFFFFF;
+            --golden-yellow: #FFD700;
+            --light-blue: #E8F4F8;
+            --navy-blue: #1E3A5F;
+            --warm-gold: #FFA500;
+            --soft-gray: #F5F5F5;
+            --dark-text: #2C3E50;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
             line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
         }
-        
+
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
+            background: var(--dark-blue);
+            color: var(--white);
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+
         nav {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
         }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-image {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-        
+
         .logo {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #ffd700, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--golden-yellow);
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-        
+
         .nav-links a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: color 0.3s;
             font-weight: 500;
         }
-        
-        .nav-links a:hover {
-            color: #ffd700;
-            transform: translateY(-2px);
-        }
-        
-        /* Giving Section */
-        #giving {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #giving::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent);
-            animation: rotate 15s linear infinite;
-        }
-        
-        #giving .section-title {
-            color: #ffd700;
-            background: none;
-            -webkit-text-fill-color: #ffd700;
-        }
-        
-        .giving-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .giving-intro {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .giving-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .giving-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .giving-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.25);
-            border-color: #ffd700;
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
-        }
-        
-        .giving-card h3 {
-            color: #ffd700;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .giving-card p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin: 0.5rem 0;
-        }
-        
-        .giving-card strong {
-            color: #ffd700;
-        }
-        
-        /* Calendar Section */
-        #calendar {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .calendar-month {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border-top: 5px solid #667eea;
-        }
-        
-        .calendar-month h3 {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .calendar-event {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #ffd700;
-            transition: all 0.3s;
-        }
-        
-        .calendar-event:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .calendar-event-date {
-            color: #667eea;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        
-        .calendar-event-title {
-            color: #333;
-            font-weight: bold;
-            margin: 0.3rem 0;
-        }
-        
-        /* Gallery Section */
-        #gallery {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.4s;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(102, 126, 234, 0.9), transparent);
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.4s;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-        
-        .gallery-title {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85), rgba(240, 147, 251, 0.75)), url('group.jpg') center/cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2), transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.3), transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        
-        .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffd700, #fff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .hero p {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #5a2e8f;
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.7);
-        }
-        
-        /* Section Styling */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea, #ffd700, #f093fb);
-            margin: 1rem auto;
-            border-radius: 10px;
-        }
-        
-        /* Welcome Section */
-        #welcome {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #welcome::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
-            border-radius: 50%;
-        }
-        
-        .welcome-content {
-            text-align: center;
-            font-size: 1.3rem;
-            line-height: 2;
-            color: #5a2e8f;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Service Times */
-        #services {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-        
-        .service-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
-        }
-        
-        .service-card:hover::before {
-            left: 100%;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
-        }
-        
-        .service-card h3 {
-            color: #ffd700;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card p {
-            font-size: 1.2rem;
-            margin: 0.8rem 0;
-        }
-        
-        /* Core Values */
-        #values {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .value-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: all 0.4s;
-            border: 3px solid transparent;
-            background-clip: padding-box;
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-            border-color: #ffd700;
-        }
-        
-        .value-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-        }
-        
-        .value-card h3 {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
-        
-        /* Pastor Section */
-        #pastor {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-        }
-        
-        .pastor-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-            background: white;
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-        }
-        
-        .pastor-image-container {
-            position: relative;
-        }
-        
-        .pastor-image {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            border: 5px solid #ffd700;
-        }
-        
-        .pastor-image-container::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea, #f093fb);
-            border-radius: 20px;
-            z-index: -1;
-        }
-        
-        .pastor-bio h3 {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .pastor-bio p {
-            font-size: 1.15rem;
-            line-height: 2;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Ministries */
-        #ministries {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
-        }
-        
-        .ministries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .ministry-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
-            transition: all 0.4s;
-        }
-        
-        .ministry-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-        }
-        
-        .ministry-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 4px solid #ffd700;
-        }
-        
-        .ministry-content {
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .ministry-content h3 {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .ministry-content p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* Events Section */
-        #events {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #events::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        #events .section-title {
-            color: #ffd700;
-            background: none;
-            -webkit-text-fill-color: #ffd700;
-        }
-        
-        .event-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            padding: 3rem;
-            border-radius: 20px;
-            border-left: 6px solid #ffd700;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .event-card:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.25);
-        }
-        
-        .event-card h3 {
-            color: #ffd700;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .event-date {
-            font-size: 1.3rem;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .contact-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 10px 35px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s;
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.6);
-        }
-        
-        .contact-card h3 {
-            color: #ffd700;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        
-        .contact-card p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-        
-        .contact-card a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        
-        .contact-card a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #ffd700;
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.8rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .social-links a:hover {
-            color: #ffd700;
-            transform: scale(1.2) rotate(10deg);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Mobile Menu */
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--golden-yellow);
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.8rem;
+            color: var(--white);
+            font-size: 1.5rem;
             cursor: pointer;
         }
-        
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 31, 68, 0.6), rgba(10, 31, 68, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231E3A5F" width="1200" height="600"/><path fill="%230A1F44" opacity="0.3" d="M0 300L50 280C100 260 200 220 300 200C400 180 500 180 600 200C700 220 800 260 900 280C1000 300 1100 300 1150 300L1200 300V600H0Z"/></svg>') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--golden-yellow);
+            color: var(--dark-blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--warm-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--dark-blue);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-alt {
+            background: var(--light-blue);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--golden-yellow);
+            margin: 1rem auto;
+        }
+
+        /* Pastor Welcome */
+        .pastor-welcome {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin: 3rem 0;
+        }
+
+        .pastor-photo {
+            position: relative;
+        }
+
+        .pastor-photo img {
+            width: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--golden-yellow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pastor-message {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .pastor-message h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .pastor-message p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .signature {
+            font-style: italic;
+            color: var(--navy-blue);
+            margin-top: 2rem;
+        }
+
+        /* Quick Info Cards */
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .info-card-icon {
+            font-size: 3rem;
+            color: var(--golden-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .mission-box, .vision-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--golden-yellow);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Ministries Grid */
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .ministry-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .ministry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .ministry-icon {
+            font-size: 2.5rem;
+            color: var(--golden-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .ministry-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .ministry-card p {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+        }
+
+        /* Events Section */
+        .events-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-date {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .event-date .day {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--golden-yellow);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-content h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-time {
+            color: var(--warm-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Birthdays Section */
+        .birthdays-section {
+            background: linear-gradient(135deg, var(--golden-yellow) 0%, var(--warm-gold) 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            color: var(--dark-blue);
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .birthdays-section::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.1;
+            right: -2rem;
+            top: -2rem;
+        }
+
+        .birthdays-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .birthday-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .birthday-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .birthday-icon {
+            font-size: 2rem;
+        }
+
+        .login-prompt {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(10, 31, 68, 0.2);
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: var(--dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section h2::after {
+            background: var(--golden-yellow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--golden-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--golden-yellow);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--navy-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--golden-yellow);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--navy-blue);
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-nav {
+            background: var(--light-blue);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: 2px solid var(--dark-blue);
+            color: var(--dark-blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .dashboard-content {
+            display: none;
+        }
+
+        .dashboard-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--golden-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Calendar */
+        .calendar {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--light-blue);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: var(--light-blue);
+        }
+
+        .calendar-day.has-event {
+            background: var(--golden-yellow);
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .calendar-day.today {
+            border: 2px solid var(--dark-blue);
+            font-weight: bold;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--golden-yellow);
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+
+        /* Attendance Table */
+        .attendance-table {
+            width: 100%;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .attendance-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .attendance-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .attendance-table tr:hover {
+            background: var(--soft-gray);
+        }
+
+        .present-btn, .absent-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .present-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .absent-btn {
+            background: #f44336;
+            color: white;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.3rem;
-            }
-            
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark-blue);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             }
-            
+
+            .nav-links.active {
+                display: flex;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
-            
-            .pastor-content {
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .pastor-welcome {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
-            
-            .pastor-image {
-                margin: 0 auto;
+
+            .quick-info,
+            .events-preview,
+            .ministries-grid {
+                grid-template-columns: 1fr;
             }
-            
-            section {
-                padding: 4rem 1rem;
+
+            .mission-vision {
+                grid-template-columns: 1fr;
             }
-            
-            .section-title {
-                font-size: 2.2rem;
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .birthday-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .ministries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
         <nav>
-            <div class="logo-container">
-                <img src="logo.jpeg" alt="Praise Sanctuary Logo" class="logo-image">
-                <div class="logo">Praise Sanctuary AG</div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#welcome">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#values">Values</a></li>
-                <li><a href="#pastor">Pastor</a></li>
-                <li><a href="#ministries">Ministries</a></li>
-                <li><a href="#calendar">Calendar</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#giving">Giving</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div class="logo">🕊️ Praise Sanctuary AG</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active" data-page="home">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="ministries">Ministries</a></li>
+                <li><a href="#" data-page="events">Events</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
+                <li><a href="#" data-page="dashboard">Dashboard</a></li>
             </ul>
-            <button class="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Praise Sanctuary Assemblies of God</h1>
-            <p>A Community of Praise to God and Hope for the World</p>
-            <a href="#contact" class="cta-button">Visit Us This Sunday</a>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- HOME PAGE -->
+        <div id="homePage" class="page-content active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Welcome to Praise Sanctuary Assemblies of God</h1>
+                <p>Where Hope Meets Praise</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Join Us This Sunday</a>
+                    <a href="#" class="btn btn-secondary">Watch Live</a>
+                </div>
+            </section>
 
-    <!-- Welcome Section -->
-    <section id="welcome">
-        <h2 class="section-title">Welcome Home</h2>
-        <div class="welcome-content">
-            <p>You are warmly welcome to Praise Sanctuary Assemblies of God, where God is truly worthy of all praise! Here, we lift His name in worship and declare His goodness, while also equipping you with practical solutions for everyday life. Whether you're seeking spiritual renewal, biblical truth, or a loving community to call home, you've found your place. Come as you are and get ready for a life-changing encounter with God!</p>
-        </div>
-    </section>
+            <!-- Pastor Welcome -->
+            <section>
+                <div class="container">
+                    <h2>A Word of Welcome & Hope</h2>
+                    <div class="pastor-welcome">
+                        <div class="pastor-photo">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='200' fill='%231E3A5F'/%3E%3Ctext x='200' y='220' text-anchor='middle' font-size='120' fill='%23FFD700' font-family='Arial'%3EROA%3C/text%3E%3C/svg%3E" alt="Rev. Eric Owusu Ansah">
+                        </div>
+                        <div class="pastor-message">
+                            <h3>From Our Lead Pastor</h3>
+                            <p><strong>Beloved in Christ,</strong></p>
+                            <p>Welcome to Praise Sanctuary Assemblies of God—a place where every heart finds hope and every voice joins in giving God His praise!</p>
+                            <p>Whether you are young or old, weary or joyful, broken or whole, there is a place for you here. We believe that God deserves praise in a very different way—authentic, passionate, and transformative. Our doors are open, our arms are wide, and our hearts are ready to embrace you.</p>
+                            <p>In a world filled with uncertainties, we stand as a beacon of hope, reminding you that God's love never fails. Here, we don't just attend church; we become family. We don't just hear the Word; we live it out together.</p>
+                            <p>I personally invite you to join us as we worship, grow, and make a difference in our community and beyond. Come as you are, and discover the hope that only Jesus Christ can give.</p>
+                            <p class="signature">With love and blessings,<br><strong>Rev. Eric Owusu Ansah</strong><br>Lead Pastor</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Service Times -->
-    <section id="services">
-        <h2 class="section-title">Join Us for Worship</h2>
-        <div class="service-cards">
-            <div class="service-card">
-                <h3>☀️ Sunday Service</h3>
-                <p><strong>Main Worship Service</strong></p>
-                <p>7:30 AM - 11:00 AM</p>
-                <p>Experience powerful worship, inspiring messages, and genuine fellowship</p>
-            </div>
-            <div class="service-card">
-                <h3>📖 Wednesday Service</h3>
-                <p><strong>Bible Study & Prayer</strong></p>
-                <p>5:30 PM - 7:30 PM</p>
-                <p>Dive deeper into God's Word and grow in your faith journey</p>
-            </div>
-        </div>
-    </section>
+            <!-- Quick Info Cards -->
+            <section class="section-alt">
+                <div class="container">
+                    <div class="quick-info">
+                        <div class="info-card">
+                            <div class="info-card-icon">🕐</div>
+                            <h3>Service Times</h3>
+                            <p><strong>Sunday Service</strong><br>8:00 AM - 11:30 AM</p>
+                            <p><strong>Midweek Bible Study</strong><br>Wednesday, 5:30 PM - 7:30 PM</p>
+                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Plan Your Visit</a>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon">🤝</div>
+                            <h3>New Here?</h3>
+                            <p>We're so glad you're here! Discover a community that cares and a place to call home.</p>
+                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More</a>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon">👥</div>
+                            <h3>Get Connected</h3>
+                            <p>Find your place to serve and grow through our various ministries and departments.</p>
+                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Explore Ministries</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Core Values -->
-    <section id="values">
-        <h2 class="section-title">What We Stand For</h2>
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🙌</div>
-                <h3>Wholehearted Worship</h3>
-                <p>We give God the praise He deserves through authentic, spirit-filled worship that touches heaven and transforms hearts</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">📖</div>
-                <h3>Biblical Truth</h3>
-                <p>We teach the sound, unadulterated Kingdom message that transforms lives and brings clarity to God's purpose for you</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">❤️</div>
-                <h3>Compassionate Service</h3>
-                <p>We bring hope to the hopeless and practical help to those in need, showing God's love through action</p>
-            </div>
-        </div>
-    </section>
+            <!-- Mission & Vision -->
+            <section>
+                <div class="container">
+                    <h2>Our Mission & Vision</h2>
+                    <div class="mission-vision">
+                        <div class="mission-box">
+                            <h3>🎯 Our Mission</h3>
+                            <p>To give God His praise in a very different way and to provide Hope for the young and old in the community.</p>
+                        </div>
+                        <div class="vision-box">
+                            <h3>👁️ Our Vision</h3>
+                            <p>To become a global church with the priority of winning souls and building disciples for Christ.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Pastor Section -->
-    <section id="pastor">
-        <h2 class="section-title">Meet Our Pastor</h2>
-        <div class="pastor-content">
-            <div class="pastor-image-container">
-                <img src="eric.jpg" alt="Rev. Eric Owusu Ansah" class="pastor-image">
-            </div>
-            <div class="pastor-bio">
-                <h3>Rev. Eric Owusu Ansah</h3>
-                <p>Rev. Eric Owusu Ansah is a devoted servant of God with over 20 years of pastoral ministry and church planting experience. Eight years ago, God led him to establish Praise Sanctuary Assemblies of God, where he continues to shepherd God's people with passion and wisdom.</p>
-                <p>Throughout his ministry journey, Rev. Ansah has served alongside spiritual giants including Rev. Dr. Kwadwo Bempah (his father in the Lord), Pastor Mensah Otabil, Bishop Charles Agyin Asare, and Bishop Dag Heward Mills. His heart burns with one mission: to see people encounter God's power and live transformed lives.</p>
-            </div>
-        </div>
-    </section>
+            <!-- Ministries Overview -->
+            <section class="section-alt">
+                <div class="container">
+                    <h2>Our Ministries & Departments</h2>
+                    <div class="ministries-grid">
+                        <div class="ministry-card">
+                            <div class="ministry-icon">🌍</div>
+                            <h4>Evangelism & Missions</h4>
+                            <p>Spreading the Gospel locally and globally</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">🙏</div>
+                            <h4>Prayer & Intercession</h4>
+                            <p>The spiritual engine of our church</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">⚙️</div>
+                            <h4>Administration</h4>
+                            <p>Managing church operations efficiently</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">📹</div>
+                            <h4>Media</h4>
+                            <p>Capturing and sharing God's work</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">👶</div>
+                            <h4>Children Service</h4>
+                            <p>Nurturing young hearts for Christ</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">📖</div>
+                            <h4>Sunday School & Discipleship</h4>
+                            <p>Teaching God's Word with excellence</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">🎵</div>
+                            <h4>Choir & Music Ministry</h4>
+                            <p>Leading worship through music</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">🚪</div>
+                            <h4>Ushering</h4>
+                            <p>Creating welcoming worship experiences</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="btn btn-primary" data-page="ministries">Explore All Ministries</a>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Ministries -->
-    <section id="ministries">
-        <h2 class="section-title">Our Ministries</h2>
-        <div class="ministries-grid">
-            <div class="ministry-card">
-                <img src="youth-ministry.jpg" alt="Youth Ministry" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Youth Ministry</h3>
-                    <p>Empowering the next generation with biblical truth, leadership development, and vibrant fellowship. Our youth discover their purpose and passion for God in a dynamic, engaging environment.</p>
+            <!-- Upcoming Events -->
+            <section>
+                <div class="container">
+                    <h2>What's Happening</h2>
+                    <div class="events-preview" id="upcomingEvents">
+                        <!-- Events will be dynamically loaded -->
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="btn btn-primary" data-page="events">View All Events</a>
+                    </div>
                 </div>
-            </div>
-            <div class="ministry-card">
-                <img src="mens-fellowship.jpg" alt="Men's Fellowship" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Men's Fellowship</h3>
-                    <p>Building strong men of God who lead their families with integrity, support each other through life's challenges, and stand firm in their faith as warriors for the Kingdom.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="womens-fellowship.jpg" alt="Women's Fellowship" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Women's Fellowship</h3>
-                    <p>Creating a safe space where women can grow spiritually, support one another, discover their God-given gifts, and make a powerful impact in their families and communities.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="young-singles.jpg" alt="Young Singles" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Young Singles (YS)</h3>
-                    <p>A vibrant community for young single adults to build meaningful relationships, navigate life's transitions with godly wisdom, and prepare for their future with purpose and faith.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="children-ministry.jpg" alt="Children's Ministry" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Children's Ministry</h3>
-                    <p>Nurturing young hearts with Bible stories, creative worship, and age-appropriate teaching that lays a strong foundation of faith and helps children fall in love with Jesus.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="administration.jpg" alt="Administration" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Administration</h3>
-                    <p>The backbone of our church operations, ensuring smooth coordination of events, financial stewardship, facility management, and supporting all ministries to function effectively in God's kingdom work.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="evangelism.jpg" alt="Evangelism" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Evangelism</h3>
-                    <p>Taking the Gospel to the streets and communities, winning souls for Christ through outreach programs, crusades, and personal witnessing. We're passionate about sharing the good news and bringing the lost into God's kingdom.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="prayer-ministry.jpg" alt="Prayer Ministry" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Prayer Ministry</h3>
-                    <p>The powerhouse of our church where we intercede for our community, nation, and world. Through organized prayer sessions, prayer chains, and intercession, we seek God's face and see His power manifested.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="sunday-school-discipleship.jpg" alt="Sunday School & Discipleship" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Sunday School & Discipleship</h3>
-                    <p>Combining systematic Bible teaching with intentional spiritual formation. We provide interactive learning for all ages while nurturing mature believers through mentorship, equipping saints for ministry and helping every member fulfill their divine calling.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="media.jpg" alt="Media Ministry" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Media Ministry</h3>
-                    <p>Using technology to amplify God's message through audio-visual production, live streaming, social media, and digital content creation. We ensure the gospel reaches people both in-person and online.</p>
-                </div>
-            </div>
-            <div class="ministry-card">
-                <img src="choir.jpg" alt="Choir" class="ministry-image">
-                <div class="ministry-content">
-                    <h3>Choir</h3>
-                    <p>Leading the congregation into God's presence through anointed worship and praise. Our choir ministers through powerful vocals, harmony, and spirit-filled performances that usher in divine encounters.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Upcoming Events -->
-    <section id="events">
-        <h2 class="section-title">Upcoming Events</h2>
-        <div class="event-card">
-            <div class="event-date">📅 January 19, 2026</div>
-            <h3>January Fasting & Prayers</h3>
-            <p>Join us for a powerful season of seeking God's face! We'll meet every evening from 5:30 PM to 7:30 PM for dedicated prayer and fasting. Start the new year with spiritual breakthrough and divine direction for your life.</p>
-        </div>
-        <p style="text-align: center; margin-top: 2rem; font-style: italic; font-size: 1.2rem;">Check back regularly for more exciting events and programs!</p>
-    </section>
+            <!-- Birthdays -->
+            <section class="section-alt">
+                <div class="container">
+                    <div class="birthdays-section">
+                        <h3>🎂 Celebrating This Month</h3>
+                        <div class="birthday-list" id="birthdayList">
+                            <!-- Birthdays will be dynamically loaded -->
+                        </div>
+                        <div class="login-prompt">
+                            <p><strong>Want to see the full birthday calendar?</strong></p>
+                            <button class="btn btn-primary" id="loginBtn">Login to Dashboard</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Church Calendar -->
-    <section id="calendar">
-        <h2 class="section-title">Church Calendar 2026</h2>
-        <div class="calendar-grid">
-            <div class="calendar-month">
-                <h3>📅 January - March</h3>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Jan 19 - 31</div>
-                    <div class="calendar-event-title">Fasting & Prayer (5:30 PM - 7:30 PM Daily)</div>
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Ready to Experience Hope?</h2>
+                    <p>Join us this Sunday and discover a community that cares.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Get Directions</a>
                 </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Feb 14</div>
-                    <div class="calendar-event-title">Valentine's Fellowship</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Mar 7</div>
-                    <div class="calendar-event-title">Women's Day Celebration</div>
-                </div>
-            </div>
-            
-            <div class="calendar-month">
-                <h3>📅 April - June</h3>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Apr 18 - 20</div>
-                    <div class="calendar-event-title">Easter Convention</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">May 25</div>
-                    <div class="calendar-event-title">Youth Explosion</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Jun 21</div>
-                    <div class="calendar-event-title">Father's Day Service</div>
-                </div>
-            </div>
-            
-            <div class="calendar-month">
-                <h3>📅 July - September</h3>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Jul 5 - 12</div>
-                    <div class="calendar-event-title">Mid-Year Revival</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Aug 15</div>
-                    <div class="calendar-event-title">Church Anniversary</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Sep 20</div>
-                    <div class="calendar-event-title">Harvest Thanksgiving</div>
-                </div>
-            </div>
-            
-            <div class="calendar-month">
-                <h3>📅 October - December</h3>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Oct 31</div>
-                    <div class="calendar-event-title">Reformation Day Service</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Nov 15</div>
-                    <div class="calendar-event-title">Children's Day</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Dec 25</div>
-                    <div class="calendar-event-title">Christmas Celebration</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-event-date">Dec 31</div>
-                    <div class="calendar-event-title">Watch Night Service</div>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
-        <h2 class="section-title">Gallery</h2>
-        <p style="text-align: center; font-size: 1.2rem; color: #555; margin-bottom: 3rem;">Moments of worship, fellowship, and ministry in action</p>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="gallery-worship.jpg" alt="Worship Service" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Sunday Worship</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-baptism.jpg" alt="Baptism Service" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Water Baptism</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-outreach.jpg" alt="Community Outreach" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Community Outreach</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-youth.jpg" alt="Youth Fellowship" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Youth Fellowship</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-choir.jpg" alt="Choir Ministry" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Choir in Action</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-missions.jpg" alt="Mission Trip" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Mission Outreach</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-children.jpg" alt="Children's Ministry" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Children's Ministry</div>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-projects.jpg" alt="Ongoing Projects" class="gallery-image">
-                <div class="gallery-overlay">
-                    <div class="gallery-title">Building Projects</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboardPage" class="page-content" style="display: none;">
+            <section style="padding: 2rem 0;">
+                <div class="container">
+                    <h2>Church Dashboard</h2>
+                    
+                    <div class="dashboard-nav">
+                        <div class="dashboard-tabs">
+                            <button class="tab-btn active" data-tab="public">Public View</button>
+                            <button class="tab-btn" data-tab="member">Member Portal</button>
+                            <button class="tab-btn" data-tab="admin">Admin Panel</button>
+                        </div>
+                    </div>
 
-    <!-- Giving Section -->
-    <section id="giving">
-        <h2 class="section-title">Partner With Us</h2>
-        <div class="giving-content">
-            <div class="giving-intro">
-                <p>"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap." - Luke 6:38</p>
-                <p>Your generous giving enables us to spread the Gospel, support missions, care for the needy, and build God's kingdom. Every seed you sow is an investment in eternity!</p>
-            </div>
-            
-            <div class="giving-options">
-                <div class="giving-card">
-                    <h3>🏦 Bank Transfer</h3>
-                    <p><strong>Account Name:</strong></p>
-                    <p>Assemblies of God Praise Sanctuary</p>
-                    <p><strong>Bank:</strong> GCB Bank</p>
-                    <p><strong>Account Number:</strong></p>
-                    <p>6121010034221</p>
-                    <p><strong>Branch:</strong> Ejisu</p>
-                </div>
-                
-                <div class="giving-card">
-                    <h3>📱 Mobile Money</h3>
-                    <p><strong>MTN MoMo</strong></p>
-                    <p style="font-size: 1.5rem; color: #ffd700; font-weight: bold; margin: 1rem 0;">0546452288</p>
-                    <p>Send your offering, tithes, and donations directly via mobile money</p>
-                </div>
-            </div>
-            
-            <p style="margin-top: 3rem; font-size: 1.2rem; font-style: italic;">Thank you for your faithful giving and support of God's work at Praise Sanctuary! May the Lord bless you abundantly! 🙏</p>
-        </div>
-    </section>
+                    <!-- Public Dashboard -->
+                    <div id="publicDashboard" class="dashboard-content active">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="nextServiceCountdown">--</div>
+                                <div>Hours to Next Service</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">8</div>
+                                <div>Active Ministries</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="upcomingEventsCount">0</div>
+                                <div>Upcoming Events</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="birthdaysThisMonth">0</div>
+                                <div>Birthdays This Month</div>
+                            </div>
+                        </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h3>📍 Location</h3>
-                <p>Ejisu-Kwamo, Israel<br>Praise Sanctuary Road<br>Kumasi, Ashanti Region</p>
-            </div>
-            <div class="contact-card">
-                <h3>📞 Phone</h3>
-                <p><a href="tel:+233543650056">+233 54 365 0056</a></p>
-                <p><a href="tel:+233547731077">+233 54 773 1077</a></p>
-            </div>
-            <div class="contact-card">
-                <h3>✉️ Email</h3>
-                <p><a href="mailto:praisesanctuary@gmail.com">praisesanctuary@gmail.com</a></p>
-            </div>
+                        <div style="background: var(--light-blue); padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0;">
+                            <h3>Want to See More?</h3>
+                            <p>Login to access the full calendar, birthday list, prayer requests, and online giving.</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="document.getElementById('loginModal').classList.add('active')">Login</button>
+                        </div>
+                    </div>
+
+                    <!-- Member Dashboard -->
+                    <div id="memberDashboard" class="dashboard-content">
+                        <div id="memberWelcome"></div>
+                        
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📅 Events Calendar</h3>
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <button class="btn btn-secondary" id="prevMonth">← Previous</button>
+                                <h3 id="currentMonth"></h3>
+                                <button class="btn btn-secondary" id="nextMonth">Next →</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid"></div>
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🎂 Birthday Calendar</h3>
+                        <div class="birthday-list" id="fullBirthdayList"></div>
+
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🙏 Prayer Requests</h3>
+                        <div class="form-group">
+                            <textarea id="prayerRequest" rows="4" placeholder="Enter your prayer request..."></textarea>
+                            <button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="submitPrayer()">Submit Prayer</button>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard -->
+                    <div id="adminDashboard" class="dashboard-content">
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Admin Panel</h3>
+                        
+                        <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Attendance Management</h4>
+                        <div class="form-group">
+                            <label>Select Service Date</label>
+                            <input type="date" id="attendanceDate">
+                        </div>
+                        <div class="attendance-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Member Name</th>
+                                        <th>Department</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendanceTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📈 Attendance Reports</h4>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="avgAttendance">0</div>
+                                <div>Average Attendance</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="totalMembers">0</div>
+                                <div>Total Members</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="thisWeekAttendance">0</div>
+                                <div>This Week</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="attendanceGrowth">0%</div>
+                                <div>Growth Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://facebook.com/praisesanctuaryag" target="_blank" title="Facebook">📘</a>
-            <a href="https://tiktok.com/@praisesanctuaryag" target="_blank" title="TikTok">🎵</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Praise Sanctuary AG</h4>
+                    <p>Where Hope Meets Praise</p>
+                    <p style="margin-top: 1rem;">Ejisu-Kwamo, Israel<br>Praise Sanctuary Road</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="about">About Us</a></li>
+                        <li><a href="#" data-page="ministries">Ministries</a></li>
+                        <li><a href="#" data-page="events">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>📞 +233 543 650 056</li>
+                        <li>📞 +233 256 812 626</li>
+                        <li>📞 +233 547 731 077</li>
+                        <li>✉️ info@praisesanctuaryag.org</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">T</a>
+                        <a href="#" class="social-icon">Y</a>
+                        <a href="#" class="social-icon">I</a>
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>Service Times</strong></p>
+                    <p>Sunday: 8:00 AM - 11:30 AM (GMT)<br>Wednesday: 5:30 PM - 7:30 PM (GMT)</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Praise Sanctuary Assemblies of God. All rights reserved. | Giving God His praise in a very different way.</p>
+            </div>
         </div>
-        <p style="font-size: 1.2rem; margin: 1rem 0;">&copy; 2025 Praise Sanctuary Assemblies of God</p>
-        <p style="font-size: 1.1rem; color: #ffd700;">Where God is truly worthy of all praise! ✨</p>
     </footer>
 
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to Dashboard</h3>
+                <button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('active')">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter password">
+            </div>
+            <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+            <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+                Demo credentials:<br>
+                <strong>Member:</strong> member / member123<br>
+                <strong>Admin:</strong> admin / admin123
+            </p>
+        </div>
+    </div>
+
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Initialize data in memory
+        let currentUser = null;
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        const sampleEvents = [
+            { date: '2026-01-12', title: 'Sunday Worship Service', time: '08:00 - 11:30', description: 'Join us for powerful worship and life-changing messages' },
+            { date: '2026-01-15', title: 'Midweek Bible Study', time: '17:30 - 19:30', description: 'Deepening our understanding of God\'s Word' },
+            { date: '2026-01-19', title: 'Youth Fellowship', time: '16:00 - 18:00', description: 'Young people gathering for fun and spiritual growth' },
+            { date: '2026-01-25', title: 'Community Outreach', time: '09:00 - 14:00', description: 'Serving our community with love and compassion' },
+            { date: '2026-02-02', title: 'Prayer & Fasting Week Begins', time: '06:00', description: 'Corporate prayer and fasting for breakthrough' }
+        ];
+
+        const sampleBirthdays = [
+            { name: 'Sarah Mensah', date: '2026-01-08' },
+            { name: 'Kwame Osei', date: '2026-01-15' },
+            { name: 'Grace Adu', date: '2026-01-22' },
+            { name: 'Emmanuel Boateng', date: '2026-01-28' },
+            { name: 'Abena Owusu', date: '2026-02-05' }
+        ];
+
+        const sampleMembers = [
+            { id: 1, name: 'John Mensah', department: 'Choir', status: 'present' },
+            { id: 2, name: 'Mary Osei', department: 'Ushering', status: 'absent' },
+            { id: 3, name: 'Peter Asante', department: 'Media', status: 'present' },
+            { id: 4, name: 'Esther Boakye', department: 'Children Service', status: 'present' },
+            { id: 5, name: 'David Owusu', department: 'Evangelism', status: 'present' }
+        ];
+
+        // Navigation
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                const page = e.target.dataset.page;
+                showPage(page);
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
         // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-                navLinks.style.padding = '1rem';
-            }
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
         });
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            const pageMap = {
+                'home': 'homePage',
+                'dashboard': 'dashboardPage'
+            };
+            
+            const pageId = pageMap[pageName] || 'homePage';
+            document.getElementById(pageId).style.display = 'block';
+            
+            if (pageName === 'dashboard') {
+                initDashboard();
+            }
+        }
+
+        // Dashboard tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = e.target.dataset.tab;
+                
+                // Check permissions
+                if (tab === 'member' && (!currentUser || currentUser.role === 'public')) {
+                    alert('Please login to access the Member Portal');
+                    document.getElementById('loginModal').classList.add('active');
+                    return;
+                }
+                
+                if (tab === 'admin' && (!currentUser || currentUser.role !== 'admin')) {
+                    alert('Admin access required');
+                    return;
+                }
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                document.querySelectorAll('.dashboard-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                document.getElementById(tab + 'Dashboard').classList.add('active');
+                
+                if (tab === 'member') loadMemberDashboard();
+                if (tab === 'admin') loadAdminDashboard();
+            });
+        });
+
+        // Login handler
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (username === 'member' && password === 'member123') {
+                currentUser = { username: 'member', role: 'member', name: 'John Doe' };
+                alert('Login successful! Welcome, Member.');
+            } else if (username === 'admin' && password === 'admin123') {
+                currentUser = { username: 'admin', role: 'admin', name: 'Admin User' };
+                alert('Login successful! Welcome, Admin.');
+            } else {
+                alert('Invalid credentials');
+                return;
+            }
+            
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Initialize dashboard
+        function initDashboard() {
+            loadUpcomingEvents();
+            loadBirthdays();
+            updateCountdowns();
+            setInterval(updateCountdowns, 60000); // Update every minute
+        }
+
+        function loadUpcomingEvents() {
+            const container = document.getElementById('upcomingEvents');
+            const now = new Date();
+            const upcoming = sampleEvents.filter(e => new Date(e.date) >= now).slice(0, 3);
+            
+            document.getElementById('upcomingEventsCount').textContent = upcoming.length;
+            
+            container.innerHTML = upcoming.map(event => {
+                const date = new Date(event.date);
+                return `
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div>${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                            <div class="day">${date.getDate()}</div>
+                            <div>${date.toLocaleDateString('en-US', { month: 'short' })}</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>${event.title}</h4>
+                            <div class="event-time">${event.time} GMT</div>
+                            <p>${event.description}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadBirthdays() {
+            const container = document.getElementById('birthdayList');
+            const now = new Date();
+            const thisMonth = sampleBirthdays.filter(b => {
+                const bdate = new Date(b.date);
+                return bdate.getMonth() === now.getMonth();
+            }).slice(0, 6);
+            
+            document.getElementById('birthdaysThisMonth').textContent = thisMonth.length;
+            
+            container.innerHTML = thisMonth.map(birthday => {
+                const date = new Date(birthday.date);
+                return `
+                    <div class="birthday-item">
+                        <div class="birthday-icon">🎂</div>
+                        <div>
+                            <strong>${birthday.name}</strong><br>
+                            <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCountdowns() {
+            const now = new Date();
+            const nextSunday = new Date(now);
+            nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
+            nextSunday.setHours(8, 0, 0, 0);
+            
+            if (now.getDay() === 0 && now.getHours() < 8) {
+                nextSunday.setDate(now.getDate());
+            }
+            
+            const diff = nextSunday - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            
+            document.getElementById('nextServiceCountdown').textContent = hours;
+        }
+
+        function loadMemberDashboard() {
+            if (!currentUser) return;
+            
+            document.getElementById('memberWelcome').innerHTML = `
+                <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
+                     color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3>Welcome back, ${currentUser.name}!</h3>
+                    <p>We're glad to see you today. Stay connected with your church family.</p>
+                </div>
+            `;
+            
+            renderCalendar();
+            loadFullBirthdayList();
+        }
+
+        function renderCalendar() {
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            document.getElementById('currentMonth').textContent = 
+                `${monthNames[currentMonth]} ${currentYear}`;
+            
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            // Day headers
+            ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+                const header = document.createElement('div');
+                header.style.fontWeight = 'bold';
+                header.style.textAlign = 'center';
+                header.style.padding = '0.5rem';
+                header.textContent = day;
+                grid.appendChild(header);
+            });
+            
+            // Empty cells before first day
+            for (let i = 0; i < firstDay; i++) {
+                grid.appendChild(document.createElement('div'));
+            }
+            
+            // Days
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'calendar-day';
+                dayCell.textContent = day;
+                
+                const cellDate = new Date(currentYear, currentMonth, day);
+                const hasEvent = sampleEvents.some(e => {
+                    const eventDate = new Date(e.date);
+                    return eventDate.toDateString() === cellDate.toDateString();
+                });
+                
+                if (hasEvent) {
+                    dayCell.classList.add('has-event');
+                }
+                
+                if (cellDate.toDateString() === today.toDateString()) {
+                    dayCell.classList.add('today');
+                }
+                
+                grid.appendChild(dayCell);
+            }
+        }
+
+        function loadFullBirthdayList() {
+            const container = document.getElementById('fullBirthdayList');
+            container.innerHTML = sampleBirthdays.map(birthday => {
+                const date = new Date(birthday.date);
+                return `
+                    <div class="birthday-item">
+                        <div class="birthday-icon">🎂</div>
+                        <div>
+                            <strong>${birthday.name}</strong><br>
+                            <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</small>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadAdminDashboard() {
+            document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
+            loadAttendanceTable();
+            updateAttendanceStats();
+        }
+
+        function loadAttendanceTable() {
+            const tbody = document.getElementById('attendanceTableBody');
+            tbody.innerHTML = sampleMembers.map(member => `
+                <tr>
+                    <td>${member.name}</td>
+                    <td>${member.department}</td>
+                    <td><span style="padding: 0.25rem 0.75rem; border-radius: 20px; 
+                        background: ${member.status === 'present' ? '#4CAF50' : '#f44336'}; 
+                        color: white;">${member.status}</span></td>
+                    <td>
+                        <button class="present-btn" onclick="markAttendance(${member.id}, 'present')">Present</button>
+                        <button class="absent-btn" onclick="markAttendance(${member.id}, 'absent')">Absent</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function markAttendance(memberId, status) {
+            const member = sampleMembers.find(m => m.id === memberId);
+            if (member) {
+                member.status = status;
+                loadAttendanceTable();
+                updateAttendanceStats();
+            }
+        }
+
+        function updateAttendanceStats() {
+            const presentCount = sampleMembers.filter(m => m.status === 'present').length;
+            document.getElementById('avgAttendance').textContent = presentCount;
+            document.getElementById('totalMembers').textContent = sampleMembers.length;
+            document.getElementById('thisWeekAttendance').textContent = presentCount;
+            document.getElementById('attendanceGrowth').textContent = 
+                Math.round((presentCount / sampleMembers.length) * 100) + '%';
+        }
+
+        function submitPrayer() {
+            const prayer = document.getElementById('prayerRequest').value;
+            if (prayer.trim()) {
+                alert('Prayer request submitted successfully! Our prayer team will lift you up.');
+                document.getElementById('prayerRequest').value = '';
+            }
+        }
+
+        // Calendar navigation
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUpcomingEvents();
+            loadBirthdays();
+            updateCountdowns();
+            
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                document.getElementById('loginModal').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
