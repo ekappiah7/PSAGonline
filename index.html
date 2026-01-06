@@ -52,6 +52,14 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--golden-yellow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
         }
 
         .nav-links {
@@ -83,11 +91,12 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(10, 31, 68, 0.6), rgba(10, 31, 68, 0.6)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231E3A5F" width="1200" height="600"/><path fill="%230A1F44" opacity="0.3" d="M0 300L50 280C100 260 200 220 300 200C400 180 500 180 600 200C700 220 800 260 900 280C1000 300 1100 300 1150 300L1200 300V600H0Z"/></svg>') center/cover;
+                        url('group.jpg') center/cover;
             color: var(--white);
             text-align: center;
             padding: 8rem 2rem 6rem;
             position: relative;
+            background-attachment: fixed;
         }
 
         .hero h1 {
@@ -194,6 +203,8 @@
             border-radius: 50%;
             border: 5px solid var(--golden-yellow);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            object-fit: cover;
+            aspect-ratio: 1;
         }
 
         .pastor-message {
@@ -302,6 +313,17 @@
             font-size: 2.5rem;
             color: var(--golden-yellow);
             margin-bottom: 1rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ministry-icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .ministry-card h4 {
@@ -803,7 +825,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">🕊️ Praise Sanctuary AG</div>
+            <div class="logo">
+                <img src="logo.png" alt="Praise Sanctuary AG Logo">
+                <span>Praise Sanctuary AG</span>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" class="active" data-page="home">Home</a></li>
                 <li><a href="#" data-page="about">About</a></li>
@@ -836,7 +861,7 @@
                     <h2>A Word of Welcome & Hope</h2>
                     <div class="pastor-welcome">
                         <div class="pastor-photo">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='200' fill='%231E3A5F'/%3E%3Ctext x='200' y='220' text-anchor='middle' font-size='120' fill='%23FFD700' font-family='Arial'%3EROA%3C/text%3E%3C/svg%3E" alt="Rev. Eric Owusu Ansah">
+                            <img src="eric.jpg" alt="Rev. Eric Owusu Ansah">
                         </div>
                         <div class="pastor-message">
                             <h3>From Our Lead Pastor</h3>
@@ -901,7 +926,9 @@
                     <h2>Our Ministries & Departments</h2>
                     <div class="ministries-grid">
                         <div class="ministry-card">
-                            <div class="ministry-icon">🌍</div>
+                            <div class="ministry-icon">
+                                <img src="young-singles.jpg" alt="Evangelism & Missions">
+                            </div>
                             <h4>Evangelism & Missions</h4>
                             <p>Spreading the Gospel locally and globally</p>
                         </div>
@@ -921,7 +948,9 @@
                             <p>Capturing and sharing God's work</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">👶</div>
+                            <div class="ministry-icon">
+                                <img src="children-ministry.jpg" alt="Children Service">
+                            </div>
                             <h4>Children Service</h4>
                             <p>Nurturing young hearts for Christ</p>
                         </div>
@@ -931,7 +960,9 @@
                             <p>Teaching God's Word with excellence</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">🎵</div>
+                            <div class="ministry-icon">
+                                <img src="choir.jpg" alt="Choir & Music Ministry">
+                            </div>
                             <h4>Choir & Music Ministry</h4>
                             <p>Leading worship through music</p>
                         </div>
