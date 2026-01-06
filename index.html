@@ -58,7 +58,7 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 60px;
             width: auto;
         }
 
@@ -200,11 +200,10 @@
 
         .pastor-photo img {
             width: 100%;
-            border-radius: 50%;
-            border: 5px solid var(--golden-yellow);
+            border-radius: 0;
+            border: none;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             object-fit: cover;
-            aspect-ratio: 1;
         }
 
         .pastor-message {
@@ -320,10 +319,10 @@
         }
 
         .ministry-icon img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 0;
         }
 
         .ministry-card h4 {
@@ -850,8 +849,8 @@
                 <h1>Welcome to Praise Sanctuary Assemblies of God</h1>
                 <p>Where Hope Meets Praise</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Join Us This Sunday</a>
-                    <a href="#" class="btn btn-secondary">Watch Live</a>
+                    <a href="#contact" class="btn btn-primary">Join Us This Sunday</a>
+                    <a href="https://youtube.com/@praisesanctuaryag" target="_blank" class="btn btn-secondary">Watch Live</a>
                 </div>
             </section>
 
@@ -885,19 +884,19 @@
                             <h3>Service Times</h3>
                             <p><strong>Sunday Service</strong><br>8:00 AM - 11:30 AM</p>
                             <p><strong>Midweek Bible Study</strong><br>Wednesday, 5:30 PM - 7:30 PM</p>
-                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Plan Your Visit</a>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="scrollToContact()">Plan Your Visit</button>
                         </div>
                         <div class="info-card">
                             <div class="info-card-icon">🤝</div>
                             <h3>New Here?</h3>
                             <p>We're so glad you're here! Discover a community that cares and a place to call home.</p>
-                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More</a>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showPageByName('about')">Learn More</button>
                         </div>
                         <div class="info-card">
                             <div class="info-card-icon">👥</div>
                             <h3>Get Connected</h3>
                             <p>Find your place to serve and grow through our various ministries and departments.</p>
-                            <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Explore Ministries</a>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showPageByName('ministries')">Explore Ministries</button>
                         </div>
                     </div>
                 </div>
@@ -973,7 +972,7 @@
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem;">
-                        <a href="#" class="btn btn-primary" data-page="ministries">Explore All Ministries</a>
+                        <button class="btn btn-primary" onclick="showPageByName('ministries')">Explore All Ministries</button>
                     </div>
                 </div>
             </section>
@@ -986,7 +985,7 @@
                         <!-- Events will be dynamically loaded -->
                     </div>
                     <div style="text-align: center; margin-top: 2rem;">
-                        <a href="#" class="btn btn-primary" data-page="events">View All Events</a>
+                        <button class="btn btn-primary" onclick="showPageByName('events')">View All Events</button>
                     </div>
                 </div>
             </section>
@@ -1012,7 +1011,7 @@
                 <div class="container">
                     <h2>Ready to Experience Hope?</h2>
                     <p>Join us this Sunday and discover a community that cares.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Get Directions</a>
+                    <a href="https://maps.google.com/?q=Ejisu-Kwamo,Israel,Praise+Sanctuary+Road" target="_blank" class="btn btn-primary" style="margin-top: 1.5rem;">Get Directions</a>
                 </div>
             </section>
         </div>
@@ -1258,7 +1257,11 @@
             
             const pageMap = {
                 'home': 'homePage',
-                'dashboard': 'dashboardPage'
+                'dashboard': 'dashboardPage',
+                'about': 'homePage', // Will create later
+                'ministries': 'homePage', // Will create later
+                'events': 'homePage', // Will create later
+                'contact': 'homePage' // Will create later
             };
             
             const pageId = pageMap[pageName] || 'homePage';
@@ -1267,6 +1270,23 @@
             if (pageName === 'dashboard') {
                 initDashboard();
             }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPageByName(pageName) {
+            showPage(pageName);
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`[data-page="${pageName}"]`);
+            if (navLink) navLink.classList.add('active');
+        }
+
+        function scrollToContact() {
+            // Scroll to footer contact section
+            document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Dashboard tabs
