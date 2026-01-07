@@ -58,7 +58,7 @@
         }
 
         .logo img {
-            height: 60px;
+            height: 80px;
             width: auto;
         }
 
@@ -188,7 +188,7 @@
         /* Pastor Welcome */
         .pastor-welcome {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 400px 1fr;
             gap: 3rem;
             align-items: start;
             margin: 3rem 0;
@@ -462,9 +462,27 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 2rem;
+        }
+
+        .footer-map {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            border: none;
+        }
+
+        .footer-map h3 {
+            color: var(--golden-yellow);
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         .footer-section h4 {
@@ -753,7 +771,7 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+            @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 position: absolute;
@@ -806,6 +824,14 @@
 
             .birthday-list {
                 grid-template-columns: 1fr;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .footer-map iframe {
+                height: 300px;
             }
         }
 
@@ -926,23 +952,29 @@
                     <div class="ministries-grid">
                         <div class="ministry-card">
                             <div class="ministry-icon">
-                                <img src="young-singles.jpg" alt="Evangelism & Missions">
+                                <img src="group.jpg" alt="Evangelism & Missions">
                             </div>
                             <h4>Evangelism & Missions</h4>
                             <p>Spreading the Gospel locally and globally</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">🙏</div>
+                            <div class="ministry-icon">
+                                <img src="prayer-ministry.jpg" alt="Prayer & Intercession">
+                            </div>
                             <h4>Prayer & Intercession</h4>
                             <p>The spiritual engine of our church</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">⚙️</div>
+                            <div class="ministry-icon">
+                                <img src="administration-ministry.jpg" alt="Administration">
+                            </div>
                             <h4>Administration</h4>
                             <p>Managing church operations efficiently</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">📹</div>
+                            <div class="ministry-icon">
+                                <img src="media-ministry.jpg" alt="Media">
+                            </div>
                             <h4>Media</h4>
                             <p>Capturing and sharing God's work</p>
                         </div>
@@ -954,7 +986,9 @@
                             <p>Nurturing young hearts for Christ</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">📖</div>
+                            <div class="ministry-icon">
+                                <img src="sunday-school-ministry.jpg" alt="Sunday School & Discipleship">
+                            </div>
                             <h4>Sunday School & Discipleship</h4>
                             <p>Teaching God's Word with excellence</p>
                         </div>
@@ -966,9 +1000,18 @@
                             <p>Leading worship through music</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">🚪</div>
+                            <div class="ministry-icon">
+                                <img src="ushering-ministry.jpg" alt="Ushering">
+                            </div>
                             <h4>Ushering</h4>
                             <p>Creating welcoming worship experiences</p>
+                        </div>
+                        <div class="ministry-card">
+                            <div class="ministry-icon">
+                                <img src="young-singles.jpg" alt="Young Singles">
+                            </div>
+                            <h4>Young Singles</h4>
+                            <p>Building strong faith foundations for young adults</p>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 2rem;">
@@ -1133,6 +1176,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
+            <!-- Google Maps Section -->
+            <div class="footer-map">
+                <h3>📍 Find Us Here</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3!2d-1.5!3d6.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDInMDAuMCJOIDHCsDMwJzAwLjAiVw!5e0!3m2!1sen!2sgh!4v1234567890"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ejisu-Kwamo+Israel+Praise+Sanctuary+Road" 
+                       target="_blank" 
+                       class="btn btn-primary">
+                        Get Directions to Church
+                    </a>
+                </div>
+            </div>
+
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Praise Sanctuary AG</h4>
@@ -1157,18 +1218,20 @@
                         <li>✉️ info@praisesanctuaryag.org</li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-icon">f</a>
-                        <a href="#" class="social-icon">T</a>
-                        <a href="#" class="social-icon">Y</a>
-                        <a href="#" class="social-icon">I</a>
-                    </div>
-                    <p style="margin-top: 1rem;"><strong>Service Times</strong></p>
-                    <p>Sunday: 8:00 AM - 11:30 AM (GMT)<br>Wednesday: 5:30 PM - 7:30 PM (GMT)</p>
-                </div>
             </div>
+            
+            <div style="text-align: center; margin: 2rem 0;">
+                <h4 style="color: var(--golden-yellow); margin-bottom: 1rem;">Follow Us</h4>
+                <div class="social-links" style="justify-content: center;">
+                    <a href="https://facebook.com/praisesanctuaryag" target="_blank" class="social-icon" title="Facebook">f</a>
+                    <a href="https://tiktok.com/@praisesanctuaryag" target="_blank" class="social-icon" title="TikTok">T</a>
+                    <a href="https://youtube.com/@praisesanctuaryag" target="_blank" class="social-icon" title="YouTube">Y</a>
+                    <a href="https://instagram.com/praisesanctuaryag" target="_blank" class="social-icon" title="Instagram">I</a>
+                </div>
+                <p style="margin-top: 1.5rem;"><strong>Service Times (GMT)</strong></p>
+                <p>Sunday: 8:00 AM - 11:30 AM<br>Wednesday: 5:30 PM - 7:30 PM</p>
+            </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2026 Praise Sanctuary Assemblies of God. All rights reserved. | Giving God His praise in a very different way.</p>
             </div>
@@ -1205,13 +1268,66 @@
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
 
-        const sampleEvents = [
-            { date: '2026-01-12', title: 'Sunday Worship Service', time: '08:00 - 11:30', description: 'Join us for powerful worship and life-changing messages' },
-            { date: '2026-01-15', title: 'Midweek Bible Study', time: '17:30 - 19:30', description: 'Deepening our understanding of God\'s Word' },
-            { date: '2026-01-19', title: 'Youth Fellowship', time: '16:00 - 18:00', description: 'Young people gathering for fun and spiritual growth' },
-            { date: '2026-01-25', title: 'Community Outreach', time: '09:00 - 14:00', description: 'Serving our community with love and compassion' },
-            { date: '2026-02-02', title: 'Prayer & Fasting Week Begins', time: '06:00', description: 'Corporate prayer and fasting for breakthrough' }
-        ];
+        // Dynamic recurring events generator
+        function generateRecurringEvents() {
+            const events = [];
+            const today = new Date();
+            const futureMonths = 6; // Generate events for next 6 months
+            
+            // Generate Sunday Services (every Sunday at 8:00 AM)
+            for (let i = 0; i < futureMonths * 4; i++) {
+                const sunday = getNextDayOfWeek(today, 0, i); // 0 = Sunday
+                events.push({
+                    date: sunday.toISOString().split('T')[0],
+                    title: 'Sunday Worship Service',
+                    time: '08:00 - 11:30',
+                    description: 'Join us for powerful worship and life-changing messages',
+                    recurring: true
+                });
+            }
+            
+            // Generate Wednesday Bible Study (every Wednesday at 5:30 PM)
+            for (let i = 0; i < futureMonths * 4; i++) {
+                const wednesday = getNextDayOfWeek(today, 3, i); // 3 = Wednesday
+                events.push({
+                    date: wednesday.toISOString().split('T')[0],
+                    title: 'Midweek Bible Study',
+                    time: '17:30 - 19:30',
+                    description: 'Deepening our understanding of God\'s Word',
+                    recurring: true
+                });
+            }
+            
+            // Add special one-time events
+            events.push(
+                { date: '2026-01-19', title: 'Youth Fellowship', time: '16:00 - 18:00', description: 'Young people gathering for fun and spiritual growth' },
+                { date: '2026-01-25', title: 'Community Outreach', time: '09:00 - 14:00', description: 'Serving our community with love and compassion' },
+                { date: '2026-02-02', title: 'Prayer & Fasting Week Begins', time: '06:00', description: 'Corporate prayer and fasting for breakthrough' }
+            );
+            
+            return events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        // Helper function to get next occurrence of a day of week
+        function getNextDayOfWeek(startDate, dayOfWeek, occurrenceIndex = 0) {
+            const date = new Date(startDate);
+            const currentDay = date.getDay();
+            
+            // Calculate days until next occurrence
+            let daysUntilNext = dayOfWeek - currentDay;
+            if (daysUntilNext <= 0) {
+                daysUntilNext += 7;
+            }
+            
+            // Add days for the specific occurrence
+            date.setDate(date.getDate() + daysUntilNext + (occurrenceIndex * 7));
+            date.setHours(0, 0, 0, 0);
+            
+            return date;
+        }
+
+        // Generate events dynamically
+        const sampleEvents = generateRecurringEvents();
 
         const sampleBirthdays = [
             { name: 'Sarah Mensah', date: '2026-01-08' },
@@ -1401,18 +1517,31 @@
 
         function updateCountdowns() {
             const now = new Date();
-            const nextSunday = new Date(now);
-            nextSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
-            nextSunday.setHours(8, 0, 0, 0);
             
-            if (now.getDay() === 0 && now.getHours() < 8) {
-                nextSunday.setDate(now.getDate());
+            // Find next Sunday service
+            let nextSunday = new Date(now);
+            const daysUntilSunday = (7 - now.getDay()) % 7;
+            
+            if (now.getDay() === 0) {
+                // It's Sunday
+                if (now.getHours() >= 11 || (now.getHours() === 11 && now.getMinutes() >= 30)) {
+                    // Service has ended, show next Sunday
+                    nextSunday.setDate(now.getDate() + 7);
+                } else {
+                    // Service hasn't started yet today
+                    nextSunday.setDate(now.getDate());
+                }
+            } else {
+                // It's not Sunday, calculate days until next Sunday
+                nextSunday.setDate(now.getDate() + (daysUntilSunday || 7));
             }
+            
+            nextSunday.setHours(8, 0, 0, 0);
             
             const diff = nextSunday - now;
             const hours = Math.floor(diff / (1000 * 60 * 60));
             
-            document.getElementById('nextServiceCountdown').textContent = hours;
+            document.getElementById('nextServiceCountdown').textContent = hours > 0 ? hours : 0;
         }
 
         function loadMemberDashboard() {
