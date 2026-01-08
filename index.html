@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Praise Sanctuary Assemblies of God - Where Hope Meets Praise</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -1242,27 +1248,348 @@
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Login to Dashboard</h3>
-                <button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('active')">&times;</button>
+                <h3 id="modalTitle">Login to Dashboard</h3>
+                <button class="modal-close" onclick="closeLoginModal()">&times;</button>
             </div>
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="loginUsername" placeholder="Enter username">
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+                <p style="margin-top: 1rem; text-align: center;">
+                    Don't have an account? <a href="#" onclick="showRegisterForm()" style="color: var(--golden-yellow); font-weight: 600;">Register</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="Enter password">
+            <div id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password (min 6 characters)">
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select id="registerDepartment">
+                        <option value="">Select a department</option>
+                        <option value="Evangelism & Missions">Evangelism & Missions</option>
+                        <option value="Prayer & Intercession">Prayer & Intercession</option>
+                        <option value="Administration">Administration</option>
+                        <option value="Media">Media</option>
+                        <option value="Children Service">Children Service</option>
+                        <option value="Sunday School & Discipleship">Sunday School & Discipleship</option>
+                        <option value="Choir & Music Ministry">Choir & Music Ministry</option>
+                        <option value="Ushering">Ushering</option>
+                        <option value="Young Singles">Young Singles</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="handleRegister()">Register</button>
+                <p style="margin-top: 1rem; text-align: center;">
+                    Already have an account? <a href="#" onclick="showLoginForm()" style="color: var(--golden-yellow); font-weight: 600;">Login</a>
+                </p>
             </div>
-            <button class="btn btn-primary" onclick="handleLogin()">Login</button>
-            <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem;">
-                Demo credentials:<br>
-                <strong>Member:</strong> member / member123<br>
-                <strong>Admin:</strong> admin / admin123
-            </p>
+            <p id="authMessage" style="margin-top: 1rem; text-align: center; color: var(--warm-gold);"></p>
         </div>
     </div>
 
     <script>
+        // ============================================
+        // FIREBASE CONFIGURATION
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEN5RJvHpj9DKT1dh5aD27NMpByDo8Ra8",
+            authDomain: "praisesanctuary-c755d.firebaseapp.com",
+            projectId: "praisesanctuary-c755d",
+            storageBucket: "praisesanctuary-c755d.firebasestorage.app",
+            messagingSenderId: "872895242654",
+            appId: "1:872895242654:web:674b5c3944330d2d17b68f"
+        };
+
+        // Initialize Firebase
+        let db, auth;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            auth = firebase.auth();
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            console.log('⚠️ Using demo mode - Please configure Firebase');
+        }
+
+        // ============================================
+        // AUTHENTICATION FUNCTIONS
+        // ============================================
+        
+        // Login handler
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                showAuthMessage('Please enter email and password', 'error');
+                return;
+            }
+
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Get user data from Firestore
+                const userDoc = await db.collection('members').doc(user.uid).get();
+                
+                if (userDoc.exists) {
+                    currentUser = {
+                        uid: user.uid,
+                        email: user.email,
+                        name: userDoc.data().name,
+                        role: userDoc.data().role || 'member',
+                        department: userDoc.data().department
+                    };
+                    
+                    showAuthMessage('Login successful!', 'success');
+                    setTimeout(() => {
+                        closeLoginModal();
+                        showPageByName('dashboard');
+                    }, 1000);
+                } else {
+                    showAuthMessage('User data not found', 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAuthMessage(getAuthErrorMessage(error.code), 'error');
+            }
+        }
+
+        // Register handler
+        async function handleRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const department = document.getElementById('registerDepartment').value;
+            
+            if (!name || !email || !password || !department) {
+                showAuthMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAuthMessage('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            try {
+                // Create user account
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Update display name
+                await user.updateProfile({ displayName: name });
+                
+                // Save user data to Firestore
+                await db.collection('members').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    department: department,
+                    role: 'member', // Default role
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    attendanceHistory: []
+                });
+                
+                showAuthMessage('Registration successful! Logging you in...', 'success');
+                
+                // Auto-login
+                currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    name: name,
+                    role: 'member',
+                    department: department
+                };
+                
+                setTimeout(() => {
+                    closeLoginModal();
+                    showPageByName('dashboard');
+                }, 1500);
+            } catch (error) {
+                console.error('Registration error:', error);
+                showAuthMessage(getAuthErrorMessage(error.code), 'error');
+            }
+        }
+
+        // Logout handler
+        async function handleLogout() {
+            try {
+                await auth.signOut();
+                currentUser = null;
+                showAuthMessage('Logged out successfully', 'success');
+                showPageByName('home');
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+
+        // Auth state observer
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const userDoc = await db.collection('members').doc(user.uid).get();
+                if (userDoc.exists) {
+                    currentUser = {
+                        uid: user.uid,
+                        email: user.email,
+                        name: userDoc.data().name,
+                        role: userDoc.data().role || 'member',
+                        department: userDoc.data().department
+                    };
+                    console.log('User logged in:', currentUser.name);
+                }
+            } else {
+                currentUser = null;
+                console.log('No user logged in');
+            }
+        });
+
+        // ============================================
+        // FIRESTORE DATA FUNCTIONS
+        // ============================================
+
+        // Save attendance to Firestore
+        async function saveAttendance(memberId, date, status) {
+            try {
+                await db.collection('attendance').add({
+                    memberId: memberId,
+                    date: date,
+                    status: status,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                console.log('Attendance saved successfully');
+            } catch (error) {
+                console.error('Error saving attendance:', error);
+            }
+        }
+
+        // Load members from Firestore
+        async function loadMembersFromFirestore() {
+            try {
+                const snapshot = await db.collection('members').get();
+                const members = [];
+                snapshot.forEach(doc => {
+                    members.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                return members;
+            } catch (error) {
+                console.error('Error loading members:', error);
+                return [];
+            }
+        }
+
+        // Save prayer request to Firestore
+        async function submitPrayer() {
+            const prayer = document.getElementById('prayerRequest').value;
+            if (!prayer.trim()) {
+                alert('Please enter a prayer request');
+                return;
+            }
+
+            try {
+                await db.collection('prayers').add({
+                    request: prayer,
+                    submittedBy: currentUser.uid,
+                    submitterName: currentUser.name,
+                    status: 'active',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Prayer request submitted successfully! Our prayer team will lift you up.');
+                document.getElementById('prayerRequest').value = '';
+            } catch (error) {
+                console.error('Error submitting prayer:', error);
+                alert('Error submitting prayer request. Please try again.');
+            }
+        }
+
+        // Load birthdays from Firestore
+        async function loadBirthdaysFromFirestore() {
+            try {
+                const snapshot = await db.collection('members').get();
+                const birthdays = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.birthday) {
+                        birthdays.push({
+                            name: data.name,
+                            date: data.birthday
+                        });
+                    }
+                });
+                return birthdays;
+            } catch (error) {
+                console.error('Error loading birthdays:', error);
+                return sampleBirthdays; // Fallback to sample data
+            }
+        }
+
+        // ============================================
+        // HELPER FUNCTIONS
+        // ============================================
+
+        function showAuthMessage(message, type) {
+            const messageEl = document.getElementById('authMessage');
+            messageEl.textContent = message;
+            messageEl.style.color = type === 'success' ? '#4CAF50' : '#f44336';
+        }
+
+        function getAuthErrorMessage(errorCode) {
+            const errorMessages = {
+                'auth/email-already-in-use': 'This email is already registered',
+                'auth/invalid-email': 'Invalid email address',
+                'auth/weak-password': 'Password is too weak',
+                'auth/user-not-found': 'No account found with this email',
+                'auth/wrong-password': 'Incorrect password',
+                'auth/too-many-requests': 'Too many attempts. Please try again later'
+            };
+            return errorMessages[errorCode] || 'An error occurred. Please try again.';
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('modalTitle').textContent = 'Login to Dashboard';
+            document.getElementById('authMessage').textContent = '';
+        }
+
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('modalTitle').textContent = 'Register New Member';
+            document.getElementById('authMessage').textContent = '';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            showLoginForm();
+            // Clear form fields
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('registerName').value = '';
+            document.getElementById('registerEmail').value = '';
+            document.getElementById('registerPassword').value = '';
+            document.getElementById('registerDepartment').value = '';
+        }
         // Initialize data in memory
         let currentUser = null;
         let currentMonth = new Date().getMonth();
@@ -1655,6 +1982,13 @@
             const member = sampleMembers.find(m => m.id === memberId);
             if (member) {
                 member.status = status;
+                const date = document.getElementById('attendanceDate').value || new Date().toISOString().split('T')[0];
+                
+                // Save to Firestore if available
+                if (db && currentUser) {
+                    saveAttendance(member.name, date, status);
+                }
+                
                 loadAttendanceTable();
                 updateAttendanceStats();
             }
@@ -1705,6 +2039,22 @@
             document.getElementById('loginBtn').addEventListener('click', () => {
                 document.getElementById('loginModal').classList.add('active');
             });
+
+            // Add logout button to dashboard if user is logged in
+            setInterval(() => {
+                if (currentUser && document.getElementById('dashboardPage').style.display === 'block') {
+                    const dashboardHeader = document.querySelector('#dashboardPage h2');
+                    if (dashboardHeader && !document.getElementById('logoutBtn')) {
+                        const logoutBtn = document.createElement('button');
+                        logoutBtn.id = 'logoutBtn';
+                        logoutBtn.className = 'btn btn-secondary';
+                        logoutBtn.textContent = 'Logout';
+                        logoutBtn.style.float = 'right';
+                        logoutBtn.onclick = handleLogout;
+                        dashboardHeader.appendChild(logoutBtn);
+                    }
+                }
+            }, 1000);
         });
     </script>
 </body>
