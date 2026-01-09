@@ -705,10 +705,12 @@
 
         .modal-content {
             background: var(--white);
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 15px;
             max-width: 500px;
             width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
@@ -881,7 +883,7 @@
                 <h1>Welcome to Praise Sanctuary Assemblies of God</h1>
                 <p>Where Hope Meets Praise</p>
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Join Us This Sunday</a>
+                    <button class="btn btn-primary" onclick="showPageByName('contact')">Join Us This Sunday</button>
                     <a href="https://youtube.com/@praisesanctuaryag" target="_blank" class="btn btn-secondary">Watch Live</a>
                 </div>
             </section>
@@ -1353,8 +1355,8 @@
                                 <div>Hours to Next Service</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-number">8</div>
-                                <div>Active Ministries</div>
+                                <div class="stat-number" id="totalMembersCount">0</div>
+                                <div>Total Members</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-number" id="upcomingEventsCount">0</div>
@@ -1364,6 +1366,15 @@
                                 <div class="stat-number" id="birthdaysThisMonth">0</div>
                                 <div>Birthdays This Month</div>
                             </div>
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">💰 Support Our Ministry</h3>
+                        <div class="info-card" style="background: linear-gradient(135deg, var(--golden-yellow), var(--warm-gold)); color: var(--dark-blue);">
+                            <h4 style="margin-bottom: 1rem;">Give via Mobile Money</h4>
+                            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">📱 MTN Mobile Money</p>
+                            <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">0546452288</p>
+                            <p style="font-weight: 600;">Assemblies of God Praise Sanctuary</p>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">Your tithes, offerings, and support help us continue God's work in our community</p>
                         </div>
 
                         <div style="background: var(--light-blue); padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0;">
@@ -1399,44 +1410,175 @@
 
                     <!-- Admin Dashboard -->
                     <div id="adminDashboard" class="dashboard-content">
-                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Admin Panel</h3>
-                        
-                        <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Attendance Management</h4>
-                        <div class="form-group">
-                            <label>Select Service Date</label>
-                            <input type="date" id="attendanceDate">
-                        </div>
-                        <div class="attendance-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Member Name</th>
-                                        <th>Department</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="attendanceTableBody"></tbody>
-                            </table>
+                        <div class="dashboard-tabs" style="background: white; padding: 1rem; margin-bottom: 2rem; border-radius: 10px;">
+                            <button class="tab-btn active" onclick="showAdminTab('attendance')">Attendance</button>
+                            <button class="tab-btn" onclick="showAdminTab('finance')">Finance & Giving</button>
+                            <button class="tab-btn" onclick="showAdminTab('reports')">Reports</button>
                         </div>
 
-                        <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📈 Attendance Reports</h4>
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-number" id="avgAttendance">0</div>
-                                <div>Average Attendance</div>
+                        <!-- Attendance Tab -->
+                        <div id="attendanceTab" class="admin-tab-content">
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Admin Panel - Attendance</h3>
+                            
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Attendance Management</h4>
+                            <div class="form-group">
+                                <label>Select Service Date</label>
+                                <input type="date" id="attendanceDate">
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-number" id="totalMembers">0</div>
-                                <div>Total Members</div>
+                            <div class="attendance-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Member Name</th>
+                                            <th>Department</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="attendanceTableBody"></tbody>
+                                </table>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-number" id="thisWeekAttendance">0</div>
-                                <div>This Week</div>
+
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📈 Attendance Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number" id="avgAttendance">0</div>
+                                    <div>Average Attendance</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="totalMembers">0</div>
+                                    <div>Total Members</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="thisWeekAttendance">0</div>
+                                    <div>This Week</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="attendanceGrowth">0%</div>
+                                    <div>Attendance Rate</div>
+                                </div>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-number" id="attendanceGrowth">0%</div>
-                                <div>Growth Rate</div>
+                        </div>
+
+                        <!-- Finance Tab -->
+                        <div id="financeTab" class="admin-tab-content" style="display: none;">
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">💰 Finance & Giving Management</h3>
+                            
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number" id="totalTithes">₵0</div>
+                                    <div>Total Tithes (This Month)</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="totalOfferings">₵0</div>
+                                    <div>Total Offerings (This Month)</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="totalExpenses">₵0</div>
+                                    <div>Total Expenses (This Month)</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="netBalance">₵0</div>
+                                    <div>Net Balance</div>
+                                </div>
+                            </div>
+
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Record Tithe</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+                                <div class="form-group">
+                                    <label>Member Name *</label>
+                                    <input type="text" id="titheMemberName" placeholder="Enter member name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Amount (₵) *</label>
+                                    <input type="number" id="titheAmount" placeholder="0.00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date *</label>
+                                    <input type="date" id="titheDate">
+                                </div>
+                                <button class="btn btn-primary" onclick="recordTithe()">Record Tithe</button>
+                            </div>
+
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Record Offering</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+                                <div class="form-group">
+                                    <label>Service Type *</label>
+                                    <select id="offeringService">
+                                        <option value="Sunday Service">Sunday Service</option>
+                                        <option value="Midweek Service">Midweek Service</option>
+                                        <option value="Special Service">Special Service</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Amount (₵) *</label>
+                                    <input type="number" id="offeringAmount" placeholder="0.00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date *</label>
+                                    <input type="date" id="offeringDate">
+                                </div>
+                                <button class="btn btn-primary" onclick="recordOffering()">Record Offering</button>
+                            </div>
+
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Record Expense</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+                                <div class="form-group">
+                                    <label>Expense Description *</label>
+                                    <input type="text" id="expenseDescription" placeholder="e.g., Church maintenance, utilities">
+                                </div>
+                                <div class="form-group">
+                                    <label>Amount (₵) *</label>
+                                    <input type="number" id="expenseAmount" placeholder="0.00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category *</label>
+                                    <select id="expenseCategory">
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Ministry">Ministry Activities</option>
+                                        <option value="Outreach">Outreach</option>
+                                        <option value="Building Project">Building Project</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date *</label>
+                                    <input type="date" id="expenseDate">
+                                </div>
+                                <button class="btn btn-primary" onclick="recordExpense()">Record Expense</button>
+                            </div>
+
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🏆 Top Tithers This Year</h4>
+                            <div id="topTithersTable"></div>
+                        </div>
+
+                        <!-- Reports Tab -->
+                        <div id="reportsTab" class="admin-tab-content" style="display: none;">
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Reports & Analytics</h3>
+                            <div class="info-card">
+                                <h4>Generate Reports</h4>
+                                <p>Select report type and date range to generate financial and attendance reports.</p>
+                                <div class="form-group">
+                                    <label>Report Type</label>
+                                    <select id="reportType">
+                                        <option value="attendance">Attendance Report</option>
+                                        <option value="financial">Financial Report</option>
+                                        <option value="tithes">Tithes Report</option>
+                                        <option value="offerings">Offerings Report</option>
+                                    </select>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <input type="date" id="reportFromDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" id="reportToDate">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary">Generate Report</button>
                             </div>
                         </div>
                     </div>
@@ -1930,9 +2072,20 @@
             
             // Add special one-time events
             events.push(
-                { date: '2026-01-19', title: 'Youth Fellowship', time: '16:00 - 18:00', description: 'Young people gathering for fun and spiritual growth' },
-                { date: '2026-01-25', title: 'Community Outreach', time: '09:00 - 14:00', description: 'Serving our community with love and compassion' },
-                { date: '2026-02-02', title: 'Prayer & Fasting Week Begins', time: '06:00', description: 'Corporate prayer and fasting for breakthrough' }
+                { 
+                    date: '2026-01-19', 
+                    title: '21 Days of Fasting & Prayer Begins', 
+                    time: '06:00', 
+                    description: 'Join us for 21 days of consecration, seeking God\'s face for breakthrough and transformation',
+                    recurring: false
+                },
+                { 
+                    date: '2026-02-14', 
+                    title: 'Valentine\'s Day Dinner', 
+                    time: '18:00', 
+                    description: 'Celebrate love and unity with our church family at our special Valentine\'s dinner',
+                    recurring: false
+                }
             );
             
             return events.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -2154,10 +2307,19 @@
         }
 
         // Initialize dashboard
-        function initDashboard() {
+        async function initDashboard() {
             loadUpcomingEvents();
             loadBirthdays();
             updateCountdowns();
+            
+            // Load total members count for public dashboard
+            try {
+                const snapshot = await db.collection('members').get();
+                document.getElementById('totalMembersCount').textContent = snapshot.size;
+            } catch (error) {
+                console.error('Error loading member count:', error);
+            }
+            
             setInterval(updateCountdowns, 60000); // Update every minute
         }
 
@@ -2359,12 +2521,13 @@
                 
                 container.innerHTML = birthdays.map(birthday => {
                     const date = new Date(birthday.date);
+                    // Only show month and day, not year
                     return `
                         <div class="birthday-item" style="background: white; border-radius: 10px;">
                             <div class="birthday-icon">🎂</div>
                             <div>
                                 <strong>${birthday.name}</strong><br>
-                                <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</small>
+                                <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
                                 ${birthday.phone ? `<br><small>📞 ${birthday.phone}</small>` : ''}
                             </div>
                         </div>
@@ -2434,6 +2597,197 @@
                 Math.round((presentCount / sampleMembers.length) * 100) + '%';
         }
 
+        // Admin tab switching
+        function showAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            if (tabName === 'attendance') {
+                document.getElementById('attendanceTab').style.display = 'block';
+            } else if (tabName === 'finance') {
+                document.getElementById('financeTab').style.display = 'block';
+                loadFinanceData();
+            } else if (tabName === 'reports') {
+                document.getElementById('reportsTab').style.display = 'block';
+            }
+        }
+
+        // Finance functions
+        async function recordTithe() {
+            const memberName = document.getElementById('titheMemberName').value;
+            const amount = parseFloat(document.getElementById('titheAmount').value);
+            const date = document.getElementById('titheDate').value;
+            
+            if (!memberName || !amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'tithe',
+                    memberName: memberName,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Tithe recorded successfully!');
+                document.getElementById('titheMemberName').value = '';
+                document.getElementById('titheAmount').value = '';
+                document.getElementById('titheDate').value = '';
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording tithe:', error);
+                alert('Error recording tithe. Please try again.');
+            }
+        }
+
+        async function recordOffering() {
+            const service = document.getElementById('offeringService').value;
+            const amount = parseFloat(document.getElementById('offeringAmount').value);
+            const date = document.getElementById('offeringDate').value;
+            
+            if (!amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'offering',
+                    service: service,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Offering recorded successfully!');
+                document.getElementById('offeringAmount').value = '';
+                document.getElementById('offeringDate').value = '';
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording offering:', error);
+                alert('Error recording offering. Please try again.');
+            }
+        }
+
+        async function recordExpense() {
+            const description = document.getElementById('expenseDescription').value;
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+            const category = document.getElementById('expenseCategory').value;
+            const date = document.getElementById('expenseDate').value;
+            
+            if (!description || !amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'expense',
+                    description: description,
+                    category: category,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Expense recorded successfully!');
+                document.getElementById('expenseDescription').value = '';
+                document.getElementById('expenseAmount').value = '';
+                document.getElementById('expenseDate').value = '';
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording expense:', error);
+                alert('Error recording expense. Please try again.');
+            }
+        }
+
+        async function loadFinanceData() {
+            try {
+                const now = new Date();
+                const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                const firstDayStr = firstDayOfMonth.toISOString().split('T')[0];
+                
+                const snapshot = await db.collection('finances')
+                    .where('date', '>=', firstDayStr)
+                    .get();
+                
+                let totalTithes = 0;
+                let totalOfferings = 0;
+                let totalExpenses = 0;
+                const titherMap = {};
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.type === 'tithe') {
+                        totalTithes += data.amount;
+                        if (!titherMap[data.memberName]) {
+                            titherMap[data.memberName] = 0;
+                        }
+                        titherMap[data.memberName] += data.amount;
+                    } else if (data.type === 'offering') {
+                        totalOfferings += data.amount;
+                    } else if (data.type === 'expense') {
+                        totalExpenses += data.amount;
+                    }
+                });
+                
+                document.getElementById('totalTithes').textContent = '₵' + totalTithes.toFixed(2);
+                document.getElementById('totalOfferings').textContent = '₵' + totalOfferings.toFixed(2);
+                document.getElementById('totalExpenses').textContent = '₵' + totalExpenses.toFixed(2);
+                document.getElementById('netBalance').textContent = '₵' + ((totalTithes + totalOfferings) - totalExpenses).toFixed(2);
+                
+                // Load top tithers
+                loadTopTithers(titherMap);
+            } catch (error) {
+                console.error('Error loading finance data:', error);
+            }
+        }
+
+        function loadTopTithers(titherMap) {
+            const topTithers = Object.entries(titherMap)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            const container = document.getElementById('topTithersTable');
+            
+            if (topTithers.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No tithes recorded yet this year</p>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="attendance-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Member Name</th>
+                                <th>Total Tithes (₵)</th>
+                                <th>Award</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${topTithers.map((tither, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${tither[0]}</td>
+                                    <td>₵${tither[1].toFixed(2)}</td>
+                                    <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '⭐'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
         function submitPrayer() {
             const prayer = document.getElementById('prayerRequest').value;
             if (prayer.trim()) {
@@ -2466,6 +2820,12 @@
             loadUpcomingEvents();
             loadBirthdays();
             updateCountdowns();
+            
+            // Set default dates for finance forms
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('titheDate').value = today;
+            document.getElementById('offeringDate').value = today;
+            document.getElementById('expenseDate').value = today;
             
             document.getElementById('loginBtn').addEventListener('click', () => {
                 document.getElementById('loginModal').classList.add('active');
