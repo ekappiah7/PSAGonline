@@ -2028,14 +2028,24 @@
 
         // Initialize Firebase
         let db, auth;
+        let firebaseInitialized = false;
+        
         try {
             firebase.initializeApp(firebaseConfig);
             db = firebase.firestore();
             auth = firebase.auth();
+            firebaseInitialized = true;
             console.log('✅ Firebase initialized successfully');
         } catch (error) {
             console.error('❌ Firebase initialization error:', error);
-            console.log('⚠️ Using demo mode - Please configure Firebase');
+            firebaseInitialized = false;
+            
+            // Show alert to user
+            setTimeout(() => {
+                if (!firebaseInitialized) {
+                    console.warn('⚠️ Firebase not configured. Please add your Firebase credentials.');
+                }
+            }, 2000);
         }
 
         // ============================================
@@ -2052,7 +2062,18 @@
                 return;
             }
 
+            // Show loading state
+            const loginBtn = event.target;
+            const originalText = loginBtn.textContent;
+            loginBtn.textContent = 'Logging in...';
+            loginBtn.disabled = true;
+
             try {
+                // Check if Firebase is initialized
+                if (!auth || !db) {
+                    throw new Error('Firebase not initialized. Please check your Firebase configuration.');
+                }
+
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
@@ -2060,12 +2081,17 @@
                 const userDoc = await db.collection('members').doc(user.uid).get();
                 
                 if (userDoc.exists) {
+                    const userData = userDoc.data();
                     currentUser = {
                         uid: user.uid,
                         email: user.email,
-                        name: userDoc.data().name,
-                        role: userDoc.data().role || 'member',
-                        department: userDoc.data().department
+                        name: userData.name,
+                        phone: userData.phone,
+                        birthday: userData.birthday,
+                        location: userData.location,
+                        profession: userData.profession,
+                        role: userData.role || 'member',
+                        department: userData.department
                     };
                     
                     showAuthMessage('Login successful!', 'success');
@@ -2075,10 +2101,14 @@
                     }, 1000);
                 } else {
                     showAuthMessage('User data not found', 'error');
+                    loginBtn.textContent = originalText;
+                    loginBtn.disabled = false;
                 }
             } catch (error) {
                 console.error('Login error:', error);
-                showAuthMessage(getAuthErrorMessage(error.code), 'error');
+                showAuthMessage(getAuthErrorMessage(error.code) || error.message, 'error');
+                loginBtn.textContent = originalText;
+                loginBtn.disabled = false;
             }
         }
 
