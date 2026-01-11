@@ -2030,22 +2030,32 @@
         let db, auth;
         let firebaseInitialized = false;
         
+        console.log('Starting Firebase initialization...');
+        
         try {
-            firebase.initializeApp(firebaseConfig);
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+                console.log('Firebase app initialized');
+            }
             db = firebase.firestore();
             auth = firebase.auth();
-            firebaseInitialized = true;
+            
+            // Set persistence to LOCAL
+            auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(() => {
+                    console.log('✅ Firebase persistence set to LOCAL');
+                    firebaseInitialized = true;
+                })
+                .catch((error) => {
+                    console.error('Persistence error:', error);
+                });
+            
             console.log('✅ Firebase initialized successfully');
+            console.log('Auth object:', auth);
+            console.log('Firestore object:', db);
         } catch (error) {
             console.error('❌ Firebase initialization error:', error);
-            firebaseInitialized = false;
-            
-            // Show alert to user
-            setTimeout(() => {
-                if (!firebaseInitialized) {
-                    console.warn('⚠️ Firebase not configured. Please add your Firebase credentials.');
-                }
-            }, 2000);
+            alert('Firebase initialization failed. Please check your internet connection and Firebase configuration.');
         }
 
         // ============================================
@@ -2054,34 +2064,45 @@
         
         // Login handler
         async function handleLogin() {
-            const email = document.getElementById('loginEmail').value;
+            console.log('Login function called');
+            
+            const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
+            
+            console.log('Email:', email);
+            console.log('Password length:', password.length);
             
             if (!email || !password) {
                 showAuthMessage('Please enter email and password', 'error');
                 return;
             }
 
+            if (!auth) {
+                showAuthMessage('Authentication service not ready. Please refresh the page.', 'error');
+                console.error('Auth object is null');
+                return;
+            }
+
             // Show loading state
-            const loginBtn = event.target;
-            const originalText = loginBtn.textContent;
-            loginBtn.textContent = 'Logging in...';
-            loginBtn.disabled = true;
+            showAuthMessage('Logging in...', 'success');
 
             try {
-                // Check if Firebase is initialized
-                if (!auth || !db) {
-                    throw new Error('Firebase not initialized. Please check your Firebase configuration.');
-                }
-
+                console.log('Attempting to sign in...');
+                
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                console.log('Sign in successful:', userCredential);
+                
                 const user = userCredential.user;
+                console.log('User UID:', user.uid);
                 
                 // Get user data from Firestore
                 const userDoc = await db.collection('members').doc(user.uid).get();
+                console.log('User document exists:', userDoc.exists);
                 
                 if (userDoc.exists) {
                     const userData = userDoc.data();
+                    console.log('User data:', userData);
+                    
                     currentUser = {
                         uid: user.uid,
                         email: user.email,
@@ -2094,21 +2115,39 @@
                         department: userData.department
                     };
                     
-                    showAuthMessage('Login successful!', 'success');
+                    console.log('Current user set:', currentUser);
+                    showAuthMessage('Login successful! Redirecting...', 'success');
+                    
                     setTimeout(() => {
                         closeLoginModal();
                         showPageByName('dashboard');
                     }, 1000);
                 } else {
-                    showAuthMessage('User data not found', 'error');
-                    loginBtn.textContent = originalText;
-                    loginBtn.disabled = false;
+                    console.error('User document does not exist in Firestore');
+                    showAuthMessage('User profile not found. Please contact admin.', 'error');
                 }
             } catch (error) {
                 console.error('Login error:', error);
-                showAuthMessage(getAuthErrorMessage(error.code) || error.message, 'error');
-                loginBtn.textContent = originalText;
-                loginBtn.disabled = false;
+                console.error('Error code:', error.code);
+                console.error('Error message:', error.message);
+                
+                let errorMessage = 'Login failed. ';
+                
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage += 'No account found with this email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage += 'Incorrect password.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage += 'Invalid email format.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage += 'Too many failed attempts. Try again later.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage += 'Network error. Check your internet connection.';
+                } else {
+                    errorMessage += error.message;
+                }
+                
+                showAuthMessage(errorMessage, 'error');
             }
         }
 
@@ -2194,22 +2233,36 @@
 
         // Auth state observer
         auth.onAuthStateChanged(async (user) => {
+            console.log('Auth state changed:', user ? user.email : 'No user');
+            
             if (user) {
-                const userDoc = await db.collection('members').doc(user.uid).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    currentUser = {
-                        uid: user.uid,
-                        email: user.email,
-                        name: userData.name,
-                        phone: userData.phone,
-                        birthday: userData.birthday,
-                        location: userData.location,
-                        profession: userData.profession,
-                        role: userData.role || 'member',
-                        department: userData.department
-                    };
-                    console.log('User logged in:', currentUser.name);
+                console.log('User is signed in:', user.uid);
+                
+                try {
+                    const userDoc = await db.collection('members').doc(user.uid).get();
+                    
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        console.log('User data loaded:', userData);
+                        
+                        currentUser = {
+                            uid: user.uid,
+                            email: user.email,
+                            name: userData.name,
+                            phone: userData.phone,
+                            birthday: userData.birthday,
+                            location: userData.location,
+                            profession: userData.profession,
+                            role: userData.role || 'member',
+                            department: userData.department
+                        };
+                        
+                        console.log('Current user set:', currentUser.name, 'Role:', currentUser.role);
+                    } else {
+                        console.error('User document not found in Firestore');
+                    }
+                } catch (error) {
+                    console.error('Error loading user data:', error);
                 }
             } else {
                 currentUser = null;
@@ -2632,6 +2685,11 @@
             const fileInput = document.getElementById('adminGalleryFileInput');
             const files = fileInput.files;
             
+            console.log('Upload function called');
+            console.log('Category:', category);
+            console.log('Description:', description);
+            console.log('Files:', files.length);
+            
             if (files.length === 0) {
                 alert('Please select at least one photo');
                 return;
@@ -2641,40 +2699,85 @@
                 alert('Please add a description');
                 return;
             }
+
+            if (!currentUser) {
+                alert('You must be logged in to upload photos');
+                return;
+            }
+
+            if (!db) {
+                alert('Database connection error. Please refresh the page.');
+                return;
+            }
             
             try {
                 let uploadedCount = 0;
+                const totalFiles = files.length;
+                
+                alert(`Uploading ${totalFiles} photo(s)... Please wait.`);
+                
                 // Convert images to base64 and save to Firestore
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
+                    
+                    console.log(`Processing file ${i + 1}:`, file.name, file.type, file.size);
+                    
+                    // Check file size (max 5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert(`File ${file.name} is too large. Maximum size is 5MB.`);
+                        continue;
+                    }
+                    
+                    // Check file type
+                    if (!file.type.startsWith('image/')) {
+                        alert(`File ${file.name} is not an image.`);
+                        continue;
+                    }
+                    
                     const reader = new FileReader();
                     
+                    reader.onerror = function(error) {
+                        console.error('FileReader error:', error);
+                        alert(`Error reading file ${file.name}`);
+                    };
+                    
                     reader.onload = async function(e) {
-                        await db.collection('gallery').add({
-                            category: category,
-                            description: description,
-                            imageData: e.target.result,
-                            uploadedBy: currentUser.uid,
-                            uploadedByName: currentUser.name,
-                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                            createdAt: new Date().toISOString()
-                        });
-                        
-                        uploadedCount++;
-                        if (uploadedCount === files.length) {
-                            alert('Photos uploaded successfully!');
-                            document.getElementById('adminGalleryDescription').value = '';
-                            document.getElementById('adminGalleryFileInput').value = '';
-                            document.getElementById('adminSelectedFileName').textContent = '';
-                            loadAdminGalleryList();
+                        try {
+                            console.log(`Uploading to Firestore: ${file.name}`);
+                            
+                            const docRef = await db.collection('gallery').add({
+                                category: category,
+                                description: description,
+                                imageData: e.target.result,
+                                fileName: file.name,
+                                fileSize: file.size,
+                                uploadedBy: currentUser.uid,
+                                uploadedByName: currentUser.name,
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                                createdAt: new Date().toISOString()
+                            });
+                            
+                            console.log('Upload successful, doc ID:', docRef.id);
+                            uploadedCount++;
+                            
+                            if (uploadedCount === totalFiles) {
+                                alert(`All ${totalFiles} photo(s) uploaded successfully!`);
+                                document.getElementById('adminGalleryDescription').value = '';
+                                document.getElementById('adminGalleryFileInput').value = '';
+                                document.getElementById('adminSelectedFileName').textContent = '';
+                                loadAdminGalleryList();
+                            }
+                        } catch (uploadError) {
+                            console.error('Firestore upload error:', uploadError);
+                            alert(`Error uploading ${file.name}: ${uploadError.message}`);
                         }
                     };
                     
                     reader.readAsDataURL(file);
                 }
             } catch (error) {
-                console.error('Error uploading photos:', error);
-                alert('Error uploading photos. Please try again.');
+                console.error('Error in upload function:', error);
+                alert('Error uploading photos: ' + error.message);
             }
         }
 
@@ -3170,8 +3273,83 @@
                 </div>
             `;
             
+            // Display profile info
+            displayMemberProfile();
+            
             renderCalendar();
             loadFullBirthdayList();
+        }
+
+        function displayMemberProfile() {
+            const container = document.getElementById('memberProfileDisplay');
+            container.innerHTML = `
+                <div><strong>Email:</strong><br>${currentUser.email}</div>
+                <div><strong>Phone:</strong><br>${currentUser.phone || 'Not provided'}</div>
+                <div><strong>Birthday:</strong><br>${currentUser.birthday ? new Date(currentUser.birthday).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : 'Not provided'}</div>
+                <div><strong>Location:</strong><br>${currentUser.location || 'Not provided'}</div>
+                <div><strong>Profession:</strong><br>${currentUser.profession || 'Not provided'}</div>
+                <div><strong>Department:</strong><br>${currentUser.department || 'Not assigned'}</div>
+            `;
+        }
+
+        function showEditProfile() {
+            document.getElementById('editProfileSection').style.display = 'block';
+            
+            // Pre-fill form with current data
+            document.getElementById('editName').value = currentUser.name || '';
+            document.getElementById('editPhone').value = currentUser.phone || '';
+            document.getElementById('editBirthday').value = currentUser.birthday || '';
+            document.getElementById('editLocation').value = currentUser.location || '';
+            document.getElementById('editProfession').value = currentUser.profession || '';
+            document.getElementById('editDepartment').value = currentUser.department || '';
+        }
+
+        function cancelEditProfile() {
+            document.getElementById('editProfileSection').style.display = 'none';
+        }
+
+        async function saveProfileChanges() {
+            const name = document.getElementById('editName').value;
+            const phone = document.getElementById('editPhone').value;
+            const birthday = document.getElementById('editBirthday').value;
+            const location = document.getElementById('editLocation').value;
+            const profession = document.getElementById('editProfession').value;
+            const department = document.getElementById('editDepartment').value;
+            
+            if (!name || !phone || !birthday || !location || !profession) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            try {
+                // Update Firestore
+                await db.collection('members').doc(currentUser.uid).update({
+                    name: name,
+                    phone: phone,
+                    birthday: birthday,
+                    location: location,
+                    profession: profession,
+                    department: department
+                });
+                
+                // Update current user object
+                currentUser.name = name;
+                currentUser.phone = phone;
+                currentUser.birthday = birthday;
+                currentUser.location = location;
+                currentUser.profession = profession;
+                currentUser.department = department;
+                
+                alert('Profile updated successfully!');
+                displayMemberProfile();
+                cancelEditProfile();
+                
+                // Refresh member welcome message
+                loadMemberDashboard();
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile. Please try again.');
+            }
         }
 
         function renderCalendar() {
