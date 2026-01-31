@@ -9,8 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <!-- ✅ ADDED: Firebase Storage for gallery uploads -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
     
     <style>
         * {
@@ -404,7 +402,7 @@
         }
 
         .birthdays-section::before {
-            content: 'ðŸŽ‰';
+            content: '🎉';
             position: absolute;
             font-size: 10rem;
             opacity: 0.1;
@@ -975,117 +973,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
-        /* ✅ ADDED: Google Sign-In Button Style */
-        .google-btn {
-            background: white;
-            color: #444;
-            border: 1px solid #ddd;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            width: 100%;
-            justify-content: center;
-            transition: all 0.3s;
-            margin-bottom: 1.5rem;
-        }
-
-        .google-btn:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background: #f8f8f8;
-        }
-
-        .google-btn img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .divider {
-            text-align: center;
-            margin: 1.5rem 0;
-            position: relative;
-        }
-
-        .divider::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            height: 1px;
-            background: #ddd;
-        }
-
-        .divider span {
-            background: white;
-            padding: 0 1rem;
-            position: relative;
-            color: #666;
-        }
-
-        /* ✅ ADDED: Progress bar for uploads */
-        .upload-progress {
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 25px;
-            background: #e0e0e0;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--golden-yellow), var(--warm-gold));
-            width: 0%;
-            transition: width 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-blue);
-            font-weight: bold;
-        }
-
-        /* ✅ ADDED: Loading states */
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: var(--golden-yellow);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .message-box {
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            text-align: center;
-        }
-
-        .message-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .message-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
     </style>
 </head>
 <body>
@@ -1105,7 +992,7 @@
                 <li><a href="#" data-page="contact">Contact</a></li>
                 <li><a href="#" data-page="dashboard">Dashboard</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">â˜°</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
     </header>
 
@@ -1134,8 +1021,8 @@
                         <div class="pastor-message">
                             <h3>From Our Lead Pastor</h3>
                             <p><strong>Beloved in Christ,</strong></p>
-                            <p>Welcome to Praise Sanctuary Assemblies of Godâ€”a place where every heart finds hope and every voice joins in giving God His praise!</p>
-                            <p>Whether you are young or old, weary or joyful, broken or whole, there is a place for you here. We believe that God deserves praise in a very different wayâ€”authentic, passionate, and transformative. Our doors are open, our arms are wide, and our hearts are ready to embrace you.</p>
+                            <p>Welcome to Praise Sanctuary Assemblies of God—a place where every heart finds hope and every voice joins in giving God His praise!</p>
+                            <p>Whether you are young or old, weary or joyful, broken or whole, there is a place for you here. We believe that God deserves praise in a very different way—authentic, passionate, and transformative. Our doors are open, our arms are wide, and our hearts are ready to embrace you.</p>
                             <p>In a world filled with uncertainties, we stand as a beacon of hope, reminding you that God's love never fails. Here, we don't just attend church; we become family. We don't just hear the Word; we live it out together.</p>
                             <p>I personally invite you to join us as we worship, grow, and make a difference in our community and beyond. Come as you are, and discover the hope that only Jesus Christ can give.</p>
                             <p class="signature">With love and blessings,<br><strong>Rev. Eric Owusu Ansah</strong><br>Lead Pastor</p>
@@ -1149,20 +1036,20 @@
                 <div class="container">
                     <div class="quick-info">
                         <div class="info-card">
-                            <div class="info-card-icon">ðŸ•</div>
+                            <div class="info-card-icon">🕐</div>
                             <h3>Service Times</h3>
                             <p><strong>Sunday Service</strong><br>8:00 AM - 11:30 AM</p>
                             <p><strong>Midweek Bible Study</strong><br>Wednesday, 5:30 PM - 7:30 PM</p>
                             <button class="btn btn-primary" style="margin-top: 1rem;" onclick="scrollToContact()">Plan Your Visit</button>
                         </div>
                         <div class="info-card">
-                            <div class="info-card-icon">ðŸ¤</div>
+                            <div class="info-card-icon">🤝</div>
                             <h3>New Here?</h3>
                             <p>We're so glad you're here! Discover a community that cares and a place to call home.</p>
                             <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showPageByName('about')">Learn More</button>
                         </div>
                         <div class="info-card">
-                            <div class="info-card-icon">ðŸ‘¥</div>
+                            <div class="info-card-icon">👥</div>
                             <h3>Get Connected</h3>
                             <p>Find your place to serve and grow through our various ministries and departments.</p>
                             <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showPageByName('ministries')">Explore Ministries</button>
@@ -1177,11 +1064,11 @@
                     <h2>Our Mission & Vision</h2>
                     <div class="mission-vision">
                         <div class="mission-box">
-                            <h3>ðŸŽ¯ Our Mission</h3>
+                            <h3>🎯 Our Mission</h3>
                             <p>To worship God with authenticity and excellence, transforming lives through the power of the Gospel while providing hope, healing, and purpose to every generation in our community and beyond.</p>
                         </div>
                         <div class="vision-box">
-                            <h3>ðŸ‘ï¸ Our Vision</h3>
+                            <h3>👁️ Our Vision</h3>
                             <p>To become a global church with the priority of winning souls and building disciples for Christ.</p>
                         </div>
                     </div>
@@ -1280,7 +1167,7 @@
             <section class="section-alt">
                 <div class="container">
                     <div class="birthdays-section">
-                        <h3>ðŸŽ‚ Celebrating This Month</h3>
+                        <h3>🎂 Celebrating This Month</h3>
                         <div class="birthday-list" id="birthdayList">
                             <!-- Birthdays will be dynamically loaded -->
                         </div>
@@ -1316,7 +1203,7 @@
                 <div class="container">
                     <h2>Our Story</h2>
                     <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.8;">
-                        Praise Sanctuary Assemblies of God was born from a divine vision to create a place where authentic worship meets transformative hope. Located in Ejisu-Kwamo, Israel, we are a community committed to giving God His praise in a very different wayâ€”with passion, authenticity, and excellence.
+                        Praise Sanctuary Assemblies of God was born from a divine vision to create a place where authentic worship meets transformative hope. Located in Ejisu-Kwamo, Israel, we are a community committed to giving God His praise in a very different way—with passion, authenticity, and excellence.
                     </p>
                     <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
                         Under the leadership of Rev. Eric Owusu Ansah, our church has become a beacon of hope for both the young and old, providing spiritual guidance, community support, and a place where every person can encounter the living God.
@@ -1329,11 +1216,11 @@
                     <h2>Our Mission & Vision</h2>
                     <div class="mission-vision">
                         <div class="mission-box">
-                            <h3>ðŸŽ¯ Our Mission</h3>
+                            <h3>🎯 Our Mission</h3>
                             <p>To worship God with authenticity and excellence, transforming lives through the power of the Gospel while providing hope, healing, and purpose to every generation in our community and beyond.</p>
                         </div>
                         <div class="vision-box">
-                            <h3>ðŸ‘ï¸ Our Vision</h3>
+                            <h3>👁️ Our Vision</h3>
                             <p>To become a global church with the priority of winning souls and building disciples for Christ.</p>
                         </div>
                     </div>
@@ -1345,22 +1232,22 @@
                     <h2>Our Core Values</h2>
                     <div class="ministries-grid">
                         <div class="ministry-card">
-                            <div class="ministry-icon">ðŸ™Œ</div>
+                            <div class="ministry-icon">🙌</div>
                             <h4>Authentic Worship</h4>
                             <p>Giving God His praise with sincerity and passion</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">â¤ï¸</div>
+                            <div class="ministry-icon">❤️</div>
                             <h4>Hope for All</h4>
                             <p>Providing hope to every generation</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">ðŸ“–</div>
+                            <div class="ministry-icon">📖</div>
                             <h4>Biblical Teaching</h4>
                             <p>Grounded in God's Word and truth</p>
                         </div>
                         <div class="ministry-card">
-                            <div class="ministry-icon">ðŸ¤</div>
+                            <div class="ministry-icon">🤝</div>
                             <h4>Community</h4>
                             <p>Building strong, caring relationships</p>
                         </div>
@@ -1379,7 +1266,7 @@
                             <h3>Rev. Eric Owusu Ansah</h3>
                             <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 1rem;">Lead Pastor</p>
                             <p>Rev. Eric Owusu Ansah is the founding and lead pastor of Praise Sanctuary Assemblies of God. With a heart for worship and a passion for souls, he leads our congregation with wisdom, compassion, and unwavering dedication to God's Word.</p>
-                            <p>His vision for the church is clear: to create a place where authentic worship transforms lives and where every personâ€”young or oldâ€”finds hope, purpose, and a family in Christ.</p>
+                            <p>His vision for the church is clear: to create a place where authentic worship transforms lives and where every person—young or old—finds hope, purpose, and a family in Christ.</p>
                             <p style="margin-top: 1.5rem;"><strong>Contact:</strong> +233 543 650 056</p>
                         </div>
                     </div>
@@ -1405,7 +1292,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="group.jpg" alt="Evangelism" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸŒ Evangelism & Missions</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">🌍 Evangelism & Missions</h3>
                                     <p>Spreading the Gospel locally and globally through outreach programs, mission trips, and community evangelism. We are passionate about reaching the lost and making disciples.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1416,7 +1303,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="prayer-ministry.jpg" alt="Prayer" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸ™ Prayer & Intercession</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">🙏 Prayer & Intercession</h3>
                                     <p>The spiritual engine of our church, dedicated to fervent prayer and intercession for the church, community, and world needs. Join us in seeking God's face.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1427,7 +1314,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="administration-ministry.jpg" alt="Administration" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">âš™ï¸ Administration</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">⚙️ Administration</h3>
                                     <p>Managing church operations, finances, facilities, and ensuring smooth organizational functioning. Excellence in administration enables effective ministry.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1438,7 +1325,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="media-ministry.jpg" alt="Media" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸ“¹ Media Ministry</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">📹 Media Ministry</h3>
                                     <p>Capturing and sharing God's work through photography, videography, live streaming, and social media ministry. Telling the story of what God is doing.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1449,7 +1336,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="children-ministry.jpg" alt="Children" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸ‘¶ Children Service</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">👶 Children Service</h3>
                                     <p>Nurturing young hearts with age-appropriate worship, Bible lessons, and activities that build strong faith foundations for the next generation.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1460,7 +1347,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="sunday-school-ministry.jpg" alt="Sunday School" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸ“– Sunday School & Discipleship</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">📖 Sunday School & Discipleship</h3>
                                     <p>Teaching God's Word, discipleship training, and equipping believers for spiritual growth, maturity, and effective Christian living.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1471,7 +1358,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="choir.jpg" alt="Choir" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸŽµ Choir & Music Ministry</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">🎵 Choir & Music Ministry</h3>
                                     <p>Leading worship through music, choir performances, and creating an atmosphere of praise that ushers in God's presence.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1482,7 +1369,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="ushering-ministry.jpg" alt="Ushering" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸšª Ushering</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">🚪 Ushering</h3>
                                     <p>First point of contact, welcoming members and visitors, ensuring orderly services and creating a comfortable worship environment for all.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1493,7 +1380,7 @@
                             <div style="display: flex; align-items: center; gap: 2rem;">
                                 <img src="young-singles.jpg" alt="Young Singles" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
                                 <div>
-                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">ðŸ’« Young Singles</h3>
+                                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">💫 Young Singles</h3>
                                     <p>Building strong faith foundations for young adults, providing fellowship, mentorship, and support for singles navigating life and relationships.</p>
                                     <button class="btn btn-primary" style="margin-top: 1rem;">Get Involved</button>
                                 </div>
@@ -1516,7 +1403,7 @@
                     <!-- Admin Upload Section -->
                     <div id="galleryUploadSection" style="display: none;">
                         <div class="upload-section">
-                            <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">ðŸ“¸ Upload New Photos</h3>
+                            <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">📸 Upload New Photos</h3>
                             <div class="form-group">
                                 <label>Photo Category</label>
                                 <select id="galleryCategory">
@@ -1537,17 +1424,11 @@
                                 <label>Select Photo</label>
                                 <div class="file-input-wrapper">
                                     <label for="galleryFileInput" class="file-input-label">
-                                        ðŸ“ Choose Photo
+                                        📁 Choose Photo
                                     </label>
                                     <input type="file" id="galleryFileInput" accept="image/*" multiple>
                                 </div>
                                 <p id="selectedFileName" style="margin-top: 0.5rem; color: var(--dark-blue);"></p>
-                            </div>
-                            <!-- ✅ ADDED: Progress bar -->
-                            <div class="upload-progress" id="uploadProgress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" id="progressFill">0%</div>
-                                </div>
                             </div>
                             <button class="btn btn-primary" onclick="uploadGalleryPhoto()">Upload Photo</button>
                         </div>
@@ -1605,16 +1486,16 @@
                 <div class="container">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
                         <div>
-                            <h3 style="color: var(--dark-blue); margin-bottom: 1.5rem;">ðŸ“ Visit Us</h3>
+                            <h3 style="color: var(--dark-blue); margin-bottom: 1.5rem;">📍 Visit Us</h3>
                             <p><strong>Address:</strong><br>Ejisu-Kwamo, Israel<br>Praise Sanctuary Road</p>
                             
-                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">ðŸ“ž Call Us</h3>
+                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">📞 Call Us</h3>
                             <p>+233 543 650 056<br>+233 256 812 626<br>+233 547 731 077</p>
                             
-                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">âœ‰ï¸ Email Us</h3>
+                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">✉️ Email Us</h3>
                             <p>praisesanctuary.ag@gmail.com</p>
                             
-                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">â° Service Times (GMT)</h3>
+                            <h3 style="color: var(--dark-blue); margin: 2rem 0 1rem;">⏰ Service Times (GMT)</h3>
                             <p><strong>Sunday Worship:</strong> 8:00 AM - 11:30 AM<br>
                             <strong>Midweek Bible Study:</strong> Wednesday, 5:30 PM - 7:30 PM</p>
                         </div>
@@ -1678,10 +1559,10 @@
                             </div>
                         </div>
 
-                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ’° Support Our Ministry</h3>
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">💰 Support Our Ministry</h3>
                         <div class="info-card" style="background: linear-gradient(135deg, var(--golden-yellow), var(--warm-gold)); color: var(--dark-blue);">
                             <h4 style="margin-bottom: 1rem;">Give via Mobile Money</h4>
-                            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">ðŸ“± MTN Mobile Money</p>
+                            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">📱 MTN Mobile Money</p>
                             <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">0546452288</p>
                             <p style="font-weight: 600;">Assemblies of God Praise Sanctuary</p>
                             <p style="margin-top: 1rem; font-size: 0.9rem;">Your tithes, offerings, and support help us continue God's work in our community</p>
@@ -1698,20 +1579,20 @@
                     <div id="memberDashboard" class="dashboard-content">
                         <div id="memberWelcome"></div>
                         
-                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“… Events Calendar</h3>
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📅 Events Calendar</h3>
                         <div class="calendar">
                             <div class="calendar-header">
-                                <button class="btn btn-secondary" id="prevMonth">â† Previous</button>
+                                <button class="btn btn-secondary" id="prevMonth">← Previous</button>
                                 <h3 id="currentMonth"></h3>
-                                <button class="btn btn-secondary" id="nextMonth">Next â†’</button>
+                                <button class="btn btn-secondary" id="nextMonth">Next →</button>
                             </div>
                             <div class="calendar-grid" id="calendarGrid"></div>
                         </div>
 
-                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸŽ‚ Birthday Calendar</h3>
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🎂 Birthday Calendar</h3>
                         <div class="birthday-list" id="fullBirthdayList"></div>
 
-                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ™ Prayer Requests</h3>
+                        <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🙏 Prayer Requests</h3>
                         <div class="form-group">
                             <textarea id="prayerRequest" rows="4" placeholder="Enter your prayer request..."></textarea>
                             <button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="submitPrayer()">Submit Prayer</button>
@@ -1730,7 +1611,7 @@
 
                         <!-- Attendance Tab -->
                         <div id="attendanceTab" class="admin-tab-content">
-                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“Š Admin Panel - Attendance</h3>
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Admin Panel - Attendance</h3>
                             
                             <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">Attendance Management</h4>
                             <div class="form-group">
@@ -1751,7 +1632,7 @@
                                 </table>
                             </div>
 
-                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“ˆ Attendance Statistics</h4>
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📈 Attendance Statistics</h4>
                             <div class="stats-grid">
                                 <div class="stat-card">
                                     <div class="stat-number" id="avgAttendance">0</div>
@@ -1774,23 +1655,23 @@
 
                         <!-- Finance Tab -->
                         <div id="financeTab" class="admin-tab-content" style="display: none;">
-                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ’° Finance & Giving Management</h3>
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">💰 Finance & Giving Management</h3>
                             
                             <div class="stats-grid">
                                 <div class="stat-card">
-                                    <div class="stat-number" id="totalTithes">â‚µ0</div>
+                                    <div class="stat-number" id="totalTithes">₵0</div>
                                     <div>Total Tithes (This Month)</div>
                                 </div>
                                 <div class="stat-card">
-                                    <div class="stat-number" id="totalOfferings">â‚µ0</div>
+                                    <div class="stat-number" id="totalOfferings">₵0</div>
                                     <div>All Offerings (This Month)</div>
                                 </div>
                                 <div class="stat-card">
-                                    <div class="stat-number" id="totalExpenses">â‚µ0</div>
+                                    <div class="stat-number" id="totalExpenses">₵0</div>
                                     <div>Total Expenses (This Month)</div>
                                 </div>
                                 <div class="stat-card">
-                                    <div class="stat-number" id="netBalance">â‚µ0</div>
+                                    <div class="stat-number" id="netBalance">₵0</div>
                                     <div>Net Balance</div>
                                 </div>
                             </div>
@@ -1802,7 +1683,7 @@
                                     <input type="text" id="titheMemberName" placeholder="Enter member name">
                                 </div>
                                 <div class="form-group">
-                                    <label>Amount (â‚µ) *</label>
+                                    <label>Amount (₵) *</label>
                                     <input type="number" id="titheAmount" placeholder="0.00">
                                 </div>
                                 <div class="form-group">
@@ -1836,7 +1717,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Amount (â‚µ) *</label>
+                                    <label>Amount (₵) *</label>
                                     <input type="number" id="offeringAmount" placeholder="0.00">
                                 </div>
                                 <div class="form-group">
@@ -1853,7 +1734,7 @@
                                     <input type="text" id="expenseDescription" placeholder="e.g., Church maintenance, utilities">
                                 </div>
                                 <div class="form-group">
-                                    <label>Amount (â‚µ) *</label>
+                                    <label>Amount (₵) *</label>
                                     <input type="number" id="expenseAmount" placeholder="0.00">
                                 </div>
                                 <div class="form-group">
@@ -1874,13 +1755,13 @@
                                 <button class="btn btn-primary" onclick="recordExpense()">Record Expense</button>
                             </div>
 
-                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ† Top Tithers This Year</h4>
+                            <h4 style="margin: 2rem 0 1rem; color: var(--dark-blue);">🏆 Top Tithers This Year</h4>
                             <div id="topTithersTable"></div>
                         </div>
 
                         <!-- Events Management Tab -->
                         <div id="eventsManagementTab" class="admin-tab-content" style="display: none;">
-                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“… Event Calendar Management</h3>
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📅 Event Calendar Management</h3>
                             
                             <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-bottom: 2rem;">
                                 <h4 style="margin-bottom: 1rem;">Add New Event</h4>
@@ -1922,7 +1803,7 @@
 
                         <!-- Gallery Management Tab -->
                         <div id="galleryManagementTab" class="admin-tab-content" style="display: none;">
-                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“¸ Gallery Management</h3>
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📸 Gallery Management</h3>
                             
                             <div class="upload-section">
                                 <h4 style="margin-bottom: 1rem;">Upload New Photos</h4>
@@ -1946,17 +1827,11 @@
                                     <label>Select Photo(s) *</label>
                                     <div class="file-input-wrapper">
                                         <label for="adminGalleryFileInput" class="file-input-label">
-                                            ðŸ“ Choose Photos
+                                            📁 Choose Photos
                                         </label>
                                         <input type="file" id="adminGalleryFileInput" accept="image/*" multiple>
                                     </div>
                                     <p id="adminSelectedFileName" style="margin-top: 0.5rem; color: var(--dark-blue);"></p>
-                                </div>
-                                <!-- ✅ ADDED: Progress bar for admin -->
-                                <div class="upload-progress" id="adminUploadProgress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" id="adminProgressFill">0%</div>
-                                    </div>
                                 </div>
                                 <button class="btn btn-primary" onclick="uploadAdminGalleryPhoto()">Upload Photos</button>
                             </div>
@@ -1967,7 +1842,7 @@
 
                         <!-- Reports Tab -->
                         <div id="reportsTab" class="admin-tab-content" style="display: none;">
-                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">ðŸ“Š Reports & Analytics</h3>
+                            <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📊 Reports & Analytics</h3>
                             <div class="info-card">
                                 <h4>Generate Reports</h4>
                                 <p>Select report type and date range to generate financial and attendance reports.</p>
@@ -2004,7 +1879,7 @@
         <div class="container">
             <!-- Google Maps Section -->
             <div class="footer-map">
-                <h3>ðŸ“ Find Us Here</h3>
+                <h3>📍 Find Us Here</h3>
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3!2d-1.5!3d6.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDInMDAuMCJOIDHCsDMwJzAwLjAiVw!5e0!3m2!1sen!2sgh!4v1234567890"
                     allowfullscreen=""
@@ -2038,10 +1913,10 @@
                 <div class="footer-section">
                     <h4>Contact Us</h4>
                     <ul>
-                        <li>ðŸ“ž +233 543 650 056</li>
-                        <li>ðŸ“ž +233 256 812 626</li>
-                        <li>ðŸ“ž +233 547 731 077</li>
-                        <li>âœ‰ï¸ praisesanctuary.ag@gmail.com</li>
+                        <li>📞 +233 543 650 056</li>
+                        <li>📞 +233 256 812 626</li>
+                        <li>📞 +233 547 731 077</li>
+                        <li>✉️ praisesanctuary.ag@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -2071,25 +1946,7 @@
                 <h3 id="modalTitle">Login to Dashboard</h3>
                 <button class="modal-close" onclick="closeLoginModal()">&times;</button>
             </div>
-            
-            <!-- Login Form -->
             <div id="loginForm">
-                <!-- ✅ Google Sign-In Button -->
-                <button class="google-btn" onclick="signInWithGoogle()">
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        <path fill="none" d="M0 0h48v48H0z"/>
-                    </svg>
-                    Sign in with Google
-                </button>
-
-                <div class="divider">
-                    <span>OR</span>
-                </div>
-
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="loginEmail" placeholder="Enter your email">
@@ -2103,25 +1960,7 @@
                     Don't have an account? <a href="#" onclick="showRegisterForm()" style="color: var(--golden-yellow); font-weight: 600;">Register</a>
                 </p>
             </div>
-
-            <!-- Registration Form -->
             <div id="registerForm" style="display: none;">
-                <!-- ✅ Google Sign-In for Registration -->
-                <button class="google-btn" onclick="signInWithGoogle()">
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        <path fill="none" d="M0 0h48v48H0z"/>
-                    </svg>
-                    Sign up with Google
-                </button>
-
-                <div class="divider">
-                    <span>OR</span>
-                </div>
-
                 <div class="form-group">
                     <label>Full Name *</label>
                     <input type="text" id="registerName" placeholder="Enter your full name" required>
@@ -2173,1720 +2012,1758 @@
             <p id="authMessage" style="margin-top: 1rem; text-align: center; color: var(--warm-gold);"></p>
         </div>
     </div>
-                        <option value="Children Service">Children Service</option>
-                        <option value="Sunday School & Discipleship">Sunday School & Discipleship</option>
-                        <option value="Choir & Music Ministry">Choir & Music Ministry</option>
-                        <option value="Ushering">Ushering</option>
-                        <option value="Young Singles">Young Singles</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary" onclick="handleRegister()">Register</button>
-                <p style="margin-top: 1rem; text-align: center;">
-                    Already have an account? <a href="#" onclick="showLoginForm()" style="color: var(--golden-yellow); font-weight: 600;">Login</a>
-                </p>
-            </div>
-            <p id="authMessage" style="margin-top: 1rem; text-align: center; color: var(--warm-gold);"></p>
-        </div>
-    </div>
 
     <script>
-    <script>
-// ===========================================================================
-// COMPLETE JAVASCRIPT CODE - PRAISE SANCTUARY AG WEBSITE
-// Replace your entire <script> section with this code
-// ===========================================================================
-
-// ============================================
-// FIREBASE CONFIGURATION & INITIALIZATION
-// ============================================
-const firebaseConfig = {
-    apiKey: "AIzaSyCEN5RJvHpj9DKT1dh5aD27NMpByDo8Ra8",
-    authDomain: "praisesanctuary-c755d.firebaseapp.com",
-    projectId: "praisesanctuary-c755d",
-    storageBucket: "praisesanctuary-c755d.firebasestorage.app",
-    messagingSenderId: "872895242654",
-    appId: "1:872895242654:web:674b5c3944330d2d17b68f"
-};
-
-// Initialize Firebase
-let db, auth, storage;
-let currentUser = null;
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
-let sampleEvents = [];
-let sampleMembers = [];
-let currentGalleryFilter = 'all';
-
-console.log('🔄 Initializing Firebase...');
-
-try {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-    db = firebase.firestore();
-    auth = firebase.auth();
-    storage = firebase.storage(); // ✅ ADDED: Storage initialization
-    
-    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .then(() => {
-            console.log('✅ Firebase initialized successfully');
-        })
-        .catch((error) => {
-            console.error('❌ Persistence error:', error);
-        });
-} catch (error) {
-    console.error('❌ Firebase initialization failed:', error);
-    alert('Connection error. Please refresh the page.');
-}
-
-// ============================================
-// GOOGLE SIGN-IN FUNCTION
-// ============================================
-async function signInWithGoogle() {
-    console.log('🔵 Google Sign-In initiated');
-    showAuthMessage('Connecting to Google...', 'success');
-    
-    try {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('profile');
-        provider.addScope('email');
-        
-        const result = await auth.signInWithPopup(provider);
-        const user = result.user;
-        
-        console.log('✅ Google Sign-In successful:', user.email);
-        
-        const userDoc = await db.collection('members').doc(user.uid).get();
-        
-        if (!userDoc.exists) {
-            console.log('📝 New Google user - creating profile');
-            showGoogleUserCompletionForm(user);
-        } else {
-            console.log('👤 Existing user - logging in');
-            const userData = userDoc.data();
-            currentUser = {
-                uid: user.uid,
-                email: user.email,
-                name: userData.name || user.displayName,
-                phone: userData.phone,
-                birthday: userData.birthday,
-                location: userData.location,
-                profession: userData.profession,
-                role: userData.role || 'member',
-                department: userData.department
-            };
-            
-            showAuthMessage('Welcome back, ' + currentUser.name + '!', 'success');
-            setTimeout(() => {
-                closeLoginModal();
-                showPageByName('dashboard');
-            }, 1000);
-        }
-    } catch (error) {
-        console.error('❌ Google Sign-In error:', error);
-        
-        let errorMessage = 'Google Sign-In failed. ';
-        if (error.code === 'auth/popup-closed-by-user') {
-            errorMessage = 'Sign-in cancelled.';
-        } else if (error.code === 'auth/popup-blocked') {
-            errorMessage = 'Pop-up blocked. Please allow pop-ups for this site.';
-        } else {
-            errorMessage += error.message;
-        }
-        
-        showAuthMessage(errorMessage, 'error');
-    }
-}
-
-function showGoogleUserCompletionForm(user) {
-    const modalContent = document.querySelector('.modal-content');
-    modalContent.innerHTML = `
-        <div class="modal-header">
-            <h3>Complete Your Profile</h3>
-        </div>
-        <p style="text-align: center; margin-bottom: 1.5rem;">
-            Welcome, <strong>${user.displayName}</strong>! Please complete your profile to continue.
-        </p>
-        <form id="googleCompletionForm">
-            <input type="hidden" id="googleUid" value="${user.uid}">
-            <input type="hidden" id="googleEmail" value="${user.email}">
-            <input type="hidden" id="googleDisplayName" value="${user.displayName || ''}">
-            
-            <div class="form-group">
-                <label>Phone Number *</label>
-                <input type="tel" id="googlePhone" placeholder="+233 XXX XXX XXX" required>
-            </div>
-            <div class="form-group">
-                <label>Date of Birth *</label>
-                <input type="date" id="googleBirthday" required>
-            </div>
-            <div class="form-group">
-                <label>Location/Address *</label>
-                <input type="text" id="googleLocation" placeholder="Where do you live?" required>
-            </div>
-            <div class="form-group">
-                <label>Profession/Employment Status *</label>
-                <input type="text" id="googleProfession" placeholder="e.g., Teacher, Student, Trader" required>
-            </div>
-            <div class="form-group">
-                <label>Department (Optional)</label>
-                <select id="googleDepartment">
-                    <option value="">Select a department</option>
-                    <option value="Evangelism & Missions">Evangelism & Missions</option>
-                    <option value="Prayer & Intercession">Prayer & Intercession</option>
-                    <option value="Administration">Administration</option>
-                    <option value="Media">Media</option>
-                    <option value="Children Service">Children Service</option>
-                    <option value="Sunday School & Discipleship">Sunday School & Discipleship</option>
-                    <option value="Choir & Music Ministry">Choir & Music Ministry</option>
-                    <option value="Ushering">Ushering</option>
-                    <option value="Young Singles">Young Singles</option>
-                </select>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="completeGoogleProfile()">Complete Registration</button>
-        </form>
-        <p id="authMessage" style="margin-top: 1rem; text-align: center;"></p>
-    `;
-}
-
-async function completeGoogleProfile() {
-    const uid = document.getElementById('googleUid').value;
-    const email = document.getElementById('googleEmail').value;
-    const displayName = document.getElementById('googleDisplayName').value;
-    const phone = document.getElementById('googlePhone').value;
-    const birthday = document.getElementById('googleBirthday').value;
-    const location = document.getElementById('googleLocation').value;
-    const profession = document.getElementById('googleProfession').value;
-    const department = document.getElementById('googleDepartment').value;
-    
-    if (!phone || !birthday || !location || !profession) {
-        showAuthMessage('Please fill in all required fields', 'error');
-        return;
-    }
-    
-    try {
-        showAuthMessage('Saving your profile...', 'success');
-        
-        await db.collection('members').doc(uid).set({
-            name: displayName,
-            email: email,
-            phone: phone,
-            birthday: birthday,
-            location: location,
-            profession: profession,
-            department: department || 'Not assigned',
-            role: 'member',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            authProvider: 'google',
-            attendanceHistory: []
-        });
-        
-        console.log('✅ Google user profile saved');
-        
-        currentUser = {
-            uid: uid,
-            email: email,
-            name: displayName,
-            phone: phone,
-            birthday: birthday,
-            location: location,
-            profession: profession,
-            role: 'member',
-            department: department || 'Not assigned'
+        // ============================================
+        // FIREBASE CONFIGURATION
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEN5RJvHpj9DKT1dh5aD27NMpByDo8Ra8",
+            authDomain: "praisesanctuary-c755d.firebaseapp.com",
+            projectId: "praisesanctuary-c755d",
+            storageBucket: "praisesanctuary-c755d.firebasestorage.app",
+            messagingSenderId: "872895242654",
+            appId: "1:872895242654:web:674b5c3944330d2d17b68f"
         };
-        
-        showAuthMessage('Registration complete! Welcome to Praise Sanctuary!', 'success');
-        
-        setTimeout(() => {
-            closeLoginModal();
-            showPageByName('dashboard');
-        }, 1500);
-        
-    } catch (error) {
-        console.error('❌ Error saving profile:', error);
-        showAuthMessage('Error saving profile: ' + error.message, 'error');
-    }
-}
 
-// ============================================
-// TRADITIONAL EMAIL/PASSWORD AUTHENTICATION
-// ============================================
-async function handleLogin() {
-    console.log('📧 Email login initiated');
-    
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    
-    if (!email || !password) {
-        showAuthMessage('Please enter email and password', 'error');
-        return;
-    }
-
-    showAuthMessage('Logging in...', 'success');
-
-    try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        const user = userCredential.user;
+        // Initialize Firebase
+        let db, auth;
+        let firebaseInitialized = false;
         
-        const userDoc = await db.collection('members').doc(user.uid).get();
-        
-        if (userDoc.exists) {
-            const userData = userDoc.data();
-            currentUser = {
-                uid: user.uid,
-                email: user.email,
-                name: userData.name,
-                phone: userData.phone,
-                birthday: userData.birthday,
-                location: userData.location,
-                profession: userData.profession,
-                role: userData.role || 'member',
-                department: userData.department
-            };
-            
-            showAuthMessage('Login successful!', 'success');
-            setTimeout(() => {
-                closeLoginModal();
-                showPageByName('dashboard');
-            }, 1000);
-        } else {
-            showAuthMessage('User profile not found. Please contact admin.', 'error');
-        }
-    } catch (error) {
-        console.error('❌ Login error:', error);
-        showAuthMessage(getAuthErrorMessage(error.code), 'error');
-    }
-}
-
-async function handleRegister() {
-    const name = document.getElementById('registerName').value.trim();
-    const email = document.getElementById('registerEmail').value.trim();
-    const phone = document.getElementById('registerPhone').value.trim();
-    const birthday = document.getElementById('registerBirthday').value;
-    const location = document.getElementById('registerLocation').value.trim();
-    const profession = document.getElementById('registerProfession').value.trim();
-    const password = document.getElementById('registerPassword').value;
-    const department = document.getElementById('registerDepartment').value;
-    
-    if (!name || !email || !phone || !birthday || !location || !profession || !password) {
-        showAuthMessage('Please fill in all required fields', 'error');
-        return;
-    }
-
-    if (password.length < 6) {
-        showAuthMessage('Password must be at least 6 characters', 'error');
-        return;
-    }
-
-    try {
-        showAuthMessage('Creating your account...', 'success');
-        
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-        
-        await user.updateProfile({ displayName: name });
-        
-        await db.collection('members').doc(user.uid).set({
-            name: name,
-            email: email,
-            phone: phone,
-            birthday: birthday,
-            location: location,
-            profession: profession,
-            department: department || 'Not assigned',
-            role: 'member',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            authProvider: 'email',
-            attendanceHistory: []
-        });
-        
-        showAuthMessage('Registration successful! Logging you in...', 'success');
-        
-        currentUser = {
-            uid: user.uid,
-            email: user.email,
-            name: name,
-            phone: phone,
-            birthday: birthday,
-            location: location,
-            profession: profession,
-            role: 'member',
-            department: department || 'Not assigned'
-        };
-        
-        setTimeout(() => {
-            closeLoginModal();
-            showPageByName('dashboard');
-        }, 1500);
-    } catch (error) {
-        console.error('❌ Registration error:', error);
-        showAuthMessage(getAuthErrorMessage(error.code), 'error');
-    }
-}
-
-async function handleLogout() {
-    try {
-        await auth.signOut();
-        currentUser = null;
-        alert('Logged out successfully');
-        showPageByName('home');
-    } catch (error) {
-        console.error('Logout error:', error);
-    }
-}
-
-// ============================================
-// AUTH STATE OBSERVER
-// ============================================
-auth.onAuthStateChanged(async (user) => {
-    if (user) {
-        console.log('👤 User authenticated:', user.email);
+        console.log('Starting Firebase initialization...');
         
         try {
-            const userDoc = await db.collection('members').doc(user.uid).get();
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+                console.log('Firebase app initialized');
+            }
+            db = firebase.firestore();
+            auth = firebase.auth();
             
-            if (userDoc.exists) {
-                const userData = userDoc.data();
+            // Set persistence to LOCAL
+            auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(() => {
+                    console.log('✅ Firebase persistence set to LOCAL');
+                    firebaseInitialized = true;
+                })
+                .catch((error) => {
+                    console.error('Persistence error:', error);
+                });
+            
+            console.log('✅ Firebase initialized successfully');
+            console.log('Auth object:', auth);
+            console.log('Firestore object:', db);
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            alert('Firebase initialization failed. Please check your internet connection and Firebase configuration.');
+        }
+
+        // ============================================
+        // AUTHENTICATION FUNCTIONS
+        // ============================================
+        
+        // Login handler
+        async function handleLogin() {
+            console.log('Login function called');
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Email:', email);
+            console.log('Password length:', password.length);
+            
+            if (!email || !password) {
+                showAuthMessage('Please enter email and password', 'error');
+                return;
+            }
+
+            if (!auth) {
+                showAuthMessage('Authentication service not ready. Please refresh the page.', 'error');
+                console.error('Auth object is null');
+                return;
+            }
+
+            // Show loading state
+            showAuthMessage('Logging in...', 'success');
+
+            try {
+                console.log('Attempting to sign in...');
+                
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                console.log('Sign in successful:', userCredential);
+                
+                const user = userCredential.user;
+                console.log('User UID:', user.uid);
+                
+                // Get user data from Firestore
+                const userDoc = await db.collection('members').doc(user.uid).get();
+                console.log('User document exists:', userDoc.exists);
+                
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    console.log('User data:', userData);
+                    
+                    currentUser = {
+                        uid: user.uid,
+                        email: user.email,
+                        name: userData.name,
+                        phone: userData.phone,
+                        birthday: userData.birthday,
+                        location: userData.location,
+                        profession: userData.profession,
+                        role: userData.role || 'member',
+                        department: userData.department
+                    };
+                    
+                    console.log('Current user set:', currentUser);
+                    showAuthMessage('Login successful! Redirecting...', 'success');
+                    
+                    setTimeout(() => {
+                        closeLoginModal();
+                        showPageByName('dashboard');
+                    }, 1000);
+                } else {
+                    console.error('User document does not exist in Firestore');
+                    showAuthMessage('User profile not found. Please contact admin.', 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                console.error('Error code:', error.code);
+                console.error('Error message:', error.message);
+                
+                let errorMessage = 'Login failed. ';
+                
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage += 'No account found with this email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage += 'Incorrect password.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage += 'Invalid email format.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage += 'Too many failed attempts. Try again later.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage += 'Network error. Check your internet connection.';
+                } else {
+                    errorMessage += error.message;
+                }
+                
+                showAuthMessage(errorMessage, 'error');
+            }
+        }
+
+        // Register handler
+        async function handleRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const birthday = document.getElementById('registerBirthday').value;
+            const location = document.getElementById('registerLocation').value;
+            const profession = document.getElementById('registerProfession').value;
+            const password = document.getElementById('registerPassword').value;
+            const department = document.getElementById('registerDepartment').value;
+            
+            if (!name || !email || !phone || !birthday || !location || !profession || !password) {
+                showAuthMessage('Please fill in all required fields', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAuthMessage('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            try {
+                // Create user account
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Update display name
+                await user.updateProfile({ displayName: name });
+                
+                // Save user data to Firestore
+                await db.collection('members').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    birthday: birthday,
+                    location: location,
+                    profession: profession,
+                    department: department || 'Not assigned',
+                    role: 'member',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    attendanceHistory: []
+                });
+                
+                showAuthMessage('Registration successful! Logging you in...', 'success');
+                
+                // Auto-login
                 currentUser = {
                     uid: user.uid,
                     email: user.email,
-                    name: userData.name || user.displayName,
-                    phone: userData.phone,
-                    birthday: userData.birthday,
-                    location: userData.location,
-                    profession: userData.profession,
-                    role: userData.role || 'member',
-                    department: userData.department
+                    name: name,
+                    phone: phone,
+                    birthday: birthday,
+                    location: location,
+                    profession: profession,
+                    role: 'member',
+                    department: department || 'Not assigned'
                 };
-                console.log('Current user role:', currentUser.role);
+                
+                setTimeout(() => {
+                    closeLoginModal();
+                    showPageByName('dashboard');
+                }, 1500);
+            } catch (error) {
+                console.error('Registration error:', error);
+                showAuthMessage(getAuthErrorMessage(error.code), 'error');
             }
-        } catch (error) {
-            console.error('Error loading user data:', error);
         }
-    } else {
-        currentUser = null;
-        console.log('No user logged in');
-    }
-});
 
-// ============================================
-// GALLERY UPLOAD FUNCTIONS (FIXED)
-// ============================================
-
-// ✅ COMPLETELY REWRITTEN: Upload using Firebase Storage
-async function uploadGalleryPhoto() {
-    const category = document.getElementById('galleryCategory').value;
-    const description = document.getElementById('galleryDescription').value;
-    const fileInput = document.getElementById('galleryFileInput');
-    const files = fileInput.files;
-    
-    if (files.length === 0) {
-        alert('Please select at least one photo');
-        return;
-    }
-    
-    if (!description) {
-        alert('Please add a description');
-        return;
-    }
-
-    if (!currentUser) {
-        alert('You must be logged in to upload photos');
-        return;
-    }
-
-    const progressBar = document.getElementById('uploadProgress');
-    const progressFill = document.getElementById('progressFill');
-    
-    try {
-        progressBar.style.display = 'block';
-        let uploadedCount = 0;
-        const totalFiles = files.length;
-        
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            
-            if (file.size > 5 * 1024 * 1024) {
-                alert(`File ${file.name} is too large. Maximum size is 5MB.`);
-                continue;
+        // Logout handler
+        async function handleLogout() {
+            try {
+                await auth.signOut();
+                currentUser = null;
+                showAuthMessage('Logged out successfully', 'success');
+                showPageByName('home');
+            } catch (error) {
+                console.error('Logout error:', error);
             }
+        }
+
+        // Auth state observer
+        auth.onAuthStateChanged(async (user) => {
+            console.log('Auth state changed:', user ? user.email : 'No user');
             
-            if (!file.type.startsWith('image/')) {
-                alert(`File ${file.name} is not an image.`);
-                continue;
-            }
-            
-            // ✅ Upload to Firebase Storage
-            const storageRef = storage.ref();
-            const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
-            const uploadTask = imageRef.put(file);
-            
-            await new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        const overallProgress = ((uploadedCount + (progress / 100)) / totalFiles) * 100;
-                        progressFill.style.width = overallProgress + '%';
-                        progressFill.textContent = Math.round(overallProgress) + '%';
-                    },
-                    (error) => {
-                        console.error('Upload error:', error);
-                        reject(error);
-                    },
-                    async () => {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+            if (user) {
+                console.log('User is signed in:', user.uid);
+                
+                try {
+                    const userDoc = await db.collection('members').doc(user.uid).get();
+                    
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        console.log('User data loaded:', userData);
                         
-                        await db.collection('gallery').add({
-                            category: category,
-                            description: description,
-                            imageUrl: downloadURL,
-                            fileName: file.name,
-                            fileSize: file.size,
-                            uploadedBy: currentUser.uid,
-                            uploadedByName: currentUser.name,
-                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                            createdAt: new Date().toISOString()
-                        });
+                        currentUser = {
+                            uid: user.uid,
+                            email: user.email,
+                            name: userData.name,
+                            phone: userData.phone,
+                            birthday: userData.birthday,
+                            location: userData.location,
+                            profession: userData.profession,
+                            role: userData.role || 'member',
+                            department: userData.department
+                        };
                         
-                        uploadedCount++;
-                        resolve();
+                        console.log('Current user set:', currentUser.name, 'Role:', currentUser.role);
+                    } else {
+                        console.error('User document not found in Firestore');
                     }
-                );
-            });
+                } catch (error) {
+                    console.error('Error loading user data:', error);
+                }
+            } else {
+                currentUser = null;
+                console.log('No user logged in');
+            }
+        });
+
+        // ============================================
+        // FIRESTORE DATA FUNCTIONS
+        // ============================================
+
+        // Save attendance to Firestore
+        async function saveAttendance(memberId, date, status) {
+            try {
+                await db.collection('attendance').add({
+                    memberId: memberId,
+                    date: date,
+                    status: status,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                console.log('Attendance saved successfully');
+            } catch (error) {
+                console.error('Error saving attendance:', error);
+            }
         }
-        
-        alert(`All ${totalFiles} photo(s) uploaded successfully!`);
-        document.getElementById('galleryDescription').value = '';
-        document.getElementById('galleryFileInput').value = '';
-        document.getElementById('selectedFileName').textContent = '';
-        progressBar.style.display = 'none';
-        progressFill.style.width = '0%';
-        loadGallery();
-        
-    } catch (error) {
-        console.error('Upload error:', error);
-        alert('Error uploading photos: ' + error.message);
-        progressBar.style.display = 'none';
-    }
-}
 
-async function uploadAdminGalleryPhoto() {
-    const category = document.getElementById('adminGalleryCategory').value;
-    const description = document.getElementById('adminGalleryDescription').value;
-    const fileInput = document.getElementById('adminGalleryFileInput');
-    const files = fileInput.files;
-    
-    if (files.length === 0) {
-        alert('Please select at least one photo');
-        return;
-    }
-    
-    if (!description) {
-        alert('Please add a description');
-        return;
-    }
-
-    if (!currentUser) {
-        alert('You must be logged in to upload photos');
-        return;
-    }
-
-    const progressBar = document.getElementById('adminUploadProgress');
-    const progressFill = document.getElementById('adminProgressFill');
-    
-    try {
-        progressBar.style.display = 'block';
-        let uploadedCount = 0;
-        const totalFiles = files.length;
-        
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            
-            if (file.size > 5 * 1024 * 1024) {
-                alert(`File ${file.name} is too large. Maximum size is 5MB.`);
-                continue;
+        // Load members from Firestore
+        async function loadMembersFromFirestore() {
+            try {
+                const snapshot = await db.collection('members').get();
+                const members = [];
+                snapshot.forEach(doc => {
+                    members.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                return members;
+            } catch (error) {
+                console.error('Error loading members:', error);
+                return [];
             }
-            
-            if (!file.type.startsWith('image/')) {
-                alert(`File ${file.name} is not an image.`);
-                continue;
+        }
+
+        // Save prayer request to Firestore
+        async function submitPrayer() {
+            const prayer = document.getElementById('prayerRequest').value;
+            if (!prayer.trim()) {
+                alert('Please enter a prayer request');
+                return;
             }
-            
-            const storageRef = storage.ref();
-            const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
-            const uploadTask = imageRef.put(file);
-            
-            await new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        const overallProgress = ((uploadedCount + (progress / 100)) / totalFiles) * 100;
-                        progressFill.style.width = overallProgress + '%';
-                        progressFill.textContent = Math.round(overallProgress) + '%';
-                    },
-                    (error) => {
-                        console.error('Upload error:', error);
-                        reject(error);
-                    },
-                    async () => {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                        
-                        await db.collection('gallery').add({
-                            category: category,
-                            description: description,
-                            imageUrl: downloadURL,
-                            fileName: file.name,
-                            fileSize: file.size,
-                            uploadedBy: currentUser.uid,
-                            uploadedByName: currentUser.name,
-                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                            createdAt: new Date().toISOString()
+
+            try {
+                await db.collection('prayers').add({
+                    request: prayer,
+                    submittedBy: currentUser.uid,
+                    submitterName: currentUser.name,
+                    status: 'active',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Prayer request submitted successfully! Our prayer team will lift you up.');
+                document.getElementById('prayerRequest').value = '';
+            } catch (error) {
+                console.error('Error submitting prayer:', error);
+                alert('Error submitting prayer request. Please try again.');
+            }
+        }
+
+        // Load birthdays from Firestore
+        async function loadBirthdaysFromFirestore() {
+            try {
+                const snapshot = await db.collection('members').get();
+                const birthdays = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.birthday) {
+                        birthdays.push({
+                            name: data.name,
+                            date: data.birthday
                         });
-                        
-                        uploadedCount++;
-                        resolve();
                     }
-                );
+                });
+                return birthdays;
+            } catch (error) {
+                console.error('Error loading birthdays:', error);
+                return sampleBirthdays; // Fallback to sample data
+            }
+        }
+
+        // ============================================
+        // HELPER FUNCTIONS
+        // ============================================
+
+        function showAuthMessage(message, type) {
+            const messageEl = document.getElementById('authMessage');
+            messageEl.textContent = message;
+            messageEl.style.color = type === 'success' ? '#4CAF50' : '#f44336';
+        }
+
+        function getAuthErrorMessage(errorCode) {
+            const errorMessages = {
+                'auth/email-already-in-use': 'This email is already registered',
+                'auth/invalid-email': 'Invalid email address',
+                'auth/weak-password': 'Password is too weak',
+                'auth/user-not-found': 'No account found with this email',
+                'auth/wrong-password': 'Incorrect password',
+                'auth/too-many-requests': 'Too many attempts. Please try again later'
+            };
+            return errorMessages[errorCode] || 'An error occurred. Please try again.';
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('modalTitle').textContent = 'Login to Dashboard';
+            document.getElementById('authMessage').textContent = '';
+        }
+
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('modalTitle').textContent = 'Register New Member';
+            document.getElementById('authMessage').textContent = '';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            showLoginForm();
+            // Clear form fields
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('registerName').value = '';
+            document.getElementById('registerEmail').value = '';
+            document.getElementById('registerPhone').value = '';
+            document.getElementById('registerBirthday').value = '';
+            document.getElementById('registerLocation').value = '';
+            document.getElementById('registerProfession').value = '';
+            document.getElementById('registerPassword').value = '';
+            document.getElementById('registerDepartment').value = '';
+        }
+        // Initialize data in memory
+        let currentUser = null;
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        // Dynamic recurring events generator
+        async function generateRecurringEvents() {
+            const events = [];
+            const today = new Date();
+            const futureMonths = 6; // Generate events for next 6 months
+            
+            // Generate Sunday Services (every Sunday at 8:00 AM)
+            for (let i = 0; i < futureMonths * 4; i++) {
+                const sunday = getNextDayOfWeek(today, 0, i); // 0 = Sunday
+                events.push({
+                    date: sunday.toISOString().split('T')[0],
+                    title: 'Sunday Worship Service',
+                    time: '08:00 - 11:30',
+                    description: 'Join us for powerful worship and life-changing messages',
+                    recurring: true
+                });
+            }
+            
+            // Generate Wednesday Bible Study (every Wednesday at 5:30 PM)
+            for (let i = 0; i < futureMonths * 4; i++) {
+                const wednesday = getNextDayOfWeek(today, 3, i); // 3 = Wednesday
+                events.push({
+                    date: wednesday.toISOString().split('T')[0],
+                    title: 'Midweek Bible Study',
+                    time: '17:30 - 19:30',
+                    description: 'Deepening our understanding of God\'s Word',
+                    recurring: true
+                });
+            }
+            
+            // Add special one-time events
+            events.push(
+                { 
+                    date: '2026-01-19', 
+                    title: '21 Days of Fasting & Prayer Begins', 
+                    time: '06:00', 
+                    description: 'Join us for 21 days of consecration, seeking God\'s face for breakthrough and transformation',
+                    recurring: false
+                },
+                { 
+                    date: '2026-02-14', 
+                    title: 'Valentine\'s Day Dinner', 
+                    time: '18:00', 
+                    description: 'Celebrate love and unity with our church family at our special Valentine\'s dinner',
+                    recurring: false
+                }
+            );
+            
+            // Load custom events from Firestore
+            try {
+                const snapshot = await db.collection('customEvents').get();
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    events.push({
+                        id: doc.id,
+                        date: data.date,
+                        title: data.title,
+                        time: data.time,
+                        description: data.description,
+                        recurring: false,
+                        custom: true
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading custom events:', error);
+            }
+            
+            return events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        // Helper function to get next occurrence of a day of week
+        function getNextDayOfWeek(startDate, dayOfWeek, occurrenceIndex = 0) {
+            const date = new Date(startDate);
+            const currentDay = date.getDay();
+            
+            // Calculate days until next occurrence
+            let daysUntilNext = dayOfWeek - currentDay;
+            if (daysUntilNext <= 0) {
+                daysUntilNext += 7;
+            }
+            
+            // Add days for the specific occurrence
+            date.setDate(date.getDate() + daysUntilNext + (occurrenceIndex * 7));
+            date.setHours(0, 0, 0, 0);
+            
+            return date;
+        }
+
+        // Generate events dynamically
+        let sampleEvents = [];
+        
+        // Initialize events
+        async function initializeEvents() {
+            sampleEvents = await generateRecurringEvents();
+        }
+        
+        // Call on page load
+        initializeEvents();
+
+        const sampleBirthdays = [];
+
+        // Load members from Firestore
+        async function loadMembersFromFirestore() {
+            try {
+                const snapshot = await db.collection('members').orderBy('name').get();
+                const members = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    members.push({
+                        id: doc.id,
+                        name: data.name,
+                        email: data.email,
+                        phone: data.phone,
+                        birthday: data.birthday,
+                        location: data.location,
+                        profession: data.profession,
+                        department: data.department,
+                        role: data.role,
+                        status: 'absent' // Default status for attendance
+                    });
+                });
+                return members;
+            } catch (error) {
+                console.error('Error loading members:', error);
+                return [];
+            }
+        }
+
+        // Replace sample members with empty array
+        let sampleMembers = [];
+
+        // Navigation
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.dataset.page;
+                showPage(page);
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('active');
             });
-        }
-        
-        alert(`All ${totalFiles} photo(s) uploaded successfully!`);
-        document.getElementById('adminGalleryDescription').value = '';
-        document.getElementById('adminGalleryFileInput').value = '';
-        document.getElementById('adminSelectedFileName').textContent = '';
-        progressBar.style.display = 'none';
-        progressFill.style.width = '0%';
-        loadAdminGalleryList();
-        
-    } catch (error) {
-        console.error('Upload error:', error);
-        alert('Error uploading photos: ' + error.message);
-        progressBar.style.display = 'none';
-    }
-}
-
-async function loadGallery() {
-    const container = document.getElementById('galleryGrid');
-    
-    try {
-        container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading gallery...</p>';
-        
-        const snapshot = await db.collection('gallery')
-            .orderBy('timestamp', 'desc')
-            .get();
-        
-        if (snapshot.empty) {
-            container.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
-                    <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">📸 No Photos Yet</h3>
-                    <p style="font-size: 1.1rem; color: var(--dark-text);">Our gallery is waiting to be filled with beautiful moments!</p>
-                    <p style="margin-top: 1rem;">Admins can upload photos from the Dashboard → Manage Gallery section.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        const photos = [];
-        snapshot.forEach(doc => {
-            photos.push({ id: doc.id, ...doc.data() });
         });
-        
-        displayGallery(photos);
-    } catch (error) {
-        console.error('Error loading gallery:', error);
-        container.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
-                <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">📸 Gallery Coming Soon</h3>
-                <p style="font-size: 1.1rem; color: var(--dark-text);">We're setting up our photo gallery. Check back soon!</p>
-            </div>
-        `;
-    }
-}
 
-function displayGallery(photos) {
-    const container = document.getElementById('galleryGrid');
-    
-    const filteredPhotos = currentGalleryFilter === 'all' 
-        ? photos 
-        : photos.filter(p => p.category === currentGalleryFilter);
-    
-    if (filteredPhotos.length === 0) {
-        container.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1/-1;">No photos in this category yet</p>';
-        return;
-    }
-    
-    container.innerHTML = filteredPhotos.map(photo => `
-        <div class="gallery-item" onclick="openLightbox('${photo.imageUrl}')">
-            <img src="${photo.imageUrl}" alt="${photo.description}">
-            <div class="gallery-caption">
-                <h4>${photo.category}</h4>
-                <p>${photo.description}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function filterGallery(category) {
-    currentGalleryFilter = category;
-    
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    loadGallery();
-}
-
-async function loadAdminGalleryList() {
-    const container = document.getElementById('adminGalleryList');
-    container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading photos...</p>';
-    
-    try {
-        const snapshot = await db.collection('gallery')
-            .orderBy('timestamp', 'desc')
-            .get();
-        
-        if (snapshot.empty) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem;">No photos uploaded yet</p>';
-            return;
-        }
-        
-        const photos = [];
-        snapshot.forEach(doc => {
-            photos.push({ id: doc.id, ...doc.data() });
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
         });
-        
-        container.innerHTML = `
-            <div style="display: grid; gap: 1rem;">
-                ${photos.map(photo => `
-                    <div style="background: white; padding: 1rem; border-radius: 10px; display: grid; grid-template-columns: 100px 1fr auto; gap: 1rem; align-items: center;">
-                        <img src="${photo.imageUrl}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <div>
-                            <strong>${photo.category}</strong><br>
-                            <small>${photo.description}</small><br>
-                            <small style="color: #666;">Uploaded by: ${photo.uploadedByName}</small>
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            const pageMap = {
+                'home': 'homePage',
+                'about': 'aboutPage',
+                'ministries': 'ministriesPage',
+                'gallery': 'galleryPage',
+                'events': 'eventsPage',
+                'contact': 'contactPage',
+                'dashboard': 'dashboardPage'
+            };
+            
+            const pageId = pageMap[pageName] || 'homePage';
+            document.getElementById(pageId).style.display = 'block';
+            
+            if (pageName === 'dashboard') {
+                initDashboard();
+            }
+            
+            if (pageName === 'events') {
+                loadFullEventsList();
+            }
+            
+            if (pageName === 'gallery') {
+                loadGallery();
+                // Show upload section only for admins
+                if (currentUser && currentUser.role === 'admin') {
+                    document.getElementById('galleryUploadSection').style.display = 'block';
+                }
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPageByName(pageName) {
+            showPage(pageName);
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`[data-page="${pageName}"]`);
+            if (navLink) navLink.classList.add('active');
+        }
+
+        function scrollToContact() {
+            showPageByName('contact');
+        }
+
+        function sendContactMessage() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const phone = document.getElementById('contactPhone').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // In a real application, this would send to a backend
+            alert('Thank you for your message! We will get back to you soon.');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+
+        function loadFullEventsList() {
+            const container = document.getElementById('fullEventsList');
+            const upcoming = sampleEvents.filter(e => new Date(e.date) >= new Date());
+            
+            if (upcoming.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No upcoming events at this time.</p>';
+                return;
+            }
+            
+            container.innerHTML = '<div style="display: grid; gap: 2rem;">' + upcoming.map(event => {
+                const date = new Date(event.date);
+                return `
+                    <div class="info-card" style="display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: center;">
+                        <div style="background: var(--dark-blue); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 0.9rem;">${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: var(--golden-yellow);">${date.getDate()}</div>
+                            <div style="font-size: 0.9rem;">${date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
                         </div>
-                        <button class="btn btn-secondary" style="background: #f44336;" onclick="deletePhoto('${photo.id}', '${photo.imageUrl}')">Delete</button>
+                        <div>
+                            <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">${event.title}</h3>
+                            <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">🕐 ${event.time} GMT</p>
+                            <p>${event.description}</p>
+                        </div>
                     </div>
-                `).join('')}
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error loading admin gallery:', error);
-        container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading photos</p>';
-    }
-}
-
-async function deletePhoto(photoId, imageUrl) {
-    if (!confirm('Are you sure you want to delete this photo?')) {
-        return;
-    }
-    
-    try {
-        // Delete from Storage
-        const imageRef = storage.refFromURL(imageUrl);
-        await imageRef.delete();
-        
-        // Delete from Firestore
-        await db.collection('gallery').doc(photoId).delete();
-        
-        alert('Photo deleted successfully');
-        loadAdminGalleryList();
-        loadGallery();
-    } catch (error) {
-        console.error('Error deleting photo:', error);
-        alert('Error deleting photo: ' + error.message);
-    }
-}
-
-function openLightbox(imageSrc) {
-    document.getElementById('lightboxImage').src = imageSrc;
-    document.getElementById('lightbox').classList.add('active');
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-}
-
-// ============================================
-// EVENT MANAGEMENT FUNCTIONS (FIXED)
-// ============================================
-
-async function generateRecurringEvents() {
-    const events = [];
-    const today = new Date();
-    const futureMonths = 6;
-    
-    for (let i = 0; i < futureMonths * 4; i++) {
-        const sunday = getNextDayOfWeek(today, 0, i);
-        events.push({
-            date: sunday.toISOString().split('T')[0],
-            title: 'Sunday Worship Service',
-            time: '08:00 - 11:30',
-            description: 'Join us for powerful worship and life-changing messages',
-            recurring: true
-        });
-    }
-    
-    for (let i = 0; i < futureMonths * 4; i++) {
-        const wednesday = getNextDayOfWeek(today, 3, i);
-        events.push({
-            date: wednesday.toISOString().split('T')[0],
-            title: 'Midweek Bible Study',
-            time: '17:30 - 19:30',
-            description: 'Deepening our understanding of God\'s Word',
-            recurring: true
-        });
-    }
-    
-    events.push(
-        { 
-            date: '2026-01-19', 
-            title: '21 Days of Fasting & Prayer Begins', 
-            time: '06:00', 
-            description: 'Join us for 21 days of consecration, seeking God\'s face for breakthrough and transformation',
-            recurring: false
-        },
-        { 
-            date: '2026-02-14', 
-            title: 'Valentine\'s Day Dinner', 
-            time: '18:00', 
-            description: 'Celebrate love and unity with our church family at our special Valentine\'s dinner',
-            recurring: false
+                `;
+            }).join('') + '</div>';
         }
-    );
-    
-    try {
-        const snapshot = await db.collection('customEvents').get();
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            events.push({
-                id: doc.id,
-                date: data.date,
-                title: data.title,
-                time: data.time,
-                description: data.description,
-                recurring: false,
-                custom: true
-            });
-        });
-    } catch (error) {
-        console.error('Error loading custom events:', error);
-    }
-    
-    return events.sort((a, b) => new Date(a.date) - new Date(b.date));
-}
 
-function getNextDayOfWeek(startDate, dayOfWeek, occurrenceIndex = 0) {
-    const date = new Date(startDate);
-    const currentDay = date.getDay();
-    
-    let daysUntilNext = dayOfWeek - currentDay;
-    if (daysUntilNext <= 0) {
-        daysUntilNext += 7;
-    }
-    
-    date.setDate(date.getDate() + daysUntilNext + (occurrenceIndex * 7));
-    date.setHours(0, 0, 0, 0);
-    
-    return date;
-}
+        // Gallery Functions
+        let currentGalleryFilter = 'all';
 
-async function initializeEvents() {
-    sampleEvents = await generateRecurringEvents();
-}
-
-async function addNewEvent() {
-    const title = document.getElementById('eventTitle').value;
-    const date = document.getElementById('eventDate').value;
-    const time = document.getElementById('eventTime').value;
-    const description = document.getElementById('eventDescription').value;
-    const category = document.getElementById('eventCategory').value;
-    
-    if (!title || !date || !time || !description) {
-        alert('Please fill in all required fields');
-        return;
-    }
-    
-    try {
-        await db.collection('customEvents').add({
-            title: title,
-            date: date,
-            time: time,
-            description: description,
-            category: category,
-            createdBy: currentUser.uid,
-            createdByName: currentUser.name,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert('Event added successfully!');
-        document.getElementById('eventTitle').value = '';
-        document.getElementById('eventDate').value = '';
-        document.getElementById('eventTime').value = '';
-        document.getElementById('eventDescription').value = '';
-        loadAdminEventsList();
-        await initializeEvents();
-        loadUpcomingEvents();
-    } catch (error) {
-        console.error('Error adding event:', error);
-        alert('Error adding event. Please try again.');
-    }
-}
-
-async function loadAdminEventsList() {
-    const container = document.getElementById('adminEventsList');
-    container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading events...</p>';
-    
-    try {
-        const snapshot = await db.collection('customEvents')
-            .orderBy('date', 'asc')
-            .get();
-        
-        if (snapshot.empty) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem;">No custom events added yet</p>';
-            return;
-        }
-        
-        const events = [];
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            if (new Date(data.date) >= new Date()) {
-                events.push({ id: doc.id, ...data });
+        document.getElementById('galleryFileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                document.getElementById('selectedFileName').textContent = 
+                    files.length === 1 ? files[0].name : `${files.length} files selected`;
             }
         });
-        
-        if (events.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem;">No upcoming custom events</p>';
-            return;
+
+        document.getElementById('adminGalleryFileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                document.getElementById('adminSelectedFileName').textContent = 
+                    files.length === 1 ? files[0].name : `${files.length} files selected`;
+            }
+        });
+
+        async function uploadAdminGalleryPhoto() {
+            const category = document.getElementById('adminGalleryCategory').value;
+            const description = document.getElementById('adminGalleryDescription').value;
+            const fileInput = document.getElementById('adminGalleryFileInput');
+            const files = fileInput.files;
+            
+            console.log('Upload function called');
+            console.log('Category:', category);
+            console.log('Description:', description);
+            console.log('Files:', files.length);
+            
+            if (files.length === 0) {
+                alert('Please select at least one photo');
+                return;
+            }
+            
+            if (!description) {
+                alert('Please add a description');
+                return;
+            }
+
+            if (!currentUser) {
+                alert('You must be logged in to upload photos');
+                return;
+            }
+
+            if (!db) {
+                alert('Database connection error. Please refresh the page.');
+                return;
+            }
+            
+            try {
+                let uploadedCount = 0;
+                const totalFiles = files.length;
+                
+                alert(`Uploading ${totalFiles} photo(s)... Please wait.`);
+                
+                // Convert images to base64 and save to Firestore
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    console.log(`Processing file ${i + 1}:`, file.name, file.type, file.size);
+                    
+                    // Check file size (max 5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert(`File ${file.name} is too large. Maximum size is 5MB.`);
+                        continue;
+                    }
+                    
+                    // Check file type
+                    if (!file.type.startsWith('image/')) {
+                        alert(`File ${file.name} is not an image.`);
+                        continue;
+                    }
+                    
+                    const reader = new FileReader();
+                    
+                    reader.onerror = function(error) {
+                        console.error('FileReader error:', error);
+                        alert(`Error reading file ${file.name}`);
+                    };
+                    
+                    reader.onload = async function(e) {
+                        try {
+                            console.log(`Uploading to Firestore: ${file.name}`);
+                            
+                            const docRef = await db.collection('gallery').add({
+                                category: category,
+                                description: description,
+                                imageData: e.target.result,
+                                fileName: file.name,
+                                fileSize: file.size,
+                                uploadedBy: currentUser.uid,
+                                uploadedByName: currentUser.name,
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                                createdAt: new Date().toISOString()
+                            });
+                            
+                            console.log('Upload successful, doc ID:', docRef.id);
+                            uploadedCount++;
+                            
+                            if (uploadedCount === totalFiles) {
+                                alert(`All ${totalFiles} photo(s) uploaded successfully!`);
+                                document.getElementById('adminGalleryDescription').value = '';
+                                document.getElementById('adminGalleryFileInput').value = '';
+                                document.getElementById('adminSelectedFileName').textContent = '';
+                                loadAdminGalleryList();
+                            }
+                        } catch (uploadError) {
+                            console.error('Firestore upload error:', uploadError);
+                            alert(`Error uploading ${file.name}: ${uploadError.message}`);
+                        }
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            } catch (error) {
+                console.error('Error in upload function:', error);
+                alert('Error uploading photos: ' + error.message);
+            }
         }
-        
-        container.innerHTML = `
-            <div style="display: grid; gap: 1rem;">
-                ${events.map(event => {
-                    const date = new Date(event.date);
-                    return `
-                        <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--golden-yellow);">
-                            <div style="display: flex; justify-content: space-between; align-items: start;">
+
+        async function uploadGalleryPhoto() {
+            const category = document.getElementById('galleryCategory').value;
+            const description = document.getElementById('galleryDescription').value;
+            const fileInput = document.getElementById('galleryFileInput');
+            const files = fileInput.files;
+            
+            if (files.length === 0) {
+                alert('Please select at least one photo');
+                return;
+            }
+            
+            if (!description) {
+                alert('Please add a description');
+                return;
+            }
+            
+            try {
+                // Convert images to base64 and save to Firestore
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    
+                    reader.onload = async function(e) {
+                        await db.collection('gallery').add({
+                            category: category,
+                            description: description,
+                            imageData: e.target.result,
+                            uploadedBy: currentUser.uid,
+                            uploadedByName: currentUser.name,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            createdAt: new Date().toISOString()
+                        });
+                        
+                        if (i === files.length - 1) {
+                            alert('Photos uploaded successfully!');
+                            document.getElementById('galleryDescription').value = '';
+                            document.getElementById('galleryFileInput').value = '';
+                            document.getElementById('selectedFileName').textContent = '';
+                            loadGallery();
+                        }
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            } catch (error) {
+                console.error('Error uploading photos:', error);
+                alert('Error uploading photos. Please try again.');
+            }
+        }
+
+        async function loadGallery() {
+            const container = document.getElementById('galleryGrid');
+            
+            try {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading gallery...</p>';
+                
+                const snapshot = await db.collection('gallery')
+                    .orderBy('timestamp', 'desc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
+                            <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">📸 No Photos Yet</h3>
+                            <p style="font-size: 1.1rem; color: var(--dark-text);">Our gallery is waiting to be filled with beautiful moments!</p>
+                            <p style="margin-top: 1rem;">Admins can upload photos from the Dashboard → Manage Gallery section.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const photos = [];
+                snapshot.forEach(doc => {
+                    photos.push({ id: doc.id, ...doc.data() });
+                });
+                
+                displayGallery(photos);
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
+                        <h3 style="color: var(--dark-blue); margin-bottom: 1rem;">📸 Gallery Coming Soon</h3>
+                        <p style="font-size: 1.1rem; color: var(--dark-text);">We're setting up our photo gallery. Check back soon!</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayGallery(photos) {
+            const container = document.getElementById('galleryGrid');
+            
+            const filteredPhotos = currentGalleryFilter === 'all' 
+                ? photos 
+                : photos.filter(p => p.category === currentGalleryFilter);
+            
+            if (filteredPhotos.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No photos in this category yet</p>';
+                return;
+            }
+            
+            container.innerHTML = filteredPhotos.map(photo => `
+                <div class="gallery-item" onclick="openLightbox('${photo.imageData}')">
+                    <img src="${photo.imageData}" alt="${photo.description}">
+                    <div class="gallery-caption">
+                        <h4>${photo.category}</h4>
+                        <p>${photo.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(category) {
+            currentGalleryFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            loadGallery();
+        }
+
+        function openLightbox(imageSrc) {
+            document.getElementById('lightboxImage').src = imageSrc;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        async function loadAdminGalleryList() {
+            const container = document.getElementById('adminGalleryList');
+            container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading photos...</p>';
+            
+            try {
+                const snapshot = await db.collection('gallery')
+                    .orderBy('timestamp', 'desc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem;">No photos uploaded yet</p>';
+                    return;
+                }
+                
+                const photos = [];
+                snapshot.forEach(doc => {
+                    photos.push({ id: doc.id, ...doc.data() });
+                });
+                
+                container.innerHTML = `
+                    <div style="display: grid; gap: 1rem;">
+                        ${photos.map(photo => `
+                            <div style="background: white; padding: 1rem; border-radius: 10px; display: grid; grid-template-columns: 100px 1fr auto; gap: 1rem; align-items: center;">
+                                <img src="${photo.imageData}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
                                 <div>
-                                    <h4 style="color: var(--dark-blue); margin-bottom: 0.5rem;">${event.title}</h4>
-                                    <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">
-                                        📅 ${date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                                    </p>
-                                    <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">🕐 ${event.time} GMT</p>
-                                    <p>${event.description}</p>
-                                    <small style="color: #666;">Category: ${event.category}</small>
+                                    <strong>${photo.category}</strong><br>
+                                    <small>${photo.description}</small><br>
+                                    <small style="color: #666;">Uploaded by: ${photo.uploadedByName}</small>
                                 </div>
-                                <button class="btn btn-secondary" style="background: #f44336;" onclick="deleteEvent('${event.id}')">Delete</button>
+                                <button class="btn btn-secondary" style="background: #f44336;" onclick="deletePhoto('${photo.id}')">Delete</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading admin gallery:', error);
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading photos</p>';
+            }
+        }
+
+        async function deletePhoto(photoId) {
+            if (!confirm('Are you sure you want to delete this photo?')) {
+                return;
+            }
+            
+            try {
+                await db.collection('gallery').doc(photoId).delete();
+                alert('Photo deleted successfully');
+                loadAdminGalleryList();
+            } catch (error) {
+                console.error('Error deleting photo:', error);
+                alert('Error deleting photo');
+            }
+        }
+
+        // Event Management Functions
+        async function addNewEvent() {
+            const title = document.getElementById('eventTitle').value;
+            const date = document.getElementById('eventDate').value;
+            const time = document.getElementById('eventTime').value;
+            const description = document.getElementById('eventDescription').value;
+            const category = document.getElementById('eventCategory').value;
+            
+            if (!title || !date || !time || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            try {
+                await db.collection('customEvents').add({
+                    title: title,
+                    date: date,
+                    time: time,
+                    description: description,
+                    category: category,
+                    createdBy: currentUser.uid,
+                    createdByName: currentUser.name,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Event added successfully!');
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('eventDate').value = '';
+                document.getElementById('eventTime').value = '';
+                document.getElementById('eventDescription').value = '';
+                loadAdminEventsList();
+                
+                // Refresh events on the main calendar
+                loadUpcomingEvents();
+            } catch (error) {
+                console.error('Error adding event:', error);
+                alert('Error adding event. Please try again.');
+            }
+        }
+
+        async function loadAdminEventsList() {
+            const container = document.getElementById('adminEventsList');
+            container.innerHTML = '<p style="text-align: center; padding: 2rem;">Loading events...</p>';
+            
+            try {
+                const snapshot = await db.collection('customEvents')
+                    .orderBy('date', 'asc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem;">No custom events added yet</p>';
+                    return;
+                }
+                
+                const events = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (new Date(data.date) >= new Date()) {
+                        events.push({ id: doc.id, ...data });
+                    }
+                });
+                
+                if (events.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem;">No upcoming custom events</p>';
+                    return;
+                }
+                
+                container.innerHTML = `
+                    <div style="display: grid; gap: 1rem;">
+                        ${events.map(event => {
+                            const date = new Date(event.date);
+                            return `
+                                <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--golden-yellow);">
+                                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                                        <div>
+                                            <h4 style="color: var(--dark-blue); margin-bottom: 0.5rem;">${event.title}</h4>
+                                            <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">
+                                                📅 ${date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                                            </p>
+                                            <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">🕐 ${event.time} GMT</p>
+                                            <p>${event.description}</p>
+                                            <small style="color: #666;">Category: ${event.category}</small>
+                                        </div>
+                                        <button class="btn btn-secondary" style="background: #f44336;" onclick="deleteEvent('${event.id}')">Delete</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading events:', error);
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading events</p>';
+            }
+        }
+
+        async function deleteEvent(eventId) {
+            if (!confirm('Are you sure you want to delete this event?')) {
+                return;
+            }
+            
+            try {
+                await db.collection('customEvents').doc(eventId).delete();
+                alert('Event deleted successfully');
+                loadAdminEventsList();
+                loadUpcomingEvents();
+            } catch (error) {
+                console.error('Error deleting event:', error);
+                alert('Error deleting event');
+            }
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Dashboard tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = e.target.dataset.tab;
+                
+                // Check permissions
+                if (tab === 'member' && (!currentUser || currentUser.role === 'public')) {
+                    alert('Please login to access the Member Portal');
+                    document.getElementById('loginModal').classList.add('active');
+                    return;
+                }
+                
+                if (tab === 'admin' && (!currentUser || currentUser.role !== 'admin')) {
+                    alert('Admin access required');
+                    return;
+                }
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                document.querySelectorAll('.dashboard-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                document.getElementById(tab + 'Dashboard').classList.add('active');
+                
+                if (tab === 'member') loadMemberDashboard();
+                if (tab === 'admin') loadAdminDashboard();
+            });
+        });
+
+        // Login handler
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (username === 'member' && password === 'member123') {
+                currentUser = { username: 'member', role: 'member', name: 'John Doe' };
+                alert('Login successful! Welcome, Member.');
+            } else if (username === 'admin' && password === 'admin123') {
+                currentUser = { username: 'admin', role: 'admin', name: 'Admin User' };
+                alert('Login successful! Welcome, Admin.');
+            } else {
+                alert('Invalid credentials');
+                return;
+            }
+            
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Initialize dashboard
+        async function initDashboard() {
+            loadUpcomingEvents();
+            loadBirthdays();
+            updateCountdowns();
+            
+            // Load total members count for public dashboard
+            try {
+                const snapshot = await db.collection('members').get();
+                document.getElementById('totalMembersCount').textContent = snapshot.size;
+            } catch (error) {
+                console.error('Error loading member count:', error);
+            }
+            
+            setInterval(updateCountdowns, 60000); // Update every minute
+        }
+
+        async function loadUpcomingEvents() {
+            // Refresh events from database
+            sampleEvents = await generateRecurringEvents();
+            
+            const container = document.getElementById('upcomingEvents');
+            const now = new Date();
+            const upcoming = sampleEvents.filter(e => new Date(e.date) >= now).slice(0, 3);
+            
+            document.getElementById('upcomingEventsCount').textContent = upcoming.length;
+            
+            container.innerHTML = upcoming.map(event => {
+                const date = new Date(event.date);
+                return `
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div>${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                            <div class="day">${date.getDate()}</div>
+                            <div>${date.toLocaleDateString('en-US', { month: 'short' })}</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>${event.title}</h4>
+                            <div class="event-time">${event.time} GMT</div>
+                            <p>${event.description}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function loadBirthdays() {
+            const container = document.getElementById('birthdayList');
+            const now = new Date();
+            
+            // Load birthdays from Firestore
+            try {
+                const snapshot = await db.collection('members').get();
+                const allBirthdays = [];
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.birthday) {
+                        allBirthdays.push({
+                            name: data.name,
+                            date: data.birthday
+                        });
+                    }
+                });
+                
+                // Filter this month's birthdays
+                const thisMonth = allBirthdays.filter(b => {
+                    const bdate = new Date(b.date);
+                    return bdate.getMonth() === now.getMonth();
+                }).slice(0, 6);
+                
+                document.getElementById('birthdaysThisMonth').textContent = thisMonth.length;
+                
+                if (thisMonth.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem;">No birthdays this month</p>';
+                    return;
+                }
+                
+                container.innerHTML = thisMonth.map(birthday => {
+                    const date = new Date(birthday.date);
+                    return `
+                        <div class="birthday-item">
+                            <div class="birthday-icon">🎂</div>
+                            <div>
+                                <strong>${birthday.name}</strong><br>
+                                <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
                             </div>
                         </div>
                     `;
-                }).join('')}
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error loading events:', error);
-        container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading events</p>';
-    }
-}
-
-async function deleteEvent(eventId) {
-    if (!confirm('Are you sure you want to delete this event?')) {
-        return;
-    }
-    
-    try {
-        await db.collection('customEvents').doc(eventId).delete();
-        alert('Event deleted successfully');
-        loadAdminEventsList();
-        await initializeEvents();
-        loadUpcomingEvents();
-    } catch (error) {
-        console.error('Error deleting event:', error);
-        alert('Error deleting event');
-    }
-}
-
-async function loadUpcomingEvents() {
-    await initializeEvents();
-    
-    const container = document.getElementById('upcomingEvents');
-    const now = new Date();
-    const upcoming = sampleEvents.filter(e => new Date(e.date) >= now).slice(0, 3);
-    
-    document.getElementById('upcomingEventsCount').textContent = upcoming.length;
-    
-    container.innerHTML = upcoming.map(event => {
-        const date = new Date(event.date);
-        return `
-            <div class="event-card">
-                <div class="event-date">
-                    <div>${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
-                    <div class="day">${date.getDate()}</div>
-                    <div>${date.toLocaleDateString('en-US', { month: 'short' })}</div>
-                </div>
-                <div class="event-content">
-                    <h4>${event.title}</h4>
-                    <div class="event-time">${event.time} GMT</div>
-                    <p>${event.description}</p>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-async function loadFullEventsList() {
-    const container = document.getElementById('fullEventsList');
-    const upcoming = sampleEvents.filter(e => new Date(e.date) >= new Date());
-    
-    if (upcoming.length === 0) {
-        container.innerHTML = '<p style="text-align: center; padding: 2rem;">No upcoming events at this time.</p>';
-        return;
-    }
-    
-    container.innerHTML = '<div style="display: grid; gap: 2rem;">' + upcoming.map(event => {
-        const date = new Date(event.date);
-        return `
-            <div class="info-card" style="display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: center;">
-                <div style="background: var(--dark-blue); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 0.9rem;">${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
-                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--golden-yellow);">${date.getDate()}</div>
-                    <div style="font-size: 0.9rem;">${date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
-                </div>
-                <div>
-                    <h3 style="color: var(--dark-blue); margin-bottom: 0.5rem;">${event.title}</h3>
-                    <p style="color: var(--warm-gold); font-weight: 600; margin-bottom: 0.5rem;">🕐 ${event.time} GMT</p>
-                    <p>${event.description}</p>
-                </div>
-            </div>
-        `;
-    }).join('') + '</div>';
-}
-
-// ============================================
-// REMAINING FUNCTIONS (UNCHANGED)
-// ============================================
-
-async function loadBirthdays() {
-    const container = document.getElementById('birthdayList');
-    const now = new Date();
-    
-    try {
-        const snapshot = await db.collection('members').get();
-        const allBirthdays = [];
-        
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            if (data.birthday) {
-                allBirthdays.push({
-                    name: data.name,
-                    date: data.birthday
-                });
+                }).join('');
+            } catch (error) {
+                console.error('Error loading birthdays:', error);
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading birthdays</p>';
             }
-        });
-        
-        const thisMonth = allBirthdays.filter(b => {
-            const bdate = new Date(b.date);
-            return bdate.getMonth() === now.getMonth();
-        }).slice(0, 6);
-        
-        document.getElementById('birthdaysThisMonth').textContent = thisMonth.length;
-        
-        if (thisMonth.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1/-1;">No birthdays this month</p>';
-            return;
         }
-        
-        container.innerHTML = thisMonth.map(birthday => {
-            const date = new Date(birthday.date);
-            return `
-                <div class="birthday-item">
-                    <div class="birthday-icon">🎂</div>
-                    <div>
-                        <strong>${birthday.name}</strong><br>
-                        <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    } catch (error) {
-        console.error('Error loading birthdays:', error);
-        container.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1/-1;">Error loading birthdays</p>';
-    }
-}
 
-function updateCountdowns() {
-    const now = new Date();
-    
-    let nextSunday = new Date(now);
-    const daysUntilSunday = (7 - now.getDay()) % 7;
-    
-    if (now.getDay() === 0) {
-        if (now.getHours() >= 11 || (now.getHours() === 11 && now.getMinutes() >= 30)) {
-            nextSunday.setDate(now.getDate() + 7);
-        } else {
-            nextSunday.setDate(now.getDate());
-        }
-    } else {
-        nextSunday.setDate(now.getDate() + (daysUntilSunday || 7));
-    }
-    
-    nextSunday.setHours(8, 0, 0, 0);
-    
-    const diff = nextSunday - now;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    
-    document.getElementById('nextServiceCountdown').textContent = hours > 0 ? hours : 0;
-}
-
-async function loadMembersFromFirestore() {
-    try {
-        const snapshot = await db.collection('members').orderBy('name').get();
-        const members = [];
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            members.push({
-                id: doc.id,
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                birthday: data.birthday,
-                location: data.location,
-                profession: data.profession,
-                department: data.department,
-                role: data.role,
-                status: 'absent'
-            });
-        });
-        return members;
-    } catch (error) {
-        console.error('Error loading members:', error);
-        return [];
-    }
-}
-
-async function submitPrayer() {
-    const prayer = document.getElementById('prayerRequest').value;
-    if (!prayer.trim()) {
-        alert('Please enter a prayer request');
-        return;
-    }
-
-    try {
-        await db.collection('prayers').add({
-            request: prayer,
-            submittedBy: currentUser.uid,
-            submitterName: currentUser.name,
-            status: 'active',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert('Prayer request submitted successfully! Our prayer team will lift you up.');
-        document.getElementById('prayerRequest').value = '';
-    } catch (error) {
-        console.error('Error submitting prayer:', error);
-        alert('Error submitting prayer request. Please try again.');
-    }
-}
-
-async function recordTithe() {
-    const memberName = document.getElementById('titheMemberName').value;
-    const amount = parseFloat(document.getElementById('titheAmount').value);
-    const date = document.getElementById('titheDate').value;
-    
-    if (!memberName || !amount || !date) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    try {
-        await db.collection('finances').add({
-            type: 'tithe',
-            memberName: memberName,
-            amount: amount,
-            date: date,
-            recordedBy: currentUser.uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert('Tithe recorded successfully!');
-        document.getElementById('titheMemberName').value = '';
-        document.getElementById('titheAmount').value = '';
-        document.getElementById('titheDate').value = '';
-        loadFinanceData();
-    } catch (error) {
-        console.error('Error recording tithe:', error);
-        alert('Error recording tithe. Please try again.');
-    }
-}
-
-async function recordOffering() {
-    const offeringType = document.getElementById('offeringType').value;
-    const service = document.getElementById('offeringService').value;
-    const amount = parseFloat(document.getElementById('offeringAmount').value);
-    const date = document.getElementById('offeringDate').value;
-    
-    if (!amount || !date) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    try {
-        await db.collection('finances').add({
-            type: 'offering',
-            offeringType: offeringType,
-            service: service,
-            amount: amount,
-            date: date,
-            recordedBy: currentUser.uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert('Offering recorded successfully!');
-        document.getElementById('offeringAmount').value = '';
-        document.getElementById('offeringDate').value = new Date().toISOString().split('T')[0];
-        loadFinanceData();
-    } catch (error) {
-        console.error('Error recording offering:', error);
-        alert('Error recording offering. Please try again.');
-    }
-}
-
-async function recordExpense() {
-    const description = document.getElementById('expenseDescription').value;
-    const amount = parseFloat(document.getElementById('expenseAmount').value);
-    const category = document.getElementById('expenseCategory').value;
-    const date = document.getElementById('expenseDate').value;
-    
-    if (!description || !amount || !date) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    try {
-        await db.collection('finances').add({
-            type: 'expense',
-            description: description,
-            category: category,
-            amount: amount,
-            date: date,
-            recordedBy: currentUser.uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert('Expense recorded successfully!');
-        document.getElementById('expenseDescription').value = '';
-        document.getElementById('expenseAmount').value = '';
-        document.getElementById('expenseDate').value = '';
-        loadFinanceData();
-    } catch (error) {
-        console.error('Error recording expense:', error);
-        alert('Error recording expense. Please try again.');
-    }
-}
-
-async function loadFinanceData() {
-    try {
-        const now = new Date();
-        const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-        const firstDayStr = firstDayOfMonth.toISOString().split('T')[0];
-        
-        const snapshot = await db.collection('finances')
-            .where('date', '>=', firstDayStr)
-            .get();
-        
-        let totalTithes = 0;
-        let totalOfferings = 0;
-        let totalExpenses = 0;
-        const titherMap = {};
-        
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            if (data.type === 'tithe') {
-                totalTithes += data.amount;
-                if (!titherMap[data.memberName]) {
-                    titherMap[data.memberName] = 0;
+        function updateCountdowns() {
+            const now = new Date();
+            
+            // Find next Sunday service
+            let nextSunday = new Date(now);
+            const daysUntilSunday = (7 - now.getDay()) % 7;
+            
+            if (now.getDay() === 0) {
+                // It's Sunday
+                if (now.getHours() >= 11 || (now.getHours() === 11 && now.getMinutes() >= 30)) {
+                    // Service has ended, show next Sunday
+                    nextSunday.setDate(now.getDate() + 7);
+                } else {
+                    // Service hasn't started yet today
+                    nextSunday.setDate(now.getDate());
                 }
-                titherMap[data.memberName] += data.amount;
-            } else if (data.type === 'offering') {
-                totalOfferings += data.amount;
-            } else if (data.type === 'expense') {
-                totalExpenses += data.amount;
+            } else {
+                // It's not Sunday, calculate days until next Sunday
+                nextSunday.setDate(now.getDate() + (daysUntilSunday || 7));
             }
-        });
-        
-        document.getElementById('totalTithes').textContent = '₵' + totalTithes.toFixed(2);
-        document.getElementById('totalOfferings').textContent = '₵' + totalOfferings.toFixed(2);
-        document.getElementById('totalExpenses').textContent = '₵' + totalExpenses.toFixed(2);
-        document.getElementById('netBalance').textContent = '₵' + ((totalTithes + totalOfferings) - totalExpenses).toFixed(2);
-        
-        loadTopTithers(titherMap);
-    } catch (error) {
-        console.error('Error loading finance data:', error);
-    }
-}
-
-function loadTopTithers(titherMap) {
-    const topTithers = Object.entries(titherMap)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
-    
-    const container = document.getElementById('topTithersTable');
-    
-    if (topTithers.length === 0) {
-        container.innerHTML = '<p style="text-align: center; padding: 2rem;">No tithes recorded yet this year</p>';
-        return;
-    }
-    
-    container.innerHTML = `
-        <div class="attendance-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Member Name</th>
-                        <th>Total Tithes (₵)</th>
-                        <th>Award</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${topTithers.map((tither, index) => `
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${tither[0]}</td>
-                            <td>₵${tither[1].toFixed(2)}</td>
-                            <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '⭐'}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        </div>
-    `;
-}
-
-async function loadFullBirthdayList() {
-    const container = document.getElementById('fullBirthdayList');
-    
-    try {
-        const snapshot = await db.collection('members').orderBy('birthday').get();
-        const birthdays = [];
-        
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            if (data.birthday) {
-                birthdays.push({
-                    name: data.name,
-                    date: data.birthday,
-                    phone: data.phone
-                });
-            }
-        });
-        
-        if (birthdays.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1/-1;">No birthdays recorded yet</p>';
-            return;
+            
+            nextSunday.setHours(8, 0, 0, 0);
+            
+            const diff = nextSunday - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            
+            document.getElementById('nextServiceCountdown').textContent = hours > 0 ? hours : 0;
         }
-        
-        container.innerHTML = birthdays.map(birthday => {
-            const date = new Date(birthday.date);
-            return `
-                <div class="birthday-item" style="background: white; border-radius: 10px;">
-                    <div class="birthday-icon">🎂</div>
-                    <div>
-                        <strong>${birthday.name}</strong><br>
-                        <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
-                        ${birthday.phone ? `<br><small>📞 ${birthday.phone}</small>` : ''}
-                    </div>
+
+        function loadMemberDashboard() {
+            if (!currentUser) return;
+            
+            document.getElementById('memberWelcome').innerHTML = `
+                <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
+                     color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3>Welcome back, ${currentUser.name}!</h3>
+                    <p>We're glad to see you today. Stay connected with your church family.</p>
                 </div>
             `;
-        }).join('');
-    } catch (error) {
-        console.error('Error loading full birthday list:', error);
-        container.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1/-1;">Error loading birthdays</p>';
-    }
-}
+            
+            // Display profile info
+            displayMemberProfile();
+            
+            renderCalendar();
+            loadFullBirthdayList();
+        }
 
-function renderCalendar() {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-    
-    document.getElementById('currentMonth').textContent = 
-        `${monthNames[currentMonth]} ${currentYear}`;
-    
-    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    
-    const grid = document.getElementById('calendarGrid');
-    grid.innerHTML = '';
-    
-    ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
-        const header = document.createElement('div');
-        header.style.fontWeight = 'bold';
-        header.style.textAlign = 'center';
-        header.style.padding = '0.5rem';
-        header.textContent = day;
-        grid.appendChild(header);
-    });
-    
-    for (let i = 0; i < firstDay; i++) {
-        grid.appendChild(document.createElement('div'));
-    }
-    
-    const today = new Date();
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dayCell = document.createElement('div');
-        dayCell.className = 'calendar-day';
-        dayCell.textContent = day;
-        
-        const cellDate = new Date(currentYear, currentMonth, day);
-        const hasEvent = sampleEvents.some(e => {
-            const eventDate = new Date(e.date);
-            return eventDate.toDateString() === cellDate.toDateString();
+        function displayMemberProfile() {
+            const container = document.getElementById('memberProfileDisplay');
+            container.innerHTML = `
+                <div><strong>Email:</strong><br>${currentUser.email}</div>
+                <div><strong>Phone:</strong><br>${currentUser.phone || 'Not provided'}</div>
+                <div><strong>Birthday:</strong><br>${currentUser.birthday ? new Date(currentUser.birthday).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : 'Not provided'}</div>
+                <div><strong>Location:</strong><br>${currentUser.location || 'Not provided'}</div>
+                <div><strong>Profession:</strong><br>${currentUser.profession || 'Not provided'}</div>
+                <div><strong>Department:</strong><br>${currentUser.department || 'Not assigned'}</div>
+            `;
+        }
+
+        function showEditProfile() {
+            document.getElementById('editProfileSection').style.display = 'block';
+            
+            // Pre-fill form with current data
+            document.getElementById('editName').value = currentUser.name || '';
+            document.getElementById('editPhone').value = currentUser.phone || '';
+            document.getElementById('editBirthday').value = currentUser.birthday || '';
+            document.getElementById('editLocation').value = currentUser.location || '';
+            document.getElementById('editProfession').value = currentUser.profession || '';
+            document.getElementById('editDepartment').value = currentUser.department || '';
+        }
+
+        function cancelEditProfile() {
+            document.getElementById('editProfileSection').style.display = 'none';
+        }
+
+        async function saveProfileChanges() {
+            const name = document.getElementById('editName').value;
+            const phone = document.getElementById('editPhone').value;
+            const birthday = document.getElementById('editBirthday').value;
+            const location = document.getElementById('editLocation').value;
+            const profession = document.getElementById('editProfession').value;
+            const department = document.getElementById('editDepartment').value;
+            
+            if (!name || !phone || !birthday || !location || !profession) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            try {
+                // Update Firestore
+                await db.collection('members').doc(currentUser.uid).update({
+                    name: name,
+                    phone: phone,
+                    birthday: birthday,
+                    location: location,
+                    profession: profession,
+                    department: department
+                });
+                
+                // Update current user object
+                currentUser.name = name;
+                currentUser.phone = phone;
+                currentUser.birthday = birthday;
+                currentUser.location = location;
+                currentUser.profession = profession;
+                currentUser.department = department;
+                
+                alert('Profile updated successfully!');
+                displayMemberProfile();
+                cancelEditProfile();
+                
+                // Refresh member welcome message
+                loadMemberDashboard();
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile. Please try again.');
+            }
+        }
+
+        function renderCalendar() {
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            document.getElementById('currentMonth').textContent = 
+                `${monthNames[currentMonth]} ${currentYear}`;
+            
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            // Day headers
+            ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+                const header = document.createElement('div');
+                header.style.fontWeight = 'bold';
+                header.style.textAlign = 'center';
+                header.style.padding = '0.5rem';
+                header.textContent = day;
+                grid.appendChild(header);
+            });
+            
+            // Empty cells before first day
+            for (let i = 0; i < firstDay; i++) {
+                grid.appendChild(document.createElement('div'));
+            }
+            
+            // Days
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'calendar-day';
+                dayCell.textContent = day;
+                
+                const cellDate = new Date(currentYear, currentMonth, day);
+                const hasEvent = sampleEvents.some(e => {
+                    const eventDate = new Date(e.date);
+                    return eventDate.toDateString() === cellDate.toDateString();
+                });
+                
+                if (hasEvent) {
+                    dayCell.classList.add('has-event');
+                }
+                
+                if (cellDate.toDateString() === today.toDateString()) {
+                    dayCell.classList.add('today');
+                }
+                
+                grid.appendChild(dayCell);
+            }
+        }
+
+        async function loadFullBirthdayList() {
+            const container = document.getElementById('fullBirthdayList');
+            
+            try {
+                const snapshot = await db.collection('members').orderBy('birthday').get();
+                const birthdays = [];
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.birthday) {
+                        birthdays.push({
+                            name: data.name,
+                            date: data.birthday,
+                            phone: data.phone
+                        });
+                    }
+                });
+                
+                if (birthdays.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem;">No birthdays recorded yet</p>';
+                    return;
+                }
+                
+                container.innerHTML = birthdays.map(birthday => {
+                    const date = new Date(birthday.date);
+                    // Only show month and day, not year
+                    return `
+                        <div class="birthday-item" style="background: white; border-radius: 10px;">
+                            <div class="birthday-icon">🎂</div>
+                            <div>
+                                <strong>${birthday.name}</strong><br>
+                                <small>${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</small>
+                                ${birthday.phone ? `<br><small>📞 ${birthday.phone}</small>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading full birthday list:', error);
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">Error loading birthdays</p>';
+            }
+        }
+
+        async function loadAdminDashboard() {
+            document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
+            
+            // Load members from Firestore
+            sampleMembers = await loadMembersFromFirestore();
+            
+            loadAttendanceTable();
+            updateAttendanceStats();
+        }
+
+        async function loadAttendanceTable() {
+            const tbody = document.getElementById('attendanceTableBody');
+            
+            if (sampleMembers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">No members registered yet</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = sampleMembers.map(member => `
+                <tr>
+                    <td>${member.name}</td>
+                    <td>${member.department}</td>
+                    <td><span style="padding: 0.25rem 0.75rem; border-radius: 20px; 
+                        background: ${member.status === 'present' ? '#4CAF50' : '#f44336'}; 
+                        color: white;">${member.status}</span></td>
+                    <td>
+                        <button class="present-btn" onclick="markAttendance('${member.id}', 'present')">Present</button>
+                        <button class="absent-btn" onclick="markAttendance('${member.id}', 'absent')">Absent</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function markAttendance(memberId, status) {
+            const member = sampleMembers.find(m => m.id === memberId);
+            if (member) {
+                member.status = status;
+                const date = document.getElementById('attendanceDate').value || new Date().toISOString().split('T')[0];
+                
+                // Save to Firestore if available
+                if (db && currentUser) {
+                    saveAttendance(member.name, date, status);
+                }
+                
+                loadAttendanceTable();
+                updateAttendanceStats();
+            }
+        }
+
+        function updateAttendanceStats() {
+            const presentCount = sampleMembers.filter(m => m.status === 'present').length;
+            document.getElementById('avgAttendance').textContent = presentCount;
+            document.getElementById('totalMembers').textContent = sampleMembers.length;
+            document.getElementById('thisWeekAttendance').textContent = presentCount;
+            document.getElementById('attendanceGrowth').textContent = 
+                Math.round((presentCount / sampleMembers.length) * 100) + '%';
+        }
+
+        // Admin tab switching
+        function showAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            if (tabName === 'attendance') {
+                document.getElementById('attendanceTab').style.display = 'block';
+            } else if (tabName === 'finance') {
+                document.getElementById('financeTab').style.display = 'block';
+                loadFinanceData();
+            } else if (tabName === 'events') {
+                document.getElementById('eventsManagementTab').style.display = 'block';
+                loadAdminEventsList();
+            } else if (tabName === 'gallery') {
+                document.getElementById('galleryManagementTab').style.display = 'block';
+                loadAdminGalleryList();
+            } else if (tabName === 'reports') {
+                document.getElementById('reportsTab').style.display = 'block';
+            }
+        }
+
+        // Finance functions
+        async function recordTithe() {
+            const memberName = document.getElementById('titheMemberName').value;
+            const amount = parseFloat(document.getElementById('titheAmount').value);
+            const date = document.getElementById('titheDate').value;
+            
+            if (!memberName || !amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'tithe',
+                    memberName: memberName,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Tithe recorded successfully!');
+                document.getElementById('titheMemberName').value = '';
+                document.getElementById('titheAmount').value = '';
+                document.getElementById('titheDate').value = '';
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording tithe:', error);
+                alert('Error recording tithe. Please try again.');
+            }
+        }
+
+        async function recordOffering() {
+            const offeringType = document.getElementById('offeringType').value;
+            const service = document.getElementById('offeringService').value;
+            const amount = parseFloat(document.getElementById('offeringAmount').value);
+            const date = document.getElementById('offeringDate').value;
+            
+            if (!amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'offering',
+                    offeringType: offeringType,
+                    service: service,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Offering recorded successfully!');
+                document.getElementById('offeringAmount').value = '';
+                document.getElementById('offeringDate').value = new Date().toISOString().split('T')[0];
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording offering:', error);
+                alert('Error recording offering. Please try again.');
+            }
+        }
+
+        async function recordExpense() {
+            const description = document.getElementById('expenseDescription').value;
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+            const category = document.getElementById('expenseCategory').value;
+            const date = document.getElementById('expenseDate').value;
+            
+            if (!description || !amount || !date) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                await db.collection('finances').add({
+                    type: 'expense',
+                    description: description,
+                    category: category,
+                    amount: amount,
+                    date: date,
+                    recordedBy: currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Expense recorded successfully!');
+                document.getElementById('expenseDescription').value = '';
+                document.getElementById('expenseAmount').value = '';
+                document.getElementById('expenseDate').value = '';
+                loadFinanceData();
+            } catch (error) {
+                console.error('Error recording expense:', error);
+                alert('Error recording expense. Please try again.');
+            }
+        }
+
+        async function loadFinanceData() {
+            try {
+                const now = new Date();
+                const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                const firstDayStr = firstDayOfMonth.toISOString().split('T')[0];
+                
+                const snapshot = await db.collection('finances')
+                    .where('date', '>=', firstDayStr)
+                    .get();
+                
+                let totalTithes = 0;
+                let totalOfferings = 0;
+                let totalExpenses = 0;
+                const titherMap = {};
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.type === 'tithe') {
+                        totalTithes += data.amount;
+                        if (!titherMap[data.memberName]) {
+                            titherMap[data.memberName] = 0;
+                        }
+                        titherMap[data.memberName] += data.amount;
+                    } else if (data.type === 'offering') {
+                        totalOfferings += data.amount;
+                    } else if (data.type === 'expense') {
+                        totalExpenses += data.amount;
+                    }
+                });
+                
+                document.getElementById('totalTithes').textContent = '₵' + totalTithes.toFixed(2);
+                document.getElementById('totalOfferings').textContent = '₵' + totalOfferings.toFixed(2);
+                document.getElementById('totalExpenses').textContent = '₵' + totalExpenses.toFixed(2);
+                document.getElementById('netBalance').textContent = '₵' + ((totalTithes + totalOfferings) - totalExpenses).toFixed(2);
+                
+                // Load top tithers
+                loadTopTithers(titherMap);
+            } catch (error) {
+                console.error('Error loading finance data:', error);
+            }
+        }
+
+        function loadTopTithers(titherMap) {
+            const topTithers = Object.entries(titherMap)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            const container = document.getElementById('topTithersTable');
+            
+            if (topTithers.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No tithes recorded yet this year</p>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="attendance-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Member Name</th>
+                                <th>Total Tithes (₵)</th>
+                                <th>Award</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${topTithers.map((tither, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${tither[0]}</td>
+                                    <td>₵${tither[1].toFixed(2)}</td>
+                                    <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '⭐'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function submitPrayer() {
+            const prayer = document.getElementById('prayerRequest').value;
+            if (prayer.trim()) {
+                alert('Prayer request submitted successfully! Our prayer team will lift you up.');
+                document.getElementById('prayerRequest').value = '';
+            }
+        }
+
+        // Calendar navigation
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
         });
-        
-        if (hasEvent) {
-            dayCell.classList.add('has-event');
-        }
-        
-        if (cellDate.toDateString() === today.toDateString()) {
-            dayCell.classList.add('today');
-        }
-        
-        grid.appendChild(dayCell);
-    }
-}
 
-async function loadAttendanceTable() {
-    const tbody = document.getElementById('attendanceTableBody');
-    
-    if (sampleMembers.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">No members registered yet</td></tr>';
-        return;
-    }
-    
-    tbody.innerHTML = sampleMembers.map(member => `
-        <tr>
-            <td>${member.name}</td>
-            <td>${member.department}</td>
-            <td><span style="padding: 0.25rem 0.75rem; border-radius: 20px; 
-                background: ${member.status === 'present' ? '#4CAF50' : '#f44336'}; 
-                color: white;">${member.status}</span></td>
-            <td>
-                <button class="present-btn" onclick="markAttendance('${member.id}', 'present')">Present</button>
-                <button class="absent-btn" onclick="markAttendance('${member.id}', 'absent')">Absent</button>
-            </td>
-        </tr>
-    `).join('');
-}
-
-function markAttendance(memberId, status) {
-    const member = sampleMembers.find(m => m.id === memberId);
-    if (member) {
-        member.status = status;
-        const date = document.getElementById('attendanceDate').value || new Date().toISOString().split('T')[0];
-        
-        loadAttendanceTable();
-        updateAttendanceStats();
-    }
-}
-
-function updateAttendanceStats() {
-    const presentCount = sampleMembers.filter(m => m.status === 'present').length;
-    document.getElementById('avgAttendance').textContent = presentCount;
-    document.getElementById('totalMembers').textContent = sampleMembers.length;
-    document.getElementById('thisWeekAttendance').textContent = presentCount;
-    document.getElementById('attendanceGrowth').textContent = 
-        Math.round((presentCount / sampleMembers.length) * 100) + '%';
-}
-
-function loadMemberDashboard() {
-    if (!currentUser) return;
-    
-    document.getElementById('memberWelcome').innerHTML = `
-        <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
-             color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-            <h3>Welcome back, ${currentUser.name}!</h3>
-            <p>We're glad to see you today. Stay connected with your church family.</p>
-        </div>
-    `;
-    
-    renderCalendar();
-    loadFullBirthdayList();
-}
-
-async function loadAdminDashboard() {
-    document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
-    
-    sampleMembers = await loadMembersFromFirestore();
-    
-    loadAttendanceTable();
-    updateAttendanceStats();
-}
-
-async function initDashboard() {
-    loadUpcomingEvents();
-    loadBirthdays();
-    updateCountdowns();
-    
-    try {
-        const snapshot = await db.collection('members').get();
-        document.getElementById('totalMembersCount').textContent = snapshot.size;
-    } catch (error) {
-        console.error('Error loading member count:', error);
-    }
-    
-    setInterval(updateCountdowns, 60000);
-}
-
-function showAdminTab(tabName) {
-    document.querySelectorAll('.admin-tab-content').forEach(tab => {
-        tab.style.display = 'none';
-    });
-    
-    if (tabName === 'attendance') {
-        document.getElementById('attendanceTab').style.display = 'block';
-    } else if (tabName === 'finance') {
-        document.getElementById('financeTab').style.display = 'block';
-        loadFinanceData();
-    } else if (tabName === 'events') {
-        document.getElementById('eventsManagementTab').style.display = 'block';
-        loadAdminEventsList();
-    } else if (tabName === 'gallery') {
-        document.getElementById('galleryManagementTab').style.display = 'block';
-        loadAdminGalleryList();
-    } else if (tabName === 'reports') {
-        document.getElementById('reportsTab').style.display = 'block';
-    }
-}
-
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-
-function showAuthMessage(message, type) {
-    const messageEl = document.getElementById('authMessage');
-    if (messageEl) {
-        messageEl.textContent = message;
-        messageEl.className = type === 'success' ? 'message-success' : 'message-error';
-        messageEl.style.display = 'block';
-    }
-}
-
-function getAuthErrorMessage(errorCode) {
-    const errorMessages = {
-        'auth/email-already-in-use': 'This email is already registered. Please login instead.',
-        'auth/invalid-email': 'Invalid email address',
-        'auth/weak-password': 'Password must be at least 6 characters',
-        'auth/user-not-found': 'No account found with this email',
-        'auth/wrong-password': 'Incorrect password',
-        'auth/too-many-requests': 'Too many attempts. Please try again later',
-        'auth/network-request-failed': 'Network error. Check your connection.'
-    };
-    return errorMessages[errorCode] || 'An error occurred. Please try again.';
-}
-
-function showLoginForm() {
-    document.getElementById('loginForm').style.display = 'block';
-    document.getElementById('registerForm').style.display = 'none';
-    document.getElementById('modalTitle').textContent = 'Login to Dashboard';
-    const msgEl = document.getElementById('authMessage');
-    if (msgEl) msgEl.textContent = '';
-}
-
-function showRegisterForm() {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
-    document.getElementById('modalTitle').textContent = 'Register New Member';
-    const msgEl = document.getElementById('authMessage');
-    if (msgEl) msgEl.textContent = '';
-}
-
-function closeLoginModal() {
-    document.getElementById('loginModal').classList.remove('active');
-    setTimeout(() => {
-        showLoginForm();
-        document.querySelectorAll('input').forEach(input => input.value = '');
-    }, 300);
-}
-
-function sendContactMessage() {
-    const name = document.getElementById('contactName').value;
-    const email = document.getElementById('contactEmail').value;
-    const phone = document.getElementById('contactPhone').value;
-    const message = document.getElementById('contactMessage').value;
-    
-    if (!name || !email || !message) {
-        alert('Please fill in all required fields');
-        return;
-    }
-    
-    alert('Thank you for your message! We will get back to you soon.');
-    document.getElementById('contactName').value = '';
-    document.getElementById('contactEmail').value = '';
-    document.getElementById('contactPhone').value = '';
-    document.getElementById('contactMessage').value = '';
-}
-
-// ============================================
-// NAVIGATION & PAGE MANAGEMENT
-// ============================================
-
-document.querySelectorAll('[data-page]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const page = e.target.dataset.page;
-        showPage(page);
-        
-        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        e.target.classList.add('active');
-        
-        document.getElementById('navLinks').classList.remove('active');
-    });
-});
-
-document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('active');
-});
-
-function showPage(pageName) {
-    document.querySelectorAll('.page-content').forEach(page => {
-        page.style.display = 'none';
-    });
-    
-    const pageMap = {
-        'home': 'homePage',
-        'about': 'aboutPage',
-        'ministries': 'ministriesPage',
-        'gallery': 'galleryPage',
-        'events': 'eventsPage',
-        'contact': 'contactPage',
-        'dashboard': 'dashboardPage'
-    };
-    
-    const pageId = pageMap[pageName] || 'homePage';
-    document.getElementById(pageId).style.display = 'block';
-    
-    if (pageName === 'dashboard') {
-        if (!currentUser) {
-            document.getElementById('loginModal').classList.add('active');
-            showPage('home');
-            return;
-        }
-        initDashboard();
-    }
-    
-    if (pageName === 'events') {
-        loadFullEventsList();
-    }
-    
-    if (pageName === 'gallery') {
-        loadGallery();
-        if (currentUser && currentUser.role === 'admin') {
-            document.getElementById('galleryUploadSection').style.display = 'block';
-        }
-    }
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showPageByName(pageName) {
-    showPage(pageName);
-    
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navLink = document.querySelector(`[data-page="${pageName}"]`);
-    if (navLink) navLink.classList.add('active');
-}
-
-function scrollToContact() {
-    showPageByName('contact');
-}
-
-// Dashboard tabs
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const tab = e.target.dataset.tab;
-        
-        if (tab === 'member' && (!currentUser || currentUser.role === 'public')) {
-            alert('Please login to access the Member Portal');
-            document.getElementById('loginModal').classList.add('active');
-            return;
-        }
-        
-        if (tab === 'admin' && (!currentUser || currentUser.role !== 'admin')) {
-            alert('Admin access required');
-            return;
-        }
-        
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        
-        document.querySelectorAll('.dashboard-content').forEach(content => {
-            content.classList.remove('active');
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
         });
-        
-        document.getElementById(tab + 'Dashboard').classList.add('active');
-        
-        if (tab === 'member') loadMemberDashboard();
-        if (tab === 'admin') loadAdminDashboard();
-    });
-});
 
-// Calendar navigation
-document.getElementById('prevMonth').addEventListener('click', () => {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-    }
-    renderCalendar();
-});
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUpcomingEvents();
+            loadBirthdays();
+            updateCountdowns();
+            
+            // Set default dates for finance forms
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('titheDate').value = today;
+            document.getElementById('offeringDate').value = today;
+            document.getElementById('expenseDate').value = today;
+            
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                document.getElementById('loginModal').classList.add('active');
+            });
 
-document.getElementById('nextMonth').addEventListener('click', () => {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    renderCalendar();
-});
-
-// File input handlers
-document.getElementById('galleryFileInput').addEventListener('change', function(e) {
-    const files = e.target.files;
-    if (files.length > 0) {
-        document.getElementById('selectedFileName').textContent = 
-            files.length === 1 ? files[0].name : `${files.length} files selected`;
-    }
-});
-
-document.getElementById('adminGalleryFileInput').addEventListener('change', function(e) {
-    const files = e.target.files;
-    if (files.length > 0) {
-        document.getElementById('adminSelectedFileName').textContent = 
-            files.length === 1 ? files[0].name : `${files.length} files selected`;
-    }
-});
-
-// Close lightbox on escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeLightbox();
-    }
-});
-
-// Initialize on load
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Page loaded');
-    
-    initializeEvents();
-    
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('titheDate').value = today;
-    document.getElementById('offeringDate').value = today;
-    document.getElementById('expenseDate').value = today;
-    
-    document.getElementById('loginBtn').addEventListener('click', () => {
-        document.getElementById('loginModal').classList.add('active');
-    });
-});
+            // Add logout button to dashboard if user is logged in
+            setInterval(() => {
+                if (currentUser && document.getElementById('dashboardPage').style.display === 'block') {
+                    const dashboardHeader = document.querySelector('#dashboardPage h2');
+                    if (dashboardHeader && !document.getElementById('logoutBtn')) {
+                        const logoutBtn = document.createElement('button');
+                        logoutBtn.id = 'logoutBtn';
+                        logoutBtn.className = 'btn btn-secondary';
+                        logoutBtn.textContent = 'Logout';
+                        logoutBtn.style.float = 'right';
+                        logoutBtn.onclick = handleLogout;
+                        dashboardHeader.appendChild(logoutBtn);
+                    }
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
