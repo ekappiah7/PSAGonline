@@ -1669,7 +1669,54 @@
                     <!-- Member Dashboard -->
                     <div id="memberDashboard" class="dashboard-content">
                         <div id="memberWelcome"></div>
-                        
+                        <!-- ✅ Member Profile Section -->
+<h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">👤 My Profile</h3>
+<div id="memberProfileDisplay" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+    <!-- Profile info will be loaded here -->
+</div>
+<button class="btn btn-primary" onclick="showEditProfile()" style="margin-bottom: 2rem;">Edit Profile</button>
+
+<!-- ✅ Edit Profile Form (Hidden by default) -->
+<div id="editProfileSection" style="display: none; background: var(--light-blue); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1rem; color: var(--dark-blue);">Edit Your Profile</h3>
+    <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="editName" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="editPhone" placeholder="+233 XXX XXX XXX">
+    </div>
+    <div class="form-group">
+        <label>Date of Birth *</label>
+        <input type="date" id="editBirthday">
+    </div>
+    <div class="form-group">
+        <label>Location/Address *</label>
+        <input type="text" id="editLocation" placeholder="Where do you live?">
+    </div>
+    <div class="form-group">
+        <label>Profession/Employment Status *</label>
+        <input type="text" id="editProfession" placeholder="e.g., Teacher, Student, Trader">
+    </div>
+    <div class="form-group">
+        <label>Department</label>
+        <select id="editDepartment">
+            <option value="">Select a department</option>
+            <option value="Evangelism & Missions">Evangelism & Missions</option>
+            <option value="Prayer & Intercession">Prayer & Intercession</option>
+            <option value="Administration">Administration</option>
+            <option value="Media">Media</option>
+            <option value="Children Service">Children Service</option>
+            <option value="Sunday School & Discipleship">Sunday School & Discipleship</option>
+            <option value="Choir & Music Ministry">Choir & Music Ministry</option>
+            <option value="Ushering">Ushering</option>
+            <option value="Young Singles">Young Singles</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" onclick="saveProfileChanges()">Save Changes</button>
+    <button class="btn btn-secondary" onclick="cancelEditProfile()" style="margin-left: 1rem;">Cancel</button>
+</div>
                         <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue);">📅 Events Calendar</h3>
                         <div class="calendar">
                             <div class="calendar-header">
