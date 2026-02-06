@@ -2561,7 +2561,6 @@ auth.onAuthStateChanged(async (user) => {
 // GALLERY UPLOAD FUNCTIONS (FIXED)
 // ============================================
 
-// ✅ COMPLETELY REWRITTEN: Upload using Firebase Storage
 async function uploadGalleryPhoto() {
     const category = document.getElementById('galleryCategory').value;
     const description = document.getElementById('galleryDescription').value;
@@ -2587,15 +2586,15 @@ async function uploadGalleryPhoto() {
     const progressFill = document.getElementById('progressFill');
     
     try {
-        progressBar.style.display = 'block';
+        if (progressBar) progressBar.style.display = 'block';
         let uploadedCount = 0;
         const totalFiles = files.length;
         
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             
-            if (file.size > 5 * 1024 * 1024) {
-                alert(`File ${file.name} is too large. Maximum size is 5MB.`);
+            if (file.size > 1 * 1024 * 1024) {
+                alert(`File ${file.name} is too large. Maximum 1MB.`);
                 continue;
             }
             
@@ -2604,32 +2603,22 @@ async function uploadGalleryPhoto() {
                 continue;
             }
             
-            // ✅ Upload to Firebase Storage
-            const storageRef = storage.ref();
-            const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
-            const uploadTask = imageRef.put(file);
+            const reader = new FileReader();
             
             await new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        const overallProgress = ((uploadedCount + (progress / 100)) / totalFiles) * 100;
-                        progressFill.style.width = overallProgress + '%';
-                        progressFill.textContent = Math.round(overallProgress) + '%';
-                    },
-                    (error) => {
-                        console.error('Upload error:', error);
-                        reject(error);
-                    },
-                    async () => {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                reader.onload = async function(e) {
+                    try {
+                        if (progressFill) {
+                            const progress = ((uploadedCount + 0.5) / totalFiles) * 100;
+                            progressFill.style.width = progress + '%';
+                            progressFill.textContent = Math.round(progress) + '%';
+                        }
                         
                         await db.collection('gallery').add({
                             category: category,
                             description: description,
-                            imageUrl: downloadURL,
+                            imageData: e.target.result,
                             fileName: file.name,
-                            fileSize: file.size,
                             uploadedBy: currentUser.uid,
                             uploadedByName: currentUser.name,
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -2637,28 +2626,40 @@ async function uploadGalleryPhoto() {
                         });
                         
                         uploadedCount++;
+                        
+                        if (progressFill) {
+                            progressFill.style.width = (uploadedCount / totalFiles * 100) + '%';
+                            progressFill.textContent = Math.round(uploadedCount / totalFiles * 100) + '%';
+                        }
+                        
                         resolve();
+                    } catch (error) {
+                        reject(error);
                     }
-                );
+                };
+                
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
             });
         }
         
-        alert(`All ${totalFiles} photo(s) uploaded successfully!`);
+        alert(`${totalFiles} photo(s) uploaded!`);
         document.getElementById('galleryDescription').value = '';
         document.getElementById('galleryFileInput').value = '';
-        document.getElementById('selectedFileName').textContent = '';
-        progressBar.style.display = 'none';
-        progressFill.style.width = '0%';
+        if (progressBar) {
+            progressBar.style.display = 'none';
+            progressFill.style.width = '0%';
+        }
         loadGallery();
         
     } catch (error) {
         console.error('Upload error:', error);
-        alert('Error uploading photos: ' + error.message);
-        progressBar.style.display = 'none';
+        alert('Error: ' + error.message);
+        if (progressBar) progressBar.style.display = 'none';
     }
 }
 
-async function uploadAdminGalleryPhoto() {
+async function uploadGalleryPhoto() {
     const category = document.getElementById('adminGalleryCategory').value;
     const description = document.getElementById('adminGalleryDescription').value;
     const fileInput = document.getElementById('adminGalleryFileInput');
@@ -2683,15 +2684,15 @@ async function uploadAdminGalleryPhoto() {
     const progressFill = document.getElementById('adminProgressFill');
     
     try {
-        progressBar.style.display = 'block';
+        if (progressBar) progressBar.style.display = 'block';
         let uploadedCount = 0;
         const totalFiles = files.length;
         
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             
-            if (file.size > 5 * 1024 * 1024) {
-                alert(`File ${file.name} is too large. Maximum size is 5MB.`);
+            if (file.size > 1 * 1024 * 1024) {
+                alert(`File ${file.name} is too large. Maximum 1MB.`);
                 continue;
             }
             
@@ -2700,31 +2701,22 @@ async function uploadAdminGalleryPhoto() {
                 continue;
             }
             
-            const storageRef = storage.ref();
-            const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
-            const uploadTask = imageRef.put(file);
+            const reader = new FileReader();
             
             await new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        const overallProgress = ((uploadedCount + (progress / 100)) / totalFiles) * 100;
-                        progressFill.style.width = overallProgress + '%';
-                        progressFill.textContent = Math.round(overallProgress) + '%';
-                    },
-                    (error) => {
-                        console.error('Upload error:', error);
-                        reject(error);
-                    },
-                    async () => {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                reader.onload = async function(e) {
+                    try {
+                        if (progressFill) {
+                            const progress = ((uploadedCount + 0.5) / totalFiles) * 100;
+                            progressFill.style.width = progress + '%';
+                            progressFill.textContent = Math.round(progress) + '%';
+                        }
                         
                         await db.collection('gallery').add({
                             category: category,
                             description: description,
-                            imageUrl: downloadURL,
+                            imageData: e.target.result,
                             fileName: file.name,
-                            fileSize: file.size,
                             uploadedBy: currentUser.uid,
                             uploadedByName: currentUser.name,
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -2732,26 +2724,42 @@ async function uploadAdminGalleryPhoto() {
                         });
                         
                         uploadedCount++;
+                        
+                        if (progressFill) {
+                            const percent = (uploadedCount / totalFiles) * 100;
+                            progressFill.style.width = percent + '%';
+                            progressFill.textContent = Math.round(percent) + '%';
+                        }
+                        
                         resolve();
+                    } catch (error) {
+                        reject(error);
                     }
-                );
+                };
+                
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
             });
         }
         
-        alert(`All ${totalFiles} photo(s) uploaded successfully!`);
+        alert(`${totalFiles} photo(s) uploaded!`);
         document.getElementById('adminGalleryDescription').value = '';
         document.getElementById('adminGalleryFileInput').value = '';
-        document.getElementById('adminSelectedFileName').textContent = '';
-        progressBar.style.display = 'none';
-        progressFill.style.width = '0%';
-        loadAdminGalleryList();
+        
+        if (progressBar) {
+            progressBar.style.display = 'none';
+            progressFill.style.width = '0%';
+        }
+        
+        loadGallery();
         
     } catch (error) {
         console.error('Upload error:', error);
-        alert('Error uploading photos: ' + error.message);
-        progressBar.style.display = 'none';
+        alert('Error: ' + error.message);
+        if (progressBar) progressBar.style.display = 'none';
     }
 }
+
 
 async function loadGallery() {
     const container = document.getElementById('galleryGrid');
@@ -3589,6 +3597,7 @@ function loadMemberDashboard() {
     if (!currentUser) return;
     
     document.getElementById('memberWelcome').innerHTML = `
+    displayMemberProfile(); 
         <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
              color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
             <h3>Welcome back, ${currentUser.name}!</h3>
@@ -3875,6 +3884,88 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('loginModal').classList.add('active');
     });
 });
+
+        // MEMBER PROFILE EDITING
+function displayMemberProfile() {
+    const container = document.getElementById('memberProfileDisplay');
+    if (!container || !currentUser) return;
+    
+    container.innerHTML = `
+        <div><strong>Email:</strong><br>${currentUser.email}</div>
+        <div><strong>Phone:</strong><br>${currentUser.phone || 'Not provided'}</div>
+        <div><strong>Birthday:</strong><br>${currentUser.birthday ? new Date(currentUser.birthday).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Not provided'}</div>
+        <div><strong>Location:</strong><br>${currentUser.location || 'Not provided'}</div>
+        <div><strong>Profession:</strong><br>${currentUser.profession || 'Not provided'}</div>
+        <div><strong>Department:</strong><br>${currentUser.department || 'Not assigned'}</div>
+    `;
+}
+
+function showEditProfile() {
+    const section = document.getElementById('editProfileSection');
+    if (!section) return;
+    section.style.display = 'block';
+    
+    document.getElementById('editName').value = currentUser.name || '';
+    document.getElementById('editPhone').value = currentUser.phone || '';
+    document.getElementById('editBirthday').value = currentUser.birthday || '';
+    document.getElementById('editLocation').value = currentUser.location || '';
+    document.getElementById('editProfession').value = currentUser.profession || '';
+    document.getElementById('editDepartment').value = currentUser.department || '';
+    
+    section.scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelEditProfile() {
+    const section = document.getElementById('editProfileSection');
+    if (section) section.style.display = 'none';
+}
+
+async function saveProfileChanges() {
+    const name = document.getElementById('editName').value.trim();
+    const phone = document.getElementById('editPhone').value.trim();
+    const birthday = document.getElementById('editBirthday').value;
+    const location = document.getElementById('editLocation').value.trim();
+    const profession = document.getElementById('editProfession').value.trim();
+    const department = document.getElementById('editDepartment').value;
+    
+    if (!name || !phone || !birthday || !location || !profession) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    try {
+        await db.collection('members').doc(currentUser.uid).update({
+            name: name,
+            phone: phone,
+            birthday: birthday,
+            location: location,
+            profession: profession,
+            department: department || 'Not assigned'
+        });
+        
+        currentUser.name = name;
+        currentUser.phone = phone;
+        currentUser.birthday = birthday;
+        currentUser.location = location;
+        currentUser.profession = profession;
+        currentUser.department = department || 'Not assigned';
+        
+        alert('✅ Profile updated!');
+        displayMemberProfile();
+        cancelEditProfile();
+        
+        document.getElementById('memberWelcome').innerHTML = `
+            <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
+                 color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3>Welcome back, ${currentUser.name}!</h3>
+                <p>We're glad to see you today. Stay connected with your church family.</p>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error: ' + error.message);
+    }
+}
     </script>
 </body>
 </html>
