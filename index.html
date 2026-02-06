@@ -2184,7 +2184,7 @@
     </div>
 
     <script>
-        // ============================================
+     // ============================================
 // FIREBASE CONFIGURATION & INITIALIZATION
 // ============================================
 const firebaseConfig = {
@@ -3596,101 +3596,8 @@ function loadMemberDashboard() {
         </div>
     `;
     
-    // ✅ Display member profile
-    displayMemberProfile();
-    
     renderCalendar();
     loadFullBirthdayList();
-}
-
-// ✅ NEW: Display member profile information
-function displayMemberProfile() {
-    const container = document.getElementById('memberProfileDisplay');
-    if (!container) return;
-    
-    container.innerHTML = `
-        <div><strong>Email:</strong><br>${currentUser.email}</div>
-        <div><strong>Phone:</strong><br>${currentUser.phone || 'Not provided'}</div>
-        <div><strong>Birthday:</strong><br>${currentUser.birthday ? new Date(currentUser.birthday).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Not provided'}</div>
-        <div><strong>Location:</strong><br>${currentUser.location || 'Not provided'}</div>
-        <div><strong>Profession:</strong><br>${currentUser.profession || 'Not provided'}</div>
-        <div><strong>Department:</strong><br>${currentUser.department || 'Not assigned'}</div>
-    `;
-}
-
-// ✅ NEW: Show edit profile form
-function showEditProfile() {
-    document.getElementById('editProfileSection').style.display = 'block';
-    
-    // Pre-fill form with current data
-    document.getElementById('editName').value = currentUser.name || '';
-    document.getElementById('editPhone').value = currentUser.phone || '';
-    document.getElementById('editBirthday').value = currentUser.birthday || '';
-    document.getElementById('editLocation').value = currentUser.location || '';
-    document.getElementById('editProfession').value = currentUser.profession || '';
-    document.getElementById('editDepartment').value = currentUser.department || '';
-    
-    // Scroll to the form
-    document.getElementById('editProfileSection').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ✅ NEW: Cancel editing
-function cancelEditProfile() {
-    document.getElementById('editProfileSection').style.display = 'none';
-}
-
-// ✅ NEW: Save profile changes
-async function saveProfileChanges() {
-    const name = document.getElementById('editName').value.trim();
-    const phone = document.getElementById('editPhone').value.trim();
-    const birthday = document.getElementById('editBirthday').value;
-    const location = document.getElementById('editLocation').value.trim();
-    const profession = document.getElementById('editProfession').value.trim();
-    const department = document.getElementById('editDepartment').value;
-    
-    if (!name || !phone || !birthday || !location || !profession) {
-        alert('Please fill in all required fields');
-        return;
-    }
-    
-    try {
-        // Update Firestore
-        await db.collection('members').doc(currentUser.uid).update({
-            name: name,
-            phone: phone,
-            birthday: birthday,
-            location: location,
-            profession: profession,
-            department: department || 'Not assigned'
-        });
-        
-        // Update current user object
-        currentUser.name = name;
-        currentUser.phone = phone;
-        currentUser.birthday = birthday;
-        currentUser.location = location;
-        currentUser.profession = profession;
-        currentUser.department = department || 'Not assigned';
-        
-        alert('✅ Profile updated successfully!');
-        
-        // Refresh the display
-        displayMemberProfile();
-        cancelEditProfile();
-        
-        // Refresh welcome message
-        document.getElementById('memberWelcome').innerHTML = `
-            <div style="background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue)); 
-                 color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                <h3>Welcome back, ${currentUser.name}!</h3>
-                <p>We're glad to see you today. Stay connected with your church family.</p>
-            </div>
-        `;
-        
-    } catch (error) {
-        console.error('Error updating profile:', error);
-        alert('❌ Error updating profile: ' + error.message);
-    }
 }
 
 async function loadAdminDashboard() {
