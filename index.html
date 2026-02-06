@@ -2402,8 +2402,18 @@ async function completeGoogleProfile() {
 async function handleLogin() {
     console.log('📧 Email login initiated');
     
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    
+    if (!emailInput || !passwordInput) {
+        alert('Login form error. Please refresh the page.');
+        return;
+    }
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    
+    console.log('Email:', email);
     
     if (!email || !password) {
         showAuthMessage('Please enter email and password', 'error');
@@ -2413,8 +2423,11 @@ async function handleLogin() {
     showAuthMessage('Logging in...', 'success');
 
     try {
+        console.log('Attempting login...');
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
+        
+        console.log('Login successful, loading profile...');
         
         const userDoc = await db.collection('members').doc(user.uid).get();
         
@@ -2429,8 +2442,11 @@ async function handleLogin() {
                 location: userData.location,
                 profession: userData.profession,
                 role: userData.role || 'member',
-                department: userData.department
+                department: userData.department,
+                profilePicture: userData.profilePicture || null
             };
+            
+            console.log('User loaded:', currentUser.name);
             
             showAuthMessage('Login successful!', 'success');
             setTimeout(() => {
@@ -2442,7 +2458,26 @@ async function handleLogin() {
         }
     } catch (error) {
         console.error('❌ Login error:', error);
-        showAuthMessage(getAuthErrorMessage(error.code), 'error');
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        
+        let errorMessage = 'Login failed: ';
+        
+        if (error.code === 'auth/user-not-found') {
+            errorMessage = 'No account found with this email. Please register first.';
+        } else if (error.code === 'auth/wrong-password') {
+            errorMessage = 'Incorrect password. Please try again.';
+        } else if (error.code === 'auth/invalid-email') {
+            errorMessage = 'Invalid email format.';
+        } else if (error.code === 'auth/too-many-requests') {
+            errorMessage = 'Too many failed attempts. Please try again later.';
+        } else if (error.code === 'auth/network-request-failed') {
+            errorMessage = 'Network error. Check your connection.';
+        } else {
+            errorMessage += error.message;
+        }
+        
+        showAuthMessage(errorMessage, 'error');
     }
 }
 
@@ -2562,9 +2597,22 @@ auth.onAuthStateChanged(async (user) => {
 // ============================================
 
 async function uploadGalleryPhoto() {
-    const category = document.getElementById('galleryCategory').value;
-    const description = document.getElementById('galleryDescription').value;
+    console.log('Upload function called');
+    
+    const category = document.getElementById('galleryCategory');
+    const description = document.getElementById('galleryDescription');
     const fileInput = document.getElementById('galleryFileInput');
+    
+    console.log('Category element:', category);
+    console.log('Description element:', description);
+    console.log('File input element:', fileInput);
+    
+    if (!category || !description || !fileInput) {
+        alert('ERROR: Upload form elements not found. Please contact admin.');
+        console.error('Missing elements:', { category, description, fileInput });
+        return;
+    }
+    
     const files = fileInput.files;
     
     if (files.length === 0) {
@@ -2572,7 +2620,7 @@ async function uploadGalleryPhoto() {
         return;
     }
     
-    if (!description) {
+    if (!description.value) {
         alert('Please add a description');
         return;
     }
@@ -2585,13 +2633,22 @@ async function uploadGalleryPhoto() {
     const progressBar = document.getElementById('uploadProgress');
     const progressFill = document.getElementById('progressFill');
     
+    console.log('Progress elements:', { progressBar, progressFill });
+    
     try {
-        if (progressBar) progressBar.style.display = 'block';
+        if (progressBar) {
+            progressBar.style.display = 'block';
+            console.log('Progress bar shown');
+        }
+        
         let uploadedCount = 0;
         const totalFiles = files.length;
         
+        console.log(`Starting upload of ${totalFiles} files`);
+        
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
+            console.log(`Processing file ${i + 1}:`, file.name, file.size, file.type);
             
             if (file.size > 1 * 1024 * 1024) {
                 alert(`File ${file.name} is too large. Maximum 1MB.`);
@@ -2608,15 +2665,20 @@ async function uploadGalleryPhoto() {
             await new Promise((resolve, reject) => {
                 reader.onload = async function(e) {
                     try {
+                        console.log(`File ${file.name} converted to base64`);
+                        
                         if (progressFill) {
                             const progress = ((uploadedCount + 0.5) / totalFiles) * 100;
                             progressFill.style.width = progress + '%';
                             progressFill.textContent = Math.round(progress) + '%';
+                            console.log(`Progress: ${Math.round(progress)}%`);
                         }
                         
+                        console.log('Saving to Firestore...');
+                        
                         await db.collection('gallery').add({
-                            category: category,
-                            description: description,
+                            category: category.value,
+                            description: description.value,
                             imageData: e.target.result,
                             fileName: file.name,
                             uploadedBy: currentUser.uid,
@@ -2625,36 +2687,51 @@ async function uploadGalleryPhoto() {
                             createdAt: new Date().toISOString()
                         });
                         
+                        console.log('Saved to Firestore successfully');
+                        
                         uploadedCount++;
                         
                         if (progressFill) {
-                            progressFill.style.width = (uploadedCount / totalFiles * 100) + '%';
-                            progressFill.textContent = Math.round(uploadedCount / totalFiles * 100) + '%';
+                            const finalProgress = (uploadedCount / totalFiles * 100);
+                            progressFill.style.width = finalProgress + '%';
+                            progressFill.textContent = Math.round(finalProgress) + '%';
                         }
                         
                         resolve();
                     } catch (error) {
+                        console.error('Error in reader.onload:', error);
                         reject(error);
                     }
                 };
                 
-                reader.onerror = reject;
+                reader.onerror = function(error) {
+                    console.error('FileReader error:', error);
+                    reject(error);
+                };
+                
                 reader.readAsDataURL(file);
             });
         }
         
-        alert(`${totalFiles} photo(s) uploaded!`);
-        document.getElementById('galleryDescription').value = '';
-        document.getElementById('galleryFileInput').value = '';
+        alert(`${totalFiles} photo(s) uploaded successfully!`);
+        description.value = '';
+        fileInput.value = '';
+        
         if (progressBar) {
-            progressBar.style.display = 'none';
-            progressFill.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.display = 'none';
+                if (progressFill) {
+                    progressFill.style.width = '0%';
+                    progressFill.textContent = '0%';
+                }
+            }, 1000);
         }
+        
         loadGallery();
         
     } catch (error) {
         console.error('Upload error:', error);
-        alert('Error: ' + error.message);
+        alert('Error uploading: ' + error.message);
         if (progressBar) progressBar.style.display = 'none';
     }
 }
@@ -2802,6 +2879,11 @@ async function loadGallery() {
 function displayGallery(photos) {
     const container = document.getElementById('galleryGrid');
     
+    if (!container) {
+        console.error('Gallery grid not found');
+        return;
+    }
+    
     const filteredPhotos = currentGalleryFilter === 'all' 
         ? photos 
         : photos.filter(p => p.category === currentGalleryFilter);
@@ -2812,8 +2894,8 @@ function displayGallery(photos) {
     }
     
     container.innerHTML = filteredPhotos.map(photo => `
-        <div class="gallery-item" onclick="openLightbox('${photo.imageUrl}')">
-            <img src="${photo.imageUrl}" alt="${photo.description}">
+        <div class="gallery-item" onclick="openLightbox('${photo.imageData.replace(/'/g, "\\'")}')">
+            <img src="${photo.imageData}" alt="${photo.description}" style="width: 100%; height: 100%; object-fit: cover;">
             <div class="gallery-caption">
                 <h4>${photo.category}</h4>
                 <p>${photo.description}</p>
