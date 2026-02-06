@@ -4059,6 +4059,66 @@ async function saveProfileChanges() {
         alert('❌ Error: ' + error.message);
     }
 }
+
+// PROFILE PICTURE FUNCTIONS
+document.getElementById('profilePictureInput').addEventListener('change', async function(e) {
+    const file = e.target.files[0];
+    
+    if (!file) return;
+    
+    if (file.size > 500 * 1024) {
+        alert('Image too large. Maximum 500KB.');
+        return;
+    }
+    
+    if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        return;
+    }
+    
+    try {
+        const reader = new FileReader();
+        
+        reader.onload = async function(event) {
+            const imageData = event.target.result;
+            
+            // Update Firestore
+            await db.collection('members').doc(currentUser.uid).update({
+                profilePicture: imageData
+            });
+            
+            // Update current user
+            currentUser.profilePicture = imageData;
+            
+            // Update display
+            displayProfilePicture();
+            
+            alert('✅ Profile picture updated!');
+        };
+        
+        reader.readAsDataURL(file);
+    } catch (error) {
+        console.error('Error uploading profile picture:', error);
+        alert('Error uploading picture: ' + error.message);
+    }
+});
+
+function displayProfilePicture() {
+    const preview = document.getElementById('profilePicturePreview');
+    const noPhoto = document.getElementById('noProfilePicture');
+    
+    if (!preview || !noPhoto) return;
+    
+    if (currentUser && currentUser.profilePicture) {
+        preview.src = currentUser.profilePicture;
+        preview.style.display = 'block';
+        noPhoto.style.display = 'none';
+    } else {
+        preview.style.display = 'none';
+        noPhoto.style.display = 'flex';
+    }
+}
+        
     </script>
 </body>
 </html>
